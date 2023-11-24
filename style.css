@@ -1,96 +1,123 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-a:hover {
-  color: #535bf2;
+
+html {
+  font-size: 62.5%;
 }
 
 body {
-  margin: 0;
+  font-size: 1.6rem;
+  font-family: "Black Han Sans", sans-serif;
+}
+
+.onlyjoy-landingPage {
+  width: 100%;
+  height: auto;
+}
+
+.onlyjoy__header {
+}
+
+.onlyjoy__main {
+  width: 100%;
+  height: auto;
+}
+
+.onlyjoy__banner {
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  gap: 2.5rem;
+  animation: movingBackAndForth 20s infinite normal;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.onlyjoy__bannerItem {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
 }
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.onlyjoy__bannerItem img {
+  width: 4rem;
+  height: 4rem;
+}
+
+.onlyjoy__bannerItem p {
+  font-size: 3rem;
+  text-transform: uppercase;
+}
+
+.onlyjoy__matchContainer {
+  width: 100%;
+  display: flex;
+}
+
+.onlyjoy__match {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  padding: 0 5rem;
+
+  /* border-radius: 10px; */
+  /* 임시 background-color 설정 */
+  /* background-color: blue; */
+  /* background-color: yellow; */
+}
+
+.onlyjoy__matchRow {
+  display: flex;
+  gap: 2rem;
+}
+
+.onlyjoy__matchRow span {
+  font-size: 3rem;
+}
+.onlyjoy__matchRow .row-line {
+  width: 40rem;
+  height: 0.15rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  margin-top: 0.8rem;
+}
+
+.onlyjoy__matchRow:not(:first-child) .row-line {
+  margin-top: 2rem;
+}
+
+.onlyjoy__matchDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding: 0 7.5rem;
+  font-size: 3rem;
+}
+
+.onlyjoy__matchTeams {
   text-align: center;
+  font-size: 5rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #f7df1eaa);
+.onlyjoy__matchTimes {
 }
 
-.card {
-  padding: 2em;
+.onlyjoy__matchBroadcasting {
 }
 
-.read-the-docs {
-  color: #888;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@keyframes movingBackAndForth {
+  0% {
+    transform: translateX(0px);
   }
-  a:hover {
-    color: #747bff;
+
+  50% {
+    transform: translateX(80px);
   }
-  button {
-    background-color: #f9f9f9;
+
+  100% {
+    transform: translateX(0px);
   }
 }
