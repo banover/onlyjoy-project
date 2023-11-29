@@ -7,12 +7,11 @@ function init() {
   renderThisWeekMatchCards();
 }
 
-function renderThisWeekMatchCards() {
-  Model.bookmarkTeam.forEach(async (team) => {
-    const matchData = await Model.loadMatchData(team.id);
-    matchData.matches.forEach((match) => {
-      new matchCardView(team.name, match).render();
-    });
-    console.log(matchData);
+async function renderThisWeekMatchCards() {
+  await Model.loadMatchesData();
+  console.log(Model.state.matchData);
+
+  Model.state.matchData.forEach((match) => {
+    new matchCardView(match).render();
   });
 }
