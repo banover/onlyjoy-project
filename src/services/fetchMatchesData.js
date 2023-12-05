@@ -1,12 +1,13 @@
 import axios from "axios";
 import { API_TOKEN, BASE_URL } from "../config";
-import getCurrentDate from "../helpers/getCurrentDate";
-import getNextWeekDate from "../helpers/getNextWeekDate";
+import DateString from "../helpers/DateString.js";
 import * as Model from "../model.js";
 
 export default async function fetchMatchesData() {
-  const dateParameter = `dateFrom=${getCurrentDate()}&&dateTo=${getNextWeekDate()}`;
-  //   const url = `${BASE_URL}/teams/${teamId}/matches?${dateParameter}`;
+  const date = new DateString();
+  const dateParameter = `dateFrom=${date.current}&&dateTo=${date.nextWeekFromCurrent}`;
+  console.log(dateParameter);
+
   let urls = Model.state.bookmarkTeam.map((team) => {
     return `${BASE_URL}/teams/${team.id}/matches?${dateParameter}`;
   });
@@ -19,6 +20,11 @@ export default async function fetchMatchesData() {
     })
   );
 
-  const responses = await axios.all(requests);
-  return responses;
+  try {
+    const responses = await axios.all(requests);
+    return responses;
+  } catch (error) {
+    console.error(error);
+    // 추후 error 처리 추가
+  }
 }

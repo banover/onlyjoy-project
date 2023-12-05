@@ -1,6 +1,6 @@
 export default class matchCardView {
   #matchData;
-  #parentElement = document.querySelector(".onlyjoy__matchContainer");
+  #matchCardContainer = document.querySelector(".onlyjoy__matchCardContainer");
   constructor(matchData) {
     this.#matchData = matchData;
   }
@@ -38,6 +38,9 @@ export default class matchCardView {
   }
 
   render() {
-    this.#parentElement.insertAdjacentHTML("beforeend", this.generateMarkup());
+    this.#matchCardContainer.insertAdjacentHTML(
+      "beforeend",
+      this.generateMarkup()
+    );
   }
 }

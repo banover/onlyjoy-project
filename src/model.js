@@ -34,7 +34,6 @@ export const state = {
 export async function loadMatchesData() {
   const DataDummys = await fetchMatchesData();
 
-  // console.log(DataDummys);
   DataDummys.forEach((DataDummy) => {
     DataDummy.data.matches.forEach((match) => {
       state.matchData.push(createMatchObject(match));
