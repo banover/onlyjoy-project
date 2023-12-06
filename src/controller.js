@@ -3,15 +3,16 @@ import * as Model from "./model.js";
 
 init();
 
-function init() {
+async function init() {
   renderThisWeekMatchCards();
 }
 
 async function renderThisWeekMatchCards() {
+  await Model.loadYoutubeLiveStreamData();
   await Model.loadMatchesData();
-  console.log(Model.state.matchData);
+  console.log(Model.state.matchCardData);
 
-  Model.state.matchData.forEach((match) => {
+  Model.state.matchCardData.forEach((match) => {
     new matchCardView(match).render();
   });
 }

@@ -26,9 +26,20 @@ export default class matchCardView {
                     >${this.#matchData.liveStream}</a
                 >
             </p>
+
             <p class="onlyjoy__matchYouTubeLiveBroadcasting">
-                입중계 LIVE - <a href="#" target="_blank">문도그</a>
-            </p>
+            입중계 LIVE - ${
+              this.#matchData.youtubeLiveChannel.length !== 0
+                ? this.#matchData.youtubeLiveChannel
+                    .map((data) => {
+                      return `              
+                        <a href="${data.channelUrl}" target="_blank">${data.channelTitle}</a>
+                      `;
+                    })
+                    .join(" ")
+                : "upcoming..."
+            }
+            </p>              
         </div>
         <div class="onlyjoy__matchRow">
             <div class="row-line"></div>
