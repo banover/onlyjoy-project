@@ -1,8 +1,13 @@
-export default class matchCardView {
+class matchCardView {
   #matchData;
   #matchCardContainer = document.querySelector(".onlyjoy__matchCardContainer");
-  constructor(matchData) {
-    this.#matchData = matchData;
+
+  render(data) {
+    this.#matchData = data;
+    this.#matchCardContainer.insertAdjacentHTML(
+      "beforeend",
+      this.generateMarkup()
+    );
   }
 
   generateMarkup() {
@@ -29,11 +34,11 @@ export default class matchCardView {
 
             <p class="onlyjoy__matchYouTubeLiveBroadcasting">
             입중계 LIVE - ${
-              this.#matchData.youtubeLiveChannel.length !== 0
-                ? this.#matchData.youtubeLiveChannel
-                    .map((data) => {
+              this.#matchData.youtubeLiveChannels.length !== 0
+                ? this.#matchData.youtubeLiveChannels
+                    .map((channel) => {
                       return `              
-                        <a href="${data.channelUrl}" target="_blank">${data.channelTitle}</a>
+                        <a href="${channel.url}" target="_blank">${channel.title}</a>
                       `;
                     })
                     .join(" ")
@@ -48,10 +53,15 @@ export default class matchCardView {
     </div>`;
   }
 
-  render() {
-    this.#matchCardContainer.insertAdjacentHTML(
-      "beforeend",
-      this.generateMarkup()
-    );
+  #clearMatchCardContainer() {
+    this.#matchCardContainer.innerHTML = "";
   }
+
+  // renderSpinner() {
+  //   return `
+  //
+  //   `
+  // }
 }
+
+export default new matchCardView();

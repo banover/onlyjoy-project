@@ -8,11 +8,12 @@ async function init() {
 }
 
 async function renderThisWeekMatchCards() {
-  await Model.loadYoutubeLiveStreamData();
+  // await Model.loadYoutubeLiveStreamData();
+  // API 할당량 때문에 필요할 때만 사용하기
   await Model.loadMatchesData();
   console.log(Model.state.matchCardData);
 
   Model.state.matchCardData.forEach((match) => {
-    new matchCardView(match).render();
+    matchCardView.render(match);
   });
 }
