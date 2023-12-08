@@ -5,15 +5,18 @@ init();
 
 async function init() {
   renderThisWeekMatchCards();
+  // matchCardView.renderSpinner(Model.state.bookmarkTeam);
 }
 
 async function renderThisWeekMatchCards() {
-  // await Model.loadYoutubeLiveStreamData();
-  // API 할당량 때문에 필요할 때만 사용하기
-  await Model.loadMatchesData();
-  console.log(Model.state.matchCardData);
-
-  Model.state.matchCardData.forEach((match) => {
-    matchCardView.render(match);
-  });
+  try {
+    matchCardView.renderSpinner(Model.state.spinnerItem);
+    // await Model.loadYoutubeLiveStreamData();
+    await Model.loadMatchesData();
+    console.log(Model.state.matchCardData);
+    matchCardView.render(Model.state.matchCardData);
+  } catch (err) {
+    console.error(err);
+    // Todo: errorView render 하기
+  }
 }

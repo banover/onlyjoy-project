@@ -1,6 +1,6 @@
 import fetchYoutubeChannelData from "./services/fetchYoutubeChannelData.js";
-import fetchMatchesDataWithinAWeek from "./services/fetchMatchesData";
-import { ONE_HOURS } from "./config.js";
+import fetchMatchesDataWithinAWeek from "./services/fetchMatchesDataWithinAWeek.js";
+import { ONE_HOURS, NUMBER_OF_SPINNING_LOGO } from "./config.js";
 
 export const state = {
   bookmarkTeam: [
@@ -11,6 +11,7 @@ export const state = {
       player: "손흥민",
       liveStream: "Spotv",
       liveUrl: "https://www.spotvnow.co.kr/",
+      logoUrl: "https://crests.football-data.org/73.svg",
     },
     {
       leagueId: 2015,
@@ -19,6 +20,7 @@ export const state = {
       player: "이강인",
       liveStream: "쿠팡플레이",
       liveUrl: "https://www.coupangplay.com/",
+      logoUrl: "https://crests.football-data.org/524.png",
     },
     {
       leagueId: 2002,
@@ -27,6 +29,7 @@ export const state = {
       player: "김민재",
       liveStream: "Tving",
       liveUrl: "https://www.tving.com/",
+      logoUrl: "https://crests.football-data.org/5.svg",
     },
   ],
 
@@ -45,7 +48,21 @@ export const state = {
 
   LivechannelData: [],
   matchCardData: [],
+  spinnerItem: [],
 };
+
+function init() {
+  state.spinnerItem = createSpinnerItem();
+}
+init();
+
+function createSpinnerItem() {
+  return state.bookmarkTeam
+    .map((team) => {
+      return { name: team.name, logoUrl: team.logoUrl };
+    })
+    .filter((_, index) => index < NUMBER_OF_SPINNING_LOGO);
+}
 
 export async function loadYoutubeLiveStreamData() {
   state.bookmarkYoutubeChannels.forEach(async (channel) => {
@@ -87,7 +104,10 @@ function createMatchObject(data) {
     rawDate: data.utcDate,
     Date: new Date(data.utcDate).toLocaleString(),
     player: targetTeam.at(0)?.player,
-    // Todo : 경기 상황 - 게임 끝, 게임 전, 게임 중 data 추가하기(status) 이 후 matchCard에 게임 진행여부 올리기
+    status: data.status,
+    winner: getWinnerTeam(data),
+    score: getMatchScore(data),
+
     liveStream: targetTeam.at(0)?.liveStream,
     liveUrl: targetTeam.at(0)?.liveUrl,
 
@@ -95,6 +115,29 @@ function createMatchObject(data) {
       ? state.LivechannelData.filter((channel) => channel.liveStatus === "live")
       : [],
   };
+}
+// status도 data 선별하는 작업을 model에서 하자.. 함수 별도로 만들어서 넣기
+function getWinnerTeam(data) {
+  if (!data.score.winner) {
+    return null;
+  }
+  if (data.score.winner === "DRAW") {
+    return "DRAW";
+  }
+  if (data.score.winner === "AWAY_TEAM") {
+    return data.awayTeam.name;
+  }
+  return data.homeTeam.name;
+}
+
+function getMatchScore(data) {
+  if (data.score.winner === "AWAY_TEAM") {
+    return `${data.score.fullTime.away}-${data.score.fullTime.home}`;
+  }
+  if (data.score.winner === "HOME_TEAM") {
+    return `${data.score.fullTime.home}-${data.score.fullTime.away}`;
+  }
+  return null;
 }
 
 function isMatchStartWithinOneHours(matchDate) {

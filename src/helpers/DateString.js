@@ -13,7 +13,6 @@ export default class DateString {
     const day = this.convertDayTostring(this.#yesterdayDate);
     const month = this.convertMonthTostring(this.#yesterdayDate);
     const year = this.#yesterdayDate.getFullYear();
-    console.log(day);
     return `${year}-${month}-${day}`;
   }
 
@@ -27,8 +26,8 @@ export default class DateString {
 
   convertDayTostring(date) {
     return date.getDate().toString().length > 1
-      ? date.getDate() - 1
-      : "0" + (date.getDate() - 1);
+      ? date.getDate()
+      : "0" + date.getDate();
   }
 
   convertMonthTostring(date) {
