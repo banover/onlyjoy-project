@@ -1,36 +1,36 @@
 export default class DateString {
   #currentDate = new Date();
   #yesterdayDate = new Date(
-    this.#currentDate.setDate(this.#currentDate.getDate() - 1)
+    this.#currentDate.setDate(this.#currentDate.getDate() - 3)
   );
+  //  위 -3을 -1로 바꿔야 하루 전이 됨 + magic Number를 피하자 config로..이동
   #nextWeekDateFromCurrnet = new Date(
-    this.#currentDate.getFullYear(),
-    this.#currentDate.getMonth(),
-    this.#currentDate.getDate() + 7
+    this.#yesterdayDate.getFullYear(),
+    this.#yesterdayDate.getMonth(),
+    this.#yesterdayDate.getDate() + 7
   );
 
   get yesterday() {
-    const day = this.convertDayTostring(this.#yesterdayDate);
-    const month = this.convertMonthTostring(this.#yesterdayDate);
+    const day = this.#convertDayTostring(this.#yesterdayDate);
+    const month = this.#convertMonthTostring(this.#yesterdayDate);
     const year = this.#yesterdayDate.getFullYear();
     return `${year}-${month}-${day}`;
   }
 
   get afterAWeekFromYesterday() {
-    const day = this.convertDayTostring(this.#nextWeekDateFromCurrnet);
-    const month = this.convertMonthTostring(this.#nextWeekDateFromCurrnet);
+    const day = this.#convertDayTostring(this.#nextWeekDateFromCurrnet);
+    const month = this.#convertMonthTostring(this.#nextWeekDateFromCurrnet);
     const year = this.#nextWeekDateFromCurrnet.getFullYear();
-
     return `${year}-${month}-${day}`;
   }
 
-  convertDayTostring(date) {
+  #convertDayTostring(date) {
     return date.getDate().toString().length > 1
       ? date.getDate()
       : "0" + date.getDate();
   }
 
-  convertMonthTostring(date) {
+  #convertMonthTostring(date) {
     return (date.getMonth() + 1).toString().length > 1
       ? date.getMonth() + 1
       : "0" + date.getMonth() + 1;

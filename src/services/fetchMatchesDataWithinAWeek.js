@@ -6,6 +6,7 @@ import * as Model from "../model.js";
 export default async function fetchMatchesDataWithinAWeek() {
   const date = new DateString();
   const dateParameter = `dateFrom=${date.yesterday}&&dateTo=${date.afterAWeekFromYesterday}`;
+  console.log(dateParameter);
   let urls = Model.state.bookmarkTeam.map((team) => {
     return `${BASE_URL}/teams/${team.id}/matches?${dateParameter}`;
   });

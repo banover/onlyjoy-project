@@ -5,7 +5,6 @@ init();
 
 async function init() {
   renderThisWeekMatchCards();
-  // matchCardView.renderSpinner(Model.state.bookmarkTeam);
 }
 
 async function renderThisWeekMatchCards() {

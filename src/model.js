@@ -99,12 +99,15 @@ function createMatchObject(data) {
   return {
     searchedTeam: targetTeam.at(0)?.name,
     competition: data.competition.name,
-    homeTeam: data.homeTeam.name,
-    awayTeam: data.awayTeam.name,
+    // competition: data.competition.emblem,
+    homeTeam: data.homeTeam.shortName,
+    homeTeamEmblem: data.homeTeam.crest,
+    awayTeam: data.awayTeam.shortName,
+    awayTeamEmblem: data.awayTeam.crest,
     rawDate: data.utcDate,
     Date: new Date(data.utcDate).toLocaleString(),
     player: targetTeam.at(0)?.player,
-    status: data.status,
+    status: getMatchStatus(data.status),
     winner: getWinnerTeam(data),
     score: getMatchScore(data),
 
@@ -116,7 +119,20 @@ function createMatchObject(data) {
       : [],
   };
 }
-// status도 data 선별하는 작업을 model에서 하자.. 함수 별도로 만들어서 넣기
+
+function getMatchStatus(status) {
+  if (status === "TIMED") {
+    return "경기 전";
+  }
+  if (status === "IN_PLAY") {
+    return "경기 중";
+  }
+  if (status === "FINISHED") {
+    return "경기 종료";
+  }
+  return "식별 불가능";
+}
+
 function getWinnerTeam(data) {
   if (!data.score.winner) {
     return null;

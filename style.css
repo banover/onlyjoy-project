@@ -56,13 +56,18 @@ body {
 .onlyjoy__matchCardContainer {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
 }
 
 .onlyjoy__match {
+  width: 50rem;
+  height: auto;
   display: flex;
   flex-direction: column;
   gap: 5rem;
-  padding: 0 5rem;
+  /* background-color: yellowgreen; */
+  /* padding: 0 5rem; */
 
   /* border-radius: 10px; */
   /* 임시 background-color 설정 */
@@ -71,18 +76,35 @@ body {
 }
 
 .onlyjoy__matchRow {
-  display: flex;
-  gap: 2rem;
+  width: 100%;
 }
 
 .onlyjoy__matchRow span {
+  display: block;
   font-size: 3rem;
+  overflow: hidden;
+  text-align: center;
 }
-.onlyjoy__matchRow .row-line {
-  width: 40rem;
-  height: 0.15rem;
-  background-color: rgba(0, 0, 0, 0.7);
-  margin-top: 0.8rem;
+
+.onlyjoy__matchRow span::before,
+.onlyjoy__matchRow span::after {
+  background-color: #000;
+  content: "";
+  display: inline-block;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+  width: 50%;
+}
+
+.onlyjoy__matchRow span::before {
+  right: 0.5em;
+  margin-left: -50%;
+}
+
+.onlyjoy__matchRow span::after {
+  left: 0.5em;
+  margin-right: -50%;
 }
 
 .onlyjoy__matchRow:not(:first-child) .row-line {
@@ -93,25 +115,95 @@ body {
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  padding: 0 7.5rem;
-  font-size: 3rem;
+  /* padding: 0 7.5rem; */
+  /* font-size: 3rem; */
 }
 
 .onlyjoy__matchTeams {
+  width: 100%;
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.onlyjoy__team {
+  width: 12rem;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.onlyjoy__team img {
+  width: 12rem;
+  height: 12rem;
+}
+.onlyjoy__teamName {
+  width: 120%;
+  font-size: 1.8rem;
   text-align: center;
-  font-size: 5rem;
+  text-transform: uppercase;
+}
+
+.onlyjoy__teamPosition {
+  font-size: 1.2rem;
+  margin-top: -1.5rem;
+}
+
+.onlyjoy__afterMatch {
+  width: 17rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0rem;
+}
+
+.onlyjoy__matchScore {
+  display: block;
+  font-size: 8rem;
+  margin-top: -4.5rem;
 }
 
 .onlyjoy__matchStatus {
+  text-align: center;
+  font-size: 2rem;
 }
 
-.onlyjoy__matchWinner {
+.onlyjoy__beforeMatch {
+  width: 17rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0rem;
 }
 
+.onlyjoy__matchReady {
+  display: block;
+  font-size: 6rem;
+  margin-top: -2.5rem;
+}
+
+.onlyjoy__matchData {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  margin: 0 auto;
+  font-size: 2.1rem;
+  text-align: center;
+}
 .onlyjoy__matchTimes {
+  font-size: 2.1rem;
 }
 
 .onlyjoy__matchBroadcasting {
+}
+
+.onlyjoy__matchYouTubeLiveBroadcasting {
+}
+
+.onlyjoy__matchWinner {
 }
 
 .spinner {

@@ -16,57 +16,78 @@ class matchCardView {
     ${this.#matchesData
       .map((match) => {
         return `
-          <div class="onlyjoy__match">
-            <div class="onlyjoy__matchRow">
-              <span>${match.competition}</span>
-              <div class="row-line"></div>
-            </div>
-            <div class="onlyjoy__matchDetails">
-              <p class="onlyjoy__matchTeams">
-                ${match.homeTeam} VS ${match.awayTeam}
-              </p>
-              <span class="onlyjoy__matchStatus">
-                ${match.status === "TIMED" ? "경기 전" : ""}              
-                ${match.status === "IN_PLAY" ? "경기 중" : ""}              
-                ${match.status === "FINISHED" ? "경기 종료" : ""}              
-              </span>
+        <div class="onlyjoy__match">
+          <div class="onlyjoy__matchRow">
+            <span>${match.competition}</span>            
+          </div>
+          <div class="onlyjoy__matchDetails">
+            <div class="onlyjoy__matchTeams">
+              <div class="onlyjoy__team">
+                <img
+                  src="${match.homeTeamEmblem}"
+                  alt="a ${match.homeTeam} emblem"
+                />
+                <span class="onlyjoy__teamName">${match.homeTeam}</span>
+                <span class="onlyjoy__teamPosition">HOME</span>
+              </div>
               ${
-                match.winner
+                match.status === "경기 종료"
                   ? `
-                  <span class="onlyjoy__matchWinner">
-                    승리팀 - ${match.winner}
-                  </span>`
-                  : ""
-              }
-              <p class="onlyjoy__matchTimes">경기시간 - ${match.Date}</p>
+                <div class="onlyjoy__afterMatch">
+                  <span class="onlyjoy__matchScore">2 : 1</span>
+                  <span class="onlyjoy__matchStatus">경기 종료</span>
+                </div>
+                `
+                  : `
+                <div class="onlyjoy__beforeMatch">
+                  <span class="onlyjoy__matchReady">VS</span>
+                  <span class="onlyjoy__matchStatus">${
+                    match.status === "경기 중" ? "경기 중" : "경기 전"
+                  }</span>
+                </div> 
+                `
+              }     
+              <div class="onlyjoy__team">
+                <img
+                  src="${match.awayTeamEmblem}"
+                  alt="a ${match.awayTeam} emblem"
+                />
+                <span class="onlyjoy__teamName">${match.awayTeam}</span>
+                <span class="onlyjoy__teamPosition">AWAY</span>
+              </div>
+            </div>           
+            <div class="onlyjoy__matchData">
+              <p class="onlyjoy__matchTimes">${match.Date}</p>
               <p class="onlyjoy__matchBroadcasting">
-                중계 - <a href="${match.liveUrl}" target="_blank">
-                ${match.liveStream}</a>
+                중계 - <a href="#" target="_blank">${match.liveStream}</a>
               </p>
               <p class="onlyjoy__matchYouTubeLiveBroadcasting">
-              입중계 LIVE - 
-              ${
-                match.youtubeLiveChannels.length !== 0
-                  ? match.youtubeLiveChannels
-                      .map((channel) => {
-                        return `              
-                          <a href="${channel.url}" target="_blank">${channel.title}</a>
-                        `;
-                      })
-                      .join(" ")
-                  : "upcoming..."
-              }
-              </p>              
-            </div>
-            <div class="onlyjoy__matchRow">
-                <div class="row-line"></div>
-                <span>${match.player}</span>
+                ${match.status === "경기 종료" ? "후토크" : "입중계"} LIVE - 
+                ${
+                  match.youtubeLiveChannels.length !== 0
+                    ? match.youtubeLiveChannels
+                        .map((channel) => {
+                          return `              
+                            <a href="${channel.url}" target="_blank">${channel.title}</a>
+                          `;
+                        })
+                        .join(" ")
+                    : match.status === "경기 종료"
+                    ? "종료"
+                    : "upcoming..."
+                }
+              </p>
             </div>
           </div>
+          <div class="onlyjoy__matchRow">            
+            <span>${match.player}</span>
+          </div>
+        </div>
         `;
       })
       .join(" ")}`;
   }
+  // <img src="${match.competition}"></img>
 
   #clearMatchCardContainer() {
     this.#matchCardContainer.innerHTML = "";
