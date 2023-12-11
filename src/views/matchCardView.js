@@ -1,7 +1,10 @@
 class matchCardView {
   #matchesData;
-  #matchCardContainer = document.querySelector(".onlyjoy__matchCardContainer");
+  // #matchCardContainer = document.querySelector(".onlyjoy__matchCardContainer");
+  #matchCardContainer = document.querySelector(".onlyjoy__matchCards");
 
+  // 여기에 search bar도 markup에 포함시키고, matchCardContainer에서 target.closest()같은 거 써서 event listne하고
+  //
   render(data) {
     this.#matchesData = data;
     this.#clearMatchCardContainer();
@@ -33,19 +36,23 @@ class matchCardView {
               ${
                 match.status === "경기 종료"
                   ? `
-                <div class="onlyjoy__afterMatch">
-                  <span class="onlyjoy__matchScore">2 : 1</span>
-                  <span class="onlyjoy__matchStatus">경기 종료</span>
-                </div>
+                  <div class="onlyjoy__afterMatch">
+                    <span class="onlyjoy__matchScore">${match.score}</span>
+                    <span class="onlyjoy__matchStatus">${match.status}</span>
+                  </div>
+                `
+                  : match.status === "경기 전"
+                  ? `
+                  <div class="onlyjoy__beforeMatch">
+                    <span class="onlyjoy__matchReady">VS</span>
+                    <span class="onlyjoy__matchStatus">${match.status}</span>
+                  </div> 
                 `
                   : `
-                <div class="onlyjoy__beforeMatch">
-                  <span class="onlyjoy__matchReady">VS</span>
-                  <span class="onlyjoy__matchStatus">${
-                    match.status === "경기 중" ? "경기 중" : "경기 전"
-                  }</span>
-                </div> 
-                `
+                  <div class="onlyjoy__duringMatch">
+                    <span class="onlyjoy__matchScore">${match.score}</span>
+                    <span class="onlyjoy__matchStatus">${match.status}</span>
+                  </div> `
               }     
               <div class="onlyjoy__team">
                 <img
@@ -59,7 +66,9 @@ class matchCardView {
             <div class="onlyjoy__matchData">
               <p class="onlyjoy__matchTimes">${match.Date}</p>
               <p class="onlyjoy__matchBroadcasting">
-                중계 - <a href="#" target="_blank">${match.liveStream}</a>
+                중계 - <a href="${match.liveUrl}" target="_blank">${
+          match.liveStream
+        }</a>
               </p>
               <p class="onlyjoy__matchYouTubeLiveBroadcasting">
                 ${match.status === "경기 종료" ? "후토크" : "입중계"} LIVE - 
@@ -87,7 +96,6 @@ class matchCardView {
       })
       .join(" ")}`;
   }
-  // <img src="${match.competition}"></img>
 
   #clearMatchCardContainer() {
     this.#matchCardContainer.innerHTML = "";
@@ -111,6 +119,21 @@ class matchCardView {
         
       </div>
      `;
+
+    this.#matchCardContainer.insertAdjacentHTML("beforeend", markUp);
+  }
+
+  renderError(error) {
+    this.#clearMatchCardContainer();
+    const markUp = `
+      <div class="onlyjoy__matchCardError">
+        <img src="./public/warning.png" alt="a waring icon" />
+        <div class="onlyjoy__errorMessage">
+            <p>${error.message}</p>
+            <p>이용에 불편을 드려 죄송합니다.</p>
+        </div>
+      </div>
+    `;
 
     this.#matchCardContainer.insertAdjacentHTML("beforeend", markUp);
   }

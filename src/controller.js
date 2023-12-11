@@ -14,8 +14,8 @@ async function renderThisWeekMatchCards() {
     await Model.loadMatchesData();
     console.log(Model.state.matchCardData);
     matchCardView.render(Model.state.matchCardData);
-  } catch (err) {
-    console.error(err);
-    // Todo: errorView render 하기
+  } catch (error) {
+    console.log(error);
+    matchCardView.renderError(error);
   }
 }

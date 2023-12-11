@@ -6,6 +6,6 @@ export default async function fetchYoutubeChannelData(channelHandle) {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error(error);
+    throw new Error(`fail to fetch youtube channel data: ${error.message}`);
   }
 }

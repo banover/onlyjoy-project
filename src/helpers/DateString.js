@@ -4,7 +4,7 @@ export default class DateString {
     this.#currentDate.setDate(this.#currentDate.getDate() - 3)
   );
   //  위 -3을 -1로 바꿔야 하루 전이 됨 + magic Number를 피하자 config로..이동
-  #nextWeekDateFromCurrnet = new Date(
+  #nextWeekDateFromYesterday = new Date(
     this.#yesterdayDate.getFullYear(),
     this.#yesterdayDate.getMonth(),
     this.#yesterdayDate.getDate() + 7
@@ -18,9 +18,9 @@ export default class DateString {
   }
 
   get afterAWeekFromYesterday() {
-    const day = this.#convertDayTostring(this.#nextWeekDateFromCurrnet);
-    const month = this.#convertMonthTostring(this.#nextWeekDateFromCurrnet);
-    const year = this.#nextWeekDateFromCurrnet.getFullYear();
+    const day = this.#convertDayTostring(this.#nextWeekDateFromYesterday);
+    const month = this.#convertMonthTostring(this.#nextWeekDateFromYesterday);
+    const year = this.#nextWeekDateFromYesterday.getFullYear();
     return `${year}-${month}-${day}`;
   }
 

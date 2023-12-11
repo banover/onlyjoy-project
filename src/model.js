@@ -3,7 +3,7 @@ import fetchMatchesDataWithinAWeek from "./services/fetchMatchesDataWithinAWeek.
 import { ONE_HOURS, NUMBER_OF_SPINNING_LOGO } from "./config.js";
 
 export const state = {
-  bookmarkTeam: [
+  bookmarkTeams: [
     {
       leagueId: 2021,
       name: "Tottenham",
@@ -57,7 +57,7 @@ function init() {
 init();
 
 function createSpinnerItem() {
-  return state.bookmarkTeam
+  return state.bookmarkTeams
     .map((team) => {
       return { name: team.name, logoUrl: team.logoUrl };
     })
@@ -82,17 +82,22 @@ function createLiveStreamObject(data) {
 }
 
 export async function loadMatchesData() {
-  const DataDummys = await fetchMatchesDataWithinAWeek();
-  console.log(DataDummys);
-  DataDummys.forEach((DataDummy) => {
-    DataDummy.data.matches.forEach((match) => {
-      state.matchCardData.push(createMatchObject(match));
+  try {
+    const DataDummys = await fetchMatchesDataWithinAWeek(state.bookmarkTeams);
+    console.log(DataDummys);
+    DataDummys.forEach((DataDummy) => {
+      DataDummy.data.matches.forEach((match) => {
+        state.matchCardData.push(createMatchObject(match));
+      });
     });
-  });
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
 }
 
 function createMatchObject(data) {
-  const targetTeam = state.bookmarkTeam.filter(
+  const targetTeam = state.bookmarkTeams.filter(
     (team) => team.id === data.homeTeam.id || team.id === data.awayTeam.id
   );
 
@@ -105,11 +110,11 @@ function createMatchObject(data) {
     awayTeam: data.awayTeam.shortName,
     awayTeamEmblem: data.awayTeam.crest,
     rawDate: data.utcDate,
-    Date: new Date(data.utcDate).toLocaleString(),
+    Date: getMatchDate(data.utcDate),
     player: targetTeam.at(0)?.player,
     status: getMatchStatus(data.status),
     winner: getWinnerTeam(data),
-    score: getMatchScore(data),
+    score: getMatchScore(data.score),
 
     liveStream: targetTeam.at(0)?.liveStream,
     liveUrl: targetTeam.at(0)?.liveUrl,
@@ -118,6 +123,16 @@ function createMatchObject(data) {
       ? state.LivechannelData.filter((channel) => channel.liveStatus === "live")
       : [],
   };
+}
+
+function getMatchDate(date) {
+  return new Date(date).toLocaleString("ko-KR", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 }
 
 function getMatchStatus(status) {
@@ -146,12 +161,9 @@ function getWinnerTeam(data) {
   return data.homeTeam.name;
 }
 
-function getMatchScore(data) {
-  if (data.score.winner === "AWAY_TEAM") {
-    return `${data.score.fullTime.away}-${data.score.fullTime.home}`;
-  }
-  if (data.score.winner === "HOME_TEAM") {
-    return `${data.score.fullTime.home}-${data.score.fullTime.away}`;
+function getMatchScore(score) {
+  if (score.winner) {
+    return `${score.fullTime.home} : ${score.fullTime.away}`;
   }
   return null;
 }
