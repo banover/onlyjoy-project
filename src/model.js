@@ -104,7 +104,6 @@ function createMatchObject(data) {
   return {
     searchedTeam: targetTeam.at(0)?.name,
     competition: data.competition.name,
-    // competition: data.competition.emblem,
     homeTeam: data.homeTeam.shortName,
     homeTeamEmblem: data.homeTeam.crest,
     awayTeam: data.awayTeam.shortName,

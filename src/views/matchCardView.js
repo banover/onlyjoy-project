@@ -1,12 +1,13 @@
 class matchCardView {
   #matchesData;
-  // #matchCardContainer = document.querySelector(".onlyjoy__matchCardContainer");
-  #matchCardContainer = document.querySelector(".onlyjoy__matchCards");
+  #filteredMatchesData;
+  #matchCardContainer = document.querySelector(".onlyjoy__matchCardContainer");
 
-  // 여기에 search bar도 markup에 포함시키고, matchCardContainer에서 target.closest()같은 거 써서 event listne하고
-  //
-  render(data) {
+  render(data, filteredData) {
     this.#matchesData = data;
+    if (filteredData) {
+      this.#filteredMatchesData = filteredData;
+    }
     this.#clearMatchCardContainer();
     this.#matchCardContainer.insertAdjacentHTML(
       "beforeend",
@@ -14,9 +15,44 @@ class matchCardView {
     );
   }
 
+  #clearMatchCardContainer() {
+    this.#matchCardContainer.innerHTML = "";
+  }
+
   #generateMarkup() {
     return `
-    ${this.#matchesData
+    <div class="onlyjoy__matchCardFilterBar">
+      <img src="./public/filter.png" alt="a filter icon" />
+      <form class="onlyjoy__filterForm">
+        <div class="onlyjoy__select">
+          <label for="filteringMethod">정렬 방식</label>
+          <select id="filteringMethod" name="filteringMethod">
+            <option value="date">일정순서</option>
+            <option value="team">팀별순서</option>
+          </select>
+        </div>
+        <div class="onlyjoy__select">
+          <label for="filteringTeam">팀 선택</label>
+          <select id="filteringTeam" name="filteringTeam">
+            <option value="all">모든 팀</option>
+            ${[...new Set(this.#matchesData.map((data) => data.searchedTeam))]
+              .map((team) => {
+                return `
+                <option value="${team}">${team}</option>
+                `;
+              })
+              .join(" ")}          
+          </select>
+        </div>
+        <button class="onlyjoy__searchBtn">정렬</button>
+      </form>
+    </div>
+
+    <div class="onlyjoy__matchCards">
+    ${(this.#filteredMatchesData
+      ? this.#filteredMatchesData
+      : this.#matchesData
+    )
       .map((match) => {
         return `
         <div class="onlyjoy__match">
@@ -94,11 +130,50 @@ class matchCardView {
         </div>
         `;
       })
-      .join(" ")}`;
+      .join(" ")};
+    </div>`;
   }
 
-  #clearMatchCardContainer() {
-    this.#matchCardContainer.innerHTML = "";
+  addHandlerFilteringMatchCards() {
+    this.#matchCardContainer.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const filteredData = this.#createFilteredData();
+      return this.render(this.#matchesData, filteredData);
+    });
+  }
+
+  #createFilteredData() {
+    let result;
+    const selectedFilteringMethodValue =
+      document.getElementById("filteringMethod").value;
+    const selectedFilteringTeamValue =
+      document.getElementById("filteringTeam").value;
+
+    if (selectedFilteringMethodValue === "date") {
+      result =
+        selectedFilteringTeamValue === "all"
+          ? this.#matchesData
+              .slice()
+              .sort((a, b) => new Date(a.rawDate) - new Date(b.rawDate))
+          : this.#matchesData
+              .filter(
+                (data) => data.searchedTeam === selectedFilteringTeamValue
+              )
+              .sort((a, b) => new Date(a.rawDate) - new Date(b.rawDate));
+
+      return result;
+    }
+    if (selectedFilteringMethodValue === "team") {
+      result =
+        selectedFilteringTeamValue === "all"
+          ? this.#matchesData
+          : this.#matchesData.filter(
+              (data) => data.searchedTeam === selectedFilteringTeamValue
+            );
+
+      return result;
+    }
   }
 
   renderSpinner(teamsData) {
