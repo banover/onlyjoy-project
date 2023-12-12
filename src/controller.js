@@ -8,12 +8,8 @@ async function init() {
   renderThisWeekMatchCards();
 }
 
-// function renderMatchSchedule() {}
-
 async function renderThisWeekMatchCards() {
   try {
-    // matchCardFilterBarView.render(Model.state.bookmarkTeams);
-
     matchCardView.renderSpinner(Model.state.spinnerItem);
     // await Model.loadYoutubeLiveStreamData();
     await Model.loadMatchesData();
