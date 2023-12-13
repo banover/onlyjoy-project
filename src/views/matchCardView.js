@@ -1,13 +1,10 @@
 class matchCardView {
-  #matchesData;
-  #filteredMatchesData;
+  #data;
+  #filteringType;
   #matchCardContainer = document.querySelector(".onlyjoy__matchCardContainer");
 
-  render(data, filteredData) {
-    this.#matchesData = data;
-    if (filteredData) {
-      this.#filteredMatchesData = filteredData;
-    }
+  render(data) {
+    this.#data = data;
     this.#clearMatchCardContainer();
     this.#matchCardContainer.insertAdjacentHTML(
       "beforeend",
@@ -27,18 +24,33 @@ class matchCardView {
         <div class="onlyjoy__select">
           <label for="filteringMethod">정렬 방식</label>
           <select id="filteringMethod" name="filteringMethod">
-            <option value="date">일정순서</option>
-            <option value="team">팀별순서</option>
+            <option value="date"${
+              this.#filteringType?.method &&
+              this.#filteringType.method === "date"
+                ? "selected"
+                : ""
+            }>일정순서</option>
+            <option value="team"${
+              this.#filteringType?.method &&
+              this.#filteringType.method === "team"
+                ? "selected"
+                : ""
+            }>팀별순서</option>
           </select>
         </div>
         <div class="onlyjoy__select">
           <label for="filteringTeam">팀 선택</label>
           <select id="filteringTeam" name="filteringTeam">
             <option value="all">모든 팀</option>
-            ${[...new Set(this.#matchesData.map((data) => data.searchedTeam))]
-              .map((team) => {
+            ${this.#data.allBookmarkTeam
+              .map((teamName) => {
                 return `
-                <option value="${team}">${team}</option>
+                <option value="${teamName}" ${
+                  this.#filteringType?.team &&
+                  this.#filteringType.team === teamName
+                    ? "selected"
+                    : ""
+                }>${teamName}</option>
                 `;
               })
               .join(" ")}          
@@ -49,10 +61,7 @@ class matchCardView {
     </div>
 
     <div class="onlyjoy__matchCards">
-    ${(this.#filteredMatchesData
-      ? this.#filteredMatchesData
-      : this.#matchesData
-    )
+    ${this.#data.matchesData
       .map((match) => {
         return `
         <div class="onlyjoy__match">
@@ -130,50 +139,24 @@ class matchCardView {
         </div>
         `;
       })
-      .join(" ")};
+      .join(" ")}
     </div>`;
   }
 
-  addHandlerFilteringMatchCards() {
+  addHandlerFilteringMatchCards(handler) {
     this.#matchCardContainer.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      const filteredData = this.#createFilteredData();
-      return this.render(this.#matchesData, filteredData);
+      const formElement = document.querySelector(".onlyjoy__filterForm");
+      const dataArr = [...new FormData(formElement)];
+      const formData = Object.fromEntries(dataArr);
+
+      this.#filteringType = {
+        method: formData.filteringMethod,
+        team: formData.filteringTeam,
+      };
+      handler(formData);
     });
-  }
-
-  #createFilteredData() {
-    let result;
-    const selectedFilteringMethodValue =
-      document.getElementById("filteringMethod").value;
-    const selectedFilteringTeamValue =
-      document.getElementById("filteringTeam").value;
-
-    if (selectedFilteringMethodValue === "date") {
-      result =
-        selectedFilteringTeamValue === "all"
-          ? this.#matchesData
-              .slice()
-              .sort((a, b) => new Date(a.rawDate) - new Date(b.rawDate))
-          : this.#matchesData
-              .filter(
-                (data) => data.searchedTeam === selectedFilteringTeamValue
-              )
-              .sort((a, b) => new Date(a.rawDate) - new Date(b.rawDate));
-
-      return result;
-    }
-    if (selectedFilteringMethodValue === "team") {
-      result =
-        selectedFilteringTeamValue === "all"
-          ? this.#matchesData
-          : this.#matchesData.filter(
-              (data) => data.searchedTeam === selectedFilteringTeamValue
-            );
-
-      return result;
-    }
   }
 
   renderSpinner(teamsData) {

@@ -170,3 +170,40 @@ function getMatchScore(score) {
 function isMatchStartWithinOneHours(matchDate) {
   return new Date(matchDate) - Date.now() < ONE_HOURS;
 }
+
+export function getMatchCardData() {
+  return {
+    allBookmarkTeam: getAllBookmarkTeam(),
+    matchesData: state.matchCardData,
+  };
+}
+
+function getAllBookmarkTeam() {
+  return state.bookmarkTeams.map((team) => team.name);
+}
+
+export function getFilterdMatchCardData(data) {
+  let matchesData;
+  if (data.filteringMethod === "date") {
+    matchesData =
+      data.filteringTeam === "all"
+        ? state.matchCardData
+            .slice()
+            .sort((a, b) => new Date(a.rawDate) - new Date(b.rawDate))
+        : state.matchCardData
+            .filter(
+              (matchData) => matchData.searchedTeam === data.filteringTeam
+            )
+            .sort((a, b) => new Date(a.rawDate) - new Date(b.rawDate));
+  }
+  if (data.filteringMethod === "team") {
+    matchesData =
+      data.filteringTeam === "all"
+        ? state.matchCardData.slice()
+        : state.matchCardData.filter(
+            (matchData) => matchData.searchedTeam === data.filteringTeam
+          );
+  }
+
+  return { allBookmarkTeam: getAllBookmarkTeam(), matchesData };
+}

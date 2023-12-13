@@ -84,26 +84,83 @@
           </div>
         </div>
         <div class="onlyjoy__matchCardContainer">
-          <!-- onlyjoy__matchCardCustomSearchBar구현 후에 matchCardView에 넣자, 물론 별개로 만드어도 됨 -->
+          <div class="onlyjoy__settingContainer">
+            <div class="onlyjoy__AddButtonBar">
+              <button>+ TEAM</button>
+              <button>+ 입중계</button>
+            </div>
+            <!-- onlyjoy__matchCardCustomSearchBar구현 후에 matchCardView에 넣자, 물론 별개로 만드어도 됨 -->
+            <div class="onlyjoy__matchCardFilterBar">
+              <img src="./public/filter.png" alt="a filter icon" />
+              <form class="onlyjoy__filterForm">
+                <div class="onlyjoy__select">
+                  <label for="filteringMethod">정렬 방식</label>
+                  <select id="filteringMethod" name="filteringMethod">
+                    <option value="date">일정순서</option>
+                    <option value="team">팀별순서</option>
+                  </select>
+                </div>
+                <div class="onlyjoy__select">
+                  <label for="filteringTeam">팀 선택</label>
+                  <select id="filteringTeam" name="filteringTeam">
+                    <option value="all">모든 팀</option>
+                  </select>
+                </div>
+                <button class="onlyjoy__searchBtn">정렬</button>
+              </form>
+            </div>
+          </div>
 
-          <!-- <img src="./public/filter.png" alt="a filter icon" />
-            <form class="onlyjoy__filterForm">
-              <label for="filteringMethod">정렬 방식</label>
-              <select id="filteringMethod" name="filteringMethod">
-                <option value="date">일정순서</option>
-                <option value="team">팀별순서</option>
-              </select>
-              <label for="filteringMethod">팀 선택</label>
-              <select id="filteringTeam" name="filteringTeam">
-                <option value="all">모든 팀</option>
-                <option value="tottenham">tottenham</option>
-                <option value="psg">psg</option>
-                <option value="bayern">bayern</option>
-              </select>
-              <button class="onlyjoy__searchBtn">검색</button>
-            </form> -->
+          <div class="onlyjoy__match">
+            <div class="onlyjoy__matchRow">
+              <span>Premier League</span>
 
-          <!-- <div class="onlyjoy__matchCards"></div> -->
+              <div class="row-line"></div>
+            </div>
+            <div class="onlyjoy__matchDetails">
+              <div class="onlyjoy__matchTeams">
+                <div class="onlyjoy__team">
+                  <img
+                    src="https://crests.football-data.org/563.png"
+                    alt="westham"
+                  />
+                  <span class="onlyjoy__teamName">WEST HAM</span>
+                  <span class="onlyjoy__teamPosition">HOME</span>
+                </div>
+                <div class="onlyjoy__afterMatch">
+                  <span class="onlyjoy__matchScore">2 : 1</span>
+                  <span class="onlyjoy__matchStatus">경기 종료</span>
+                </div>
+                <!-- <div class="onlyjoy__beforeMatch">
+                  <span class="onlyjoy__matchReady">VS</span>
+                  <span class="onlyjoy__matchStatus">경기 준비</span>
+                </div> -->
+
+                <div class="onlyjoy__team">
+                  <img
+                    src="https://crests.football-data.org/73.svg"
+                    alt="tottenham"
+                  />
+                  <span class="onlyjoy__teamName">TOTTENHAM</span>
+                  <span class="onlyjoy__teamPosition">AWAY</span>
+                </div>
+              </div>
+
+              <div class="onlyjoy__matchData">
+                <p class="onlyjoy__matchTimes">2023-12-09 20:15:15</p>
+                <p class="onlyjoy__matchBroadcasting">
+                  중계 - <a href="#" target="_blank"> SPOTV</a>
+                </p>
+                <p class="onlyjoy__matchYouTubeLiveBroadcasting">
+                  입중계 LIVE - 문도그
+                </p>
+              </div>
+            </div>
+            <div class="onlyjoy__matchRow">
+              <div class="row-line"></div>
+              <span>손흥민</span>
+            </div>
+          </div>
         </div>
       </main>
       <hr />
@@ -111,56 +168,3 @@
     </section>
   </body>
 </html>
-
-<!-- 
-<div class="onlyjoy__match">
-  <div class="onlyjoy__matchRow">
-    <span>Premier League</span>
-
-    <div class="row-line"></div>
-  </div>
-  <div class="onlyjoy__matchDetails">
-    <div class="onlyjoy__matchTeams">
-      <div class="onlyjoy__team">
-        <img
-          src="https://crests.football-data.org/563.png"
-          alt="westham"
-        />
-        <span class="onlyjoy__teamName">WEST HAM</span>
-        <span class="onlyjoy__teamPosition">HOME</span>
-      </div>
-      <div class="onlyjoy__afterMatch">
-        <span class="onlyjoy__matchScore">2 : 1</span>
-        <span class="onlyjoy__matchStatus">경기 종료</span>
-      </div>
-      <div class="onlyjoy__beforeMatch">
-        <span class="onlyjoy__matchReady">VS</span>
-        <span class="onlyjoy__matchStatus">경기 준비</span>
-      </div>
-
-      <div class="onlyjoy__team">
-        <img
-          src="https://crests.football-data.org/73.svg"
-          alt="tottenham"
-        />
-        <span class="onlyjoy__teamName">TOTTENHAM</span>
-        <span class="onlyjoy__teamPosition">AWAY</span>
-      </div>
-    </div>
-
-    
-    <div class="onlyjoy__matchData">
-      <p class="onlyjoy__matchTimes">2023-12-09 20:15:15</p>
-      <p class="onlyjoy__matchBroadcasting">
-        중계 - <a href="#" target="_blank"> SPOTV</a>
-      </p>
-      <p class="onlyjoy__matchYouTubeLiveBroadcasting">
-        입중계 LIVE - 문도그
-      </p>
-    </div>
-  </div>
-  <div class="onlyjoy__matchRow">
-    <div class="row-line"></div>
-    <span>손흥민</span>
-  </div>
-</div> -->
