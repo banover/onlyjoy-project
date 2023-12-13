@@ -1,6 +1,6 @@
 import fetchYoutubeChannelData from "./services/fetchYoutubeChannelData.js";
 import fetchMatchesDataWithinAWeek from "./services/fetchMatchesDataWithinAWeek.js";
-import { ONE_HOURS, NUMBER_OF_SPINNING_LOGO } from "./config.js";
+import { ONE_HOURS, NUMBER_OF_SPINNING_LOGO, THREE_HOURS } from "./config.js";
 
 export const state = {
   bookmarkTeams: [
@@ -118,7 +118,8 @@ function createMatchObject(data) {
     liveStream: targetTeam.at(0)?.liveStream,
     liveUrl: targetTeam.at(0)?.liveUrl,
 
-    youtubeLiveChannels: isMatchStartWithinOneHours(data.utcDate)
+    // 게임 종료된 거 후토크 종료 됨에도 시간 지나면 경기가 끝난 match card도 live가 뜸..
+    youtubeLiveChannels: isCurrentTimeNearMatchTime(data.utcDate)
       ? state.LivechannelData.filter((channel) => channel.liveStatus === "live")
       : [],
   };
@@ -167,8 +168,11 @@ function getMatchScore(score) {
   return null;
 }
 
-function isMatchStartWithinOneHours(matchDate) {
-  return new Date(matchDate) - Date.now() < ONE_HOURS;
+function isCurrentTimeNearMatchTime(matchDate) {
+  return (
+    new Date(matchDate) - Date.now() < ONE_HOURS &&
+    Date.now() - new Date(matchDate) < THREE_HOURS
+  );
 }
 
 export function getMatchCardData() {

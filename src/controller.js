@@ -11,7 +11,7 @@ async function init() {
 async function renderThisWeekMatchCards() {
   try {
     matchCardView.renderSpinner(Model.state.spinnerItem);
-    // await Model.loadYoutubeLiveStreamData();
+    await Model.loadYoutubeLiveStreamData();
     await Model.loadMatchesData();
     console.log(Model.getMatchCardData());
     matchCardView.render(Model.getMatchCardData());
