@@ -1,12 +1,13 @@
 import axios from "axios";
-import { API_TOKEN, BASE_URL } from "../config";
+import { BASE_URL, FOOTBALL_API_TOKEN } from "../config";
 export default async function fetchTeamId(leagueId, teamName) {
   const url = `${BASE_URL}/competitions/${leagueId}/teams`;
 
   try {
+    // let data;
     const response = await axios.get(url, {
       headers: {
-        "X-Auth-Token": API_TOKEN,
+        "X-Auth-Token": FOOTBALL_API_TOKEN,
       },
     });
 

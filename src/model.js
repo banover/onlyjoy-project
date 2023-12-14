@@ -1,5 +1,6 @@
 import fetchYoutubeChannelData from "./services/fetchYoutubeChannelData.js";
 import fetchMatchesDataWithinAWeek from "./services/fetchMatchesDataWithinAWeek.js";
+import fetchAllTeamsInALeague from "./services/fetchAllTeamsInALeague.js";
 import { ONE_HOURS, NUMBER_OF_SPINNING_LOGO, THREE_HOURS } from "./config.js";
 
 export const state = {
@@ -49,6 +50,7 @@ export const state = {
   LivechannelData: [],
   matchCardData: [],
   spinnerItem: [],
+  allTeamInALeague: [],
 };
 
 function init() {
@@ -118,7 +120,6 @@ function createMatchObject(data) {
     liveStream: targetTeam.at(0)?.liveStream,
     liveUrl: targetTeam.at(0)?.liveUrl,
 
-    // 게임 종료된 거 후토크 종료 됨에도 시간 지나면 경기가 끝난 match card도 live가 뜸..
     youtubeLiveChannels: isCurrentTimeNearMatchTime(data.utcDate)
       ? state.LivechannelData.filter((channel) => channel.liveStatus === "live")
       : [],
@@ -162,10 +163,11 @@ function getWinnerTeam(data) {
 }
 
 function getMatchScore(score) {
-  if (score.winner) {
-    return `${score.fullTime.home} : ${score.fullTime.away}`;
-  }
-  return null;
+  // if (score.winner) {
+  //   return `${score.fullTime.home} : ${score.fullTime.away}`;
+  // }
+  // return null;
+  return `${score.fullTime.home} : ${score.fullTime.away}`;
 }
 
 function isCurrentTimeNearMatchTime(matchDate) {
@@ -173,6 +175,13 @@ function isCurrentTimeNearMatchTime(matchDate) {
     new Date(matchDate) - Date.now() < ONE_HOURS &&
     Date.now() - new Date(matchDate) < THREE_HOURS
   );
+}
+
+export async function loadAllTeamsInLeague(league) {
+  const data = await fetchAllTeamsInALeague(league);
+
+  state.allTeamInALeague = data.map((team) => team.shortName);
+  console.log(data);
 }
 
 export function getMatchCardData() {

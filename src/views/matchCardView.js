@@ -18,46 +18,52 @@ class matchCardView {
 
   #generateMarkup() {
     return `
-    <div class="onlyjoy__matchCardFilterBar">
-      <img src="./public/filter.png" alt="a filter icon" />
-      <form class="onlyjoy__filterForm">
-        <div class="onlyjoy__select">
-          <label for="filteringMethod">정렬 방식</label>
-          <select id="filteringMethod" name="filteringMethod">
-            <option value="date"${
-              this.#filteringType?.method &&
-              this.#filteringType.method === "date"
-                ? "selected"
-                : ""
-            }>일정순서</option>
-            <option value="team"${
-              this.#filteringType?.method &&
-              this.#filteringType.method === "team"
-                ? "selected"
-                : ""
-            }>팀별순서</option>
-          </select>
-        </div>
-        <div class="onlyjoy__select">
-          <label for="filteringTeam">팀 선택</label>
-          <select id="filteringTeam" name="filteringTeam">
-            <option value="all">모든 팀</option>
-            ${this.#data.allBookmarkTeam
-              .map((teamName) => {
-                return `
-                <option value="${teamName}" ${
-                  this.#filteringType?.team &&
-                  this.#filteringType.team === teamName
-                    ? "selected"
-                    : ""
-                }>${teamName}</option>
-                `;
-              })
-              .join(" ")}          
-          </select>
-        </div>
-        <button class="onlyjoy__searchBtn">정렬</button>
-      </form>
+    <div class="onlyjoy__settingContainer">
+      <div class="onlyjoy__AddButtonBar">
+        <button class="onlyjoy__AddTeamButton">+ TEAM</button>
+        <button class="onlyjoy__AddLiveButton">+ 입중계</button>
+      </div>
+      <div class="onlyjoy__matchCardFilterBar">
+        <img src="./public/filter.png" alt="a filter icon" />
+        <form class="onlyjoy__filterForm">
+          <div class="onlyjoy__select">
+            <label for="filteringMethod">정렬 방식</label>
+            <select id="filteringMethod" name="filteringMethod">
+              <option value="date"${
+                this.#filteringType?.method &&
+                this.#filteringType.method === "date"
+                  ? "selected"
+                  : ""
+              }>일정순서</option>
+              <option value="team"${
+                this.#filteringType?.method &&
+                this.#filteringType.method === "team"
+                  ? "selected"
+                  : ""
+              }>팀별순서</option>
+            </select>
+          </div>
+          <div class="onlyjoy__select">
+            <label for="filteringTeam">팀 선택</label>
+            <select id="filteringTeam" name="filteringTeam">
+              <option value="all">모든 팀</option>
+              ${this.#data.allBookmarkTeam
+                .map((teamName) => {
+                  return `
+                  <option value="${teamName}" ${
+                    this.#filteringType?.team &&
+                    this.#filteringType.team === teamName
+                      ? "selected"
+                      : ""
+                  }>${teamName}</option>
+                  `;
+                })
+                .join(" ")}          
+            </select>
+          </div>
+          <button class="onlyjoy__searchBtn">정렬</button>
+        </form>
+      </div>
     </div>
 
     <div class="onlyjoy__matchCards">
@@ -118,7 +124,7 @@ class matchCardView {
               <p class="onlyjoy__matchYouTubeLiveBroadcasting">
                 ${match.status === "경기 종료" ? "후토크" : "입중계"} LIVE - 
                 ${
-                  match.youtubeLiveChannels.length !== 0
+                  match.youtubeLiveChannels.length > 0
                     ? match.youtubeLiveChannels
                         .map((channel) => {
                           return `              
@@ -137,25 +143,75 @@ class matchCardView {
             <span>${match.player}</span>
           </div>
         </div>
+
+        
         `;
       })
-      .join(" ")}
+      .join(" ")}     
+    </div>
+    
+    <div class="overlay"></div>
+    <div class="onlyjoy__addTeamModal">
+      <span class="onlyjoy__modalHeading">팀 등록</span>
+      <form class="onlyjoy__modalForm">
+        <label class="onlyjoy__addItemName">
+          <img src="./public/stadium.png" alt="a stadium icon" />
+          <span>리그</span>
+        </label>
+        <select name="league" id="league">
+          <option value="epl">epl</option>
+          <option value="league 1">league 1</option>
+          <option value="bundesriga">bundesriga</option>
+        </select>
+        <label class="onlyjoy__addItemName">
+          <img src="./public/field.png" alt="a field icon" />
+          <span>팀</span>
+        </label>
+        <label class="onlyjoy__addItemName">
+          <img src="./public/jersey.png" alt="a jersey icon" />
+          <span>선수</span>
+        </label>
+        <label class="onlyjoy__addItemName">
+          <img src="./public/live.png" alt="a live icon" />
+          <span>생중계</span>
+        </label>
+        <button>만들기</button>
+      </form>     
     </div>`;
   }
 
   addHandlerFilteringMatchCards(handler) {
     this.#matchCardContainer.addEventListener("submit", (e) => {
       e.preventDefault();
+      if (e.target.closest(".onlyjoy__filterForm")) {
+        const formElement = document.querySelector(".onlyjoy__filterForm");
+        const dataArr = [...new FormData(formElement)];
+        const formData = Object.fromEntries(dataArr);
 
-      const formElement = document.querySelector(".onlyjoy__filterForm");
-      const dataArr = [...new FormData(formElement)];
-      const formData = Object.fromEntries(dataArr);
+        this.#filteringType = {
+          method: formData.filteringMethod,
+          team: formData.filteringTeam,
+        };
+        handler(formData);
+      }
+    });
+  }
 
-      this.#filteringType = {
-        method: formData.filteringMethod,
-        team: formData.filteringTeam,
-      };
-      handler(formData);
+  addHandlerAddingNewTeam(handler) {
+    this.#matchCardContainer.addEventListener("click", (e) => {
+      if (e.target.closest(".onlyjoy__AddTeamButton")) {
+        const modalElement = document.querySelector(".onlyjoy__addTeamModal");
+        const overlayElement = document.querySelector(".overlay");
+        modalElement.style.display = "flex";
+        overlayElement.style.display = "block";
+      }
+    });
+    this.#matchCardContainer.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (e.target.closest(".onlyjoy__modalForm")) {
+        await handler();
+        console.log("제대로 다음 스텝으로 넘어옴!");
+      }
     });
   }
 

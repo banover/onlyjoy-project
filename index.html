@@ -7,9 +7,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&display=swap"
       rel="stylesheet"
     />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <script src="https://apis.google.com/js/api.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -86,8 +87,8 @@
         <div class="onlyjoy__matchCardContainer">
           <div class="onlyjoy__settingContainer">
             <div class="onlyjoy__AddButtonBar">
-              <button>+ TEAM</button>
-              <button>+ 입중계</button>
+              <button class="onlyjoy__AddTeamButton">+ TEAM</button>
+              <button class="onlyjoy__AddLiveButton">+ 입중계</button>
             </div>
 
             <div class="onlyjoy__matchCardFilterBar">
@@ -157,6 +158,34 @@
               <span>손흥민</span>
             </div>
           </div>
+          <!--           
+          <div class="overlay"></div>
+          <div class="onlyjoy__addTeamModal">
+            <span class="onlyjoy__modalHeading">팀 등록</span>
+            <form class="onlyjoy__modalForm">
+              <label class="onlyjoy__addItemName">
+                <img src="./public/stadium.png" alt="a stadium icon" />
+                <span>리그</span>
+              </label>
+              <select name="league" id="league">
+                <option value="epl">epl</option>
+                <option value="league 1">league 1</option>
+                <option value="bundesriga">bundesriga</option>
+              </select>
+              <label class="onlyjoy__addItemName">
+                <img src="./public/field.png" alt="a field icon" />
+                <span>팀</span>
+              </label>
+              <label class="onlyjoy__addItemName">
+                <img src="./public/jersey.png" alt="a jersey icon" />
+                <span>선수</span>
+              </label>
+              <label class="onlyjoy__addItemName">
+                <img src="./public/live.png" alt="a live icon" />
+                <span>생중계</span>
+              </label>
+            </form>
+          </div> -->
         </div>
       </main>
       <hr />
