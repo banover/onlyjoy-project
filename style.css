@@ -339,6 +339,14 @@ body {
   gap: 3rem;
 }
 
+.onlyjoy__modalForm div:not(:first-child) {
+  display: none;
+}
+
+.onlyjoy__modalFormButton {
+  display: none;
+}
+
 .onlyjoy__addItemName {
   display: flex;
   align-items: center;
@@ -352,6 +360,10 @@ body {
 .onlyjoy__addItemName span {
   text-transform: uppercase;
   font-size: 3rem;
+}
+
+select option[disabled][selected] {
+  display: none;
 }
 
 .spinner {

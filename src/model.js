@@ -47,7 +47,24 @@ export const state = {
     },
   ],
 
-  LivechannelData: [],
+  bookmarkLiveStreams: [
+    {
+      name: "Spotv",
+      url: "https://www.spotvnow.co.kr/",
+    },
+    {
+      name: "Tving",
+      url: "https://www.tving.com/",
+    },
+    {
+      name: "쿠팡플레이",
+      url: "https://www.coupangplay.com/",
+    },
+  ],
+
+  // 리그 관련 array도 하나 만들어야함
+
+  livechannelData: [],
   matchCardData: [],
   spinnerItem: [],
   allTeamInALeague: [],
@@ -70,7 +87,7 @@ export async function loadYoutubeLiveStreamData() {
   state.bookmarkYoutubeChannels.forEach(async (channel) => {
     const data = await fetchYoutubeChannelData(channel.channelHandle);
     console.log(data.items[0].snippet);
-    state.LivechannelData.push(createLiveStreamObject(data));
+    state.livechannelData.push(createLiveStreamObject(data));
   });
 }
 
@@ -121,7 +138,7 @@ function createMatchObject(data) {
     liveUrl: targetTeam.at(0)?.liveUrl,
 
     youtubeLiveChannels: isCurrentTimeNearMatchTime(data.utcDate)
-      ? state.LivechannelData.filter((channel) => channel.liveStatus === "live")
+      ? state.livechannelData.filter((channel) => channel.liveStatus === "live")
       : [],
   };
 }
@@ -177,10 +194,15 @@ function isCurrentTimeNearMatchTime(matchDate) {
   );
 }
 
-export async function loadAllTeamsInLeague(league) {
+export async function loadAllTeamsInALeague(league) {
   const data = await fetchAllTeamsInALeague(league);
-
-  state.allTeamInALeague = data.map((team) => team.shortName);
+  state.allTeamInALeague = data.map((team) => {
+    return {
+      name: team.shortName,
+      id: team.id,
+      logo: team.crest,
+    };
+  });
   console.log(data);
 }
 
@@ -193,6 +215,10 @@ export function getMatchCardData() {
 
 function getAllBookmarkTeam() {
   return state.bookmarkTeams.map((team) => team.name);
+}
+
+export function clearMatchCardData() {
+  state.matchCardData = [];
 }
 
 export function getFilterdMatchCardData(data) {
@@ -219,4 +245,22 @@ export function getFilterdMatchCardData(data) {
   }
 
   return { allBookmarkTeam: getAllBookmarkTeam(), matchesData };
+}
+
+export function createNewBookmarkTeam(data) {
+  const passedTeamData = data.team.split(",");
+  const team = passedTeamData[0];
+  const teamId = Number(passedTeamData[1]);
+  const teamLogoUrl = passedTeamData[2];
+  const passedLiveData = data.liveStream.split(",");
+  const liveStream = passedLiveData[0];
+  const liveStreamUrl = passedLiveData[1];
+  return {
+    name: team,
+    id: teamId,
+    player: data.player,
+    liveStream: liveStream,
+    liveUrl: liveStreamUrl,
+    logoUrl: teamLogoUrl,
+  };
 }
