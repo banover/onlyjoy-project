@@ -206,14 +206,7 @@ export async function loadAllTeamsInALeague(league) {
   console.log(data);
 }
 
-export function getMatchCardData() {
-  return {
-    allBookmarkTeam: getAllBookmarkTeam(),
-    matchesData: state.matchCardData,
-  };
-}
-
-function getAllBookmarkTeam() {
+export function getAllBookmarkTeam() {
   return state.bookmarkTeams.map((team) => team.name);
 }
 
@@ -244,7 +237,7 @@ export function getFilterdMatchCardData(data) {
           );
   }
 
-  return { allBookmarkTeam: getAllBookmarkTeam(), matchesData };
+  return matchesData;
 }
 
 export function createNewBookmarkTeam(data) {
