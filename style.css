@@ -329,6 +329,18 @@ body {
   display: none;
 }
 
+.onlyjoy__modalExitButton {
+  position: absolute;
+  top: 1rem;
+  left: 100%;
+  transform: translate(-120%, 0);
+}
+.onlyjoy__modalExitButton img {
+  width: 4rem;
+  height: 4rem;
+  cursor: pointer;
+}
+
 .onlyjoy__modalHeading {
   font-size: 5rem;
 }
@@ -339,13 +351,13 @@ body {
   gap: 3rem;
 }
 
-.onlyjoy__modalForm div:not(:first-child) {
+/* .onlyjoy__modalForm div:not(:first-child) {
   display: none;
 }
 
 .onlyjoy__modalFormButton {
   display: none;
-}
+} */
 
 .onlyjoy__addItemName {
   display: flex;
@@ -364,6 +376,13 @@ body {
 
 select option[disabled][selected] {
   display: none;
+}
+
+.onlyjoy__modalButtonBox {
+  width: 100%;
+}
+.onlyjoy__modalButtonBox button {
+  width: 100%;
 }
 
 .spinner {

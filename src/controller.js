@@ -35,6 +35,7 @@ function controlFilteringMatchCards(formData) {
 
 function controlDisplayingAddTeamModal() {
   addTeamModalView.render();
+  addTeamModalView.addHandlerCloseModal();
   addTeamModalView.addHandlerDisplayRestSelect(controlDisplayingRestSelect);
   addTeamModalView.addHandlerAddNewTeam(controlAddingNewTeam);
 }
@@ -46,9 +47,10 @@ async function controlDisplayingRestSelect(league) {
   addTeamModalView.displayModalPlayerInput();
   addTeamModalView.displayModalLiveSelection(Model.state.bookmarkLiveStreams);
   addTeamModalView.displayModalButton();
-  // addTeamModalView의 display 부분들 label이랑 select같이 markup으로 만들어서
-  // 한번에 insert하고 container clear도 할 수 있게 만들고 spinner도 되게하고
-  // class냐 아니면 addTeamModalview 안에 만드냐가 제일 고민..(안에 만들자)
+  // 이 block안 제일 위에 addTeamModalView.renderSpinner()해놓고.. 밑에 display 4개를 하나(render형식)로 묶어서
+  // 사용하고 clear도 구현해서 사용하면 되지 않을까?
+  // 결국 그걸 별도의 view로 빼내야 하나?
+  // addteammodalview의 generatemarkup에서도 결국 selection부분 4개를 하나의 div로 묶어야 할지도..
 }
 
 async function controlAddingNewTeam(formData) {

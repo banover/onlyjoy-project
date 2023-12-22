@@ -241,19 +241,14 @@ export function getFilterdMatchCardData(data) {
 }
 
 export function createNewBookmarkTeam(data) {
-  const passedTeamData = data.team.split(",");
-  const team = passedTeamData[0];
-  const teamId = Number(passedTeamData[1]);
-  const teamLogoUrl = passedTeamData[2];
-  const passedLiveData = data.liveStream.split(",");
-  const liveStream = passedLiveData[0];
-  const liveStreamUrl = passedLiveData[1];
+  const teamData = JSON.parse(data.team);
+  const liveStreamData = JSON.parse(data.liveStream);
   return {
-    name: team,
-    id: teamId,
+    name: teamData.name,
+    id: teamData.id,
     player: data.player,
-    liveStream: liveStream,
-    liveUrl: liveStreamUrl,
-    logoUrl: teamLogoUrl,
+    liveStream: liveStreamData.name,
+    liveUrl: liveStreamData.url,
+    logoUrl: teamData.logo,
   };
 }
