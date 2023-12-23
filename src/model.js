@@ -68,6 +68,7 @@ export const state = {
   matchCardData: [],
   spinnerItem: [],
   allTeamInALeague: [],
+  // tempCount: 0,
 };
 
 function init() {
@@ -240,6 +241,13 @@ export function getFilterdMatchCardData(data) {
   return matchesData;
 }
 
+export function getRestSelectionData() {
+  return {
+    teams: state.allTeamInALeague,
+    liveStreams: state.bookmarkLiveStreams,
+  };
+}
+
 export function createNewBookmarkTeam(data) {
   const teamData = JSON.parse(data.team);
   const liveStreamData = JSON.parse(data.liveStream);
@@ -252,3 +260,7 @@ export function createNewBookmarkTeam(data) {
     logoUrl: teamData.logo,
   };
 }
+
+// export function updateTempCount() {
+//   state.tempCount++;
+// }

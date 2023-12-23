@@ -17,6 +17,7 @@ class matchCardSettingBarView {
     this.#matchCardSettingBarContainer.addEventListener("submit", (e) => {
       e.preventDefault();
       if (e.target.closest(".onlyjoy__filterForm")) {
+        console.log("filtring okay!");
         const formElement = document.querySelector(".onlyjoy__filterForm");
         const dataArr = [...new FormData(formElement)];
         const formData = Object.fromEntries(dataArr);

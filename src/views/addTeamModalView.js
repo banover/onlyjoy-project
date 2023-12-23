@@ -14,6 +14,7 @@ class addTeamModalView {
   addHandlerCloseModal() {
     this.#addTeamModalContainer.addEventListener("click", (e) => {
       if (this.#isTargetModalExitButton(e)) {
+        console.log("modal 닫기!");
         this.#overlayElement.style.display = "none";
         this.#addTeamModalContainer.style.display = "none";
       }
@@ -93,10 +94,7 @@ class addTeamModalView {
               <option value="BL1">BUNDESLIGA</option>
           </select>
         </div>
-        <div class="onlyjoy__modalTeamSelection"></div>
-        <div class="onlyjoy__modalPlayerSelection"></div>
-        <div class="onlyjoy__modalLiveSelection"></div>
-        <div class="onlyjoy__modalButtonBox"></div>
+        <div class="onlyjoy__modalRestSelectionContainer"></div>        
       </form>     
     `;
   }
