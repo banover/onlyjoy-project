@@ -5,30 +5,30 @@ import { ONE_HOURS, NUMBER_OF_SPINNING_LOGO, THREE_HOURS } from "./config.js";
 
 export const state = {
   bookmarkTeams: [
-    {
-      name: "Tottenham",
-      id: 73,
-      player: "손흥민",
-      liveStream: "Spotv",
-      liveUrl: "https://www.spotvnow.co.kr/",
-      logoUrl: "https://crests.football-data.org/73.svg",
-    },
-    {
-      name: "PSG",
-      id: 524,
-      player: "이강인",
-      liveStream: "쿠팡플레이",
-      liveUrl: "https://www.coupangplay.com/",
-      logoUrl: "https://crests.football-data.org/524.png",
-    },
-    {
-      name: "Bayern",
-      id: 5,
-      player: "김민재",
-      liveStream: "Tving",
-      liveUrl: "https://www.tving.com/",
-      logoUrl: "https://crests.football-data.org/5.svg",
-    },
+    // {
+    //   name: "Tottenham",
+    //   id: 73,
+    //   player: "손흥민",
+    //   liveStream: "Spotv",
+    //   liveUrl: "https://www.spotvnow.co.kr/",
+    //   logoUrl: "https://crests.football-data.org/73.svg",
+    // },
+    // {
+    //   name: "PSG",
+    //   id: 524,
+    //   player: "이강인",
+    //   liveStream: "쿠팡플레이",
+    //   liveUrl: "https://www.coupangplay.com/",
+    //   logoUrl: "https://crests.football-data.org/524.png",
+    // },
+    // {
+    //   name: "Bayern",
+    //   id: 5,
+    //   player: "김민재",
+    //   liveStream: "Tving",
+    //   liveUrl: "https://www.tving.com/",
+    //   logoUrl: "https://crests.football-data.org/5.svg",
+    // },
   ],
 
   bookmarkYoutubeChannels: [
@@ -77,7 +77,9 @@ export const state = {
 };
 
 function init() {
-  state.spinnerItem = createSpinnerItem();
+  state.bookmarkTeams = getBookmarkTeamsDataFromLocalStorage();
+  console.log(state.bookmarkTeams);
+  // state.spinnerItem = createSpinnerItem();
 }
 init();
 
@@ -87,6 +89,12 @@ function createSpinnerItem() {
       return { name: team.name, logoUrl: team.logoUrl };
     })
     .filter((_, index) => index < NUMBER_OF_SPINNING_LOGO);
+}
+
+function getBookmarkTeamsDataFromLocalStorage() {
+  return localStorage.getItem("bookmarkTeams")
+    ? JSON.parse(localStorage.getItem("bookmarkTeams"))
+    : [];
 }
 
 export async function loadYoutubeLiveStreamData() {
@@ -110,6 +118,9 @@ export async function loadMatchesData() {
   try {
     clearStateMatchCardData();
     const DataDummys = await fetchMatchesDataWithinAWeek(state.bookmarkTeams);
+    if (!DataDummys) {
+      return;
+    }
     console.log(DataDummys);
     DataDummys.forEach((DataDummy) => {
       DataDummy.data.matches.forEach((match) => {
@@ -253,6 +264,7 @@ export function getRestSelectionData() {
 
 export function addingNewBookmarkTeam(data) {
   state.bookmarkTeams.push(createNewBookmarkTeam(data));
+  setLocalStorageBookmarkTeamsData();
 }
 
 function createNewBookmarkTeam(data) {
@@ -266,4 +278,8 @@ function createNewBookmarkTeam(data) {
     liveUrl: liveStreamData.url,
     logoUrl: teamData.logo,
   };
+}
+
+function setLocalStorageBookmarkTeamsData() {
+  localStorage.setItem("bookmarkTeams", JSON.stringify(state.bookmarkTeams));
 }

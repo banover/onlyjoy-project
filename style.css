@@ -152,8 +152,14 @@ body {
 .onlyjoy__matchCards {
   width: 100%;
   display: flex;
+  /* justify-content: center; */
   flex-wrap: wrap;
   gap: 3rem;
+}
+
+.onlyjoy__noTeamDescription {
+  font-size: 10rem;
+  margin: 0 auto;
 }
 
 .onlyjoy__match {

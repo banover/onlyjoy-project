@@ -4,6 +4,9 @@ import DateString from "../helpers/DateString.js";
 // import * as Model from "../model.js";
 
 export default async function fetchMatchesDataWithinAWeek(bookmarkTeams) {
+  if (!bookmarkTeams) {
+    return;
+  }
   const date = new DateString();
   const dateParameter = `dateFrom=${date.yesterday}&&dateTo=${date.afterAWeekFromYesterday}`;
   console.log(dateParameter);

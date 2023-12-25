@@ -18,9 +18,11 @@ class matchCardView {
   #generateMarkup() {
     return `
       <div class="onlyjoy__matchCards">
-      ${this.#data
-        .map((match) => {
-          return `
+      ${
+        this.#data.length > 0
+          ? this.#data
+              .map((match) => {
+                return `
           <div class="onlyjoy__match">
             <div class="onlyjoy__matchRow">
               <span>${match.competition}</span>            
@@ -69,8 +71,8 @@ class matchCardView {
                 <p class="onlyjoy__matchTimes">${match.Date}</p>
                 <p class="onlyjoy__matchBroadcasting">
                   중계 - <a href="${match.liveUrl}" target="_blank">${
-            match.liveStream
-          }</a>
+                  match.liveStream
+                }</a>
                 </p>
                 <p class="onlyjoy__matchYouTubeLiveBroadcasting">
                   ${match.status === "경기 종료" ? "후토크" : "입중계"} LIVE - 
@@ -95,8 +97,10 @@ class matchCardView {
             </div>
           </div>        
           `;
-        })
-        .join(" ")}     
+              })
+              .join(" ")
+          : `<p class="onlyjoy__noTeamDescription">팀을 추가해 주세요!</p>`
+      }     
       </div>    
       `;
   }
