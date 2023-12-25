@@ -1,9 +1,10 @@
 class addTeamModalView {
   #addTeamModalContainer = document.querySelector(".onlyjoy__addTeamModal");
   #overlayElement = document.querySelector(".overlay");
+  #data;
 
   render(data) {
-    // this.#data = data;
+    this.#data = data;
     this.#clearAddTeamModalContainer();
     this.#addTeamModalContainer.insertAdjacentHTML(
       "beforeend",
@@ -14,11 +15,18 @@ class addTeamModalView {
   addHandlerCloseModal() {
     this.#addTeamModalContainer.addEventListener("click", (e) => {
       if (this.#isTargetModalExitButton(e)) {
-        console.log("modal 닫기!");
-        this.#overlayElement.style.display = "none";
-        this.#addTeamModalContainer.style.display = "none";
+        this.#closeModal();
+        this.#closeOverlay();
       }
     });
+  }
+
+  #closeModal() {
+    this.#addTeamModalContainer.style.display = "none";
+  }
+
+  #closeOverlay() {
+    this.#overlayElement.style.display = "none";
   }
 
   #isTargetModalExitButton(e) {
@@ -28,12 +36,9 @@ class addTeamModalView {
   addHandlerDisplayRestSelect(handler) {
     this.#addTeamModalContainer.addEventListener("change", async (e) => {
       if (this.#isTargetModalLeagueSelect(e)) {
-        const leagueSelectElement = document.querySelector("#league");
-        leagueSelectElement.disabled = true;
-        // spinner
+        this.#toggleActiveLeagueSelectElement(this.#getLeagueSelectElement());
         await handler(e.target.value);
-
-        leagueSelectElement.disabled = false;
+        this.#toggleActiveLeagueSelectElement(this.#getLeagueSelectElement());
       }
     });
   }
@@ -42,27 +47,30 @@ class addTeamModalView {
     return e.target.closest("#league");
   }
 
+  #toggleActiveLeagueSelectElement(leageElement) {
+    leageElement.disabled = leageElement.disabled ? false : true;
+  }
+
+  #getLeagueSelectElement() {
+    return document.querySelector("#league");
+  }
+
   addHandlerAddNewTeam(handler) {
     this.#addTeamModalContainer.addEventListener("submit", (e) => {
       e.preventDefault();
-      if (this.#isTargetModalForm(e)) {
-        if (this.#isFormDataValidate(this.#getFormData())) {
-          this.#addTeamModalContainer.style.display = "none";
-          this.#overlayElement.style.display = "none";
-          handler(this.#getFormData());
-        }
+      if (
+        this.#isTargetModalForm(e) &&
+        this.#isFormDataValidate(this.#getFormData())
+      ) {
+        this.#closeModal();
+        this.#closeOverlay();
+        handler(this.#getFormData());
       }
     });
   }
 
   #isTargetModalForm(e) {
     return e.target.closest(".onlyjoy__modalForm");
-  }
-
-  #getFormData() {
-    const formElement = document.querySelector(".onlyjoy__modalForm");
-    const dataArr = [...new FormData(formElement)];
-    return Object.fromEntries(dataArr);
   }
 
   #isFormDataValidate(formData) {
@@ -73,6 +81,12 @@ class addTeamModalView {
       return false;
     }
     return true;
+  }
+
+  #getFormData() {
+    const formElement = document.querySelector(".onlyjoy__modalForm");
+    const dataArr = [...new FormData(formElement)];
+    return Object.fromEntries(dataArr);
   }
 
   #generateMarkup() {
@@ -89,9 +103,12 @@ class addTeamModalView {
           </label>        
           <select name="league" id="league" required>
               <option disabled selected>리그를 선택해 주세요</option>
-              <option value="PL">EPL</option>
-              <option value="FL1">LIGUE 1</option>
-              <option value="BL1">BUNDESLIGA</option>
+              ${this.#data
+                .map(
+                  (league) =>
+                    `<option value="${league.code}">${league.name}</option>`
+                )
+                .join(" ")}             
           </select>
         </div>
         <div class="onlyjoy__modalRestSelectionContainer"></div>        
@@ -103,97 +120,19 @@ class addTeamModalView {
     this.#addTeamModalContainer.innerHTML = "";
   }
 
-  displayModalTeamSelection(teams) {
-    const teamSelectElementContainer = document.querySelector(
-      ".onlyjoy__modalTeamSelection"
-    );
-    teamSelectElementContainer.innerHTML = "";
-    teamSelectElementContainer.insertAdjacentHTML(
-      "beforeend",
-      this.#createTeamSelectMarkup(teams)
-    );
-    teamSelectElementContainer.style.display = "block";
-  }
-
-  #createTeamSelectMarkup(teams) {
-    return `
-      <label class="onlyjoy__addItemName" for="team">
-        <img src="./public/field.png" alt="a field icon" />
-        <span>팀</span>
-      </label> 
-      <select name="team" id="team" required>
-        <option disabled selected>팀을 선택해 주세요</option>
-        ${teams
-          .map((team) => {
-            return `
-              <option value='${JSON.stringify(team)}'>${team.name}</option>
-           
-            `;
-          })
-          .join(" ")}
-      </select>
+  renderError(error) {
+    this.#clearAddTeamModalContainer();
+    const markUp = `
+      <div class="onlyjoy__matchCardError">
+        <img src="./public/warning.png" alt="a waring icon" />
+        <div class="onlyjoy__errorMessage">
+            <p>${error.message}</p>
+            <p>이용에 불편을 드려 죄송합니다.</p>
+        </div>
+      </div>
     `;
-  }
-  // Object.values(team).join(",")
 
-  displayModalPlayerInput() {
-    const playerInputElementContainer = document.querySelector(
-      ".onlyjoy__modalPlayerSelection"
-    );
-    playerInputElementContainer.innerHTML = "";
-    playerInputElementContainer.insertAdjacentHTML(
-      "beforeend",
-      this.#createPlayerInputMarkup()
-    );
-  }
-
-  #createPlayerInputMarkup() {
-    return `
-      <label class="onlyjoy__addItemName" for="player">
-        <img src="./public/jersey.png" alt="a jersey icon" />
-        <span>선수</span>
-      </label>
-      <input type="text" name="player" id="player" placeholder="응원하는 선수를 입력해 주세요" required>
-    `;
-  }
-
-  displayModalLiveSelection(liveStreams) {
-    const liveSelectElementContainer = document.querySelector(
-      ".onlyjoy__modalLiveSelection"
-    );
-    liveSelectElementContainer.innerHTML = "";
-    liveSelectElementContainer.insertAdjacentHTML(
-      "beforeend",
-      this.#createLiveStreamSelectMarkup(liveStreams)
-    );
-  }
-
-  #createLiveStreamSelectMarkup(liveStreams) {
-    return `
-      <label class="onlyjoy__addItemName" for="liveStream">
-        <img src="./public/live.png" alt="a live icon" />
-        <span>생중계</span>
-      </label> 
-      <select name="liveStream" id="liveStream" required>
-        <option disabled selected>중계사이트를 선택해 주세요</option>
-        ${liveStreams.map((live) => {
-          return `
-            <option value='${JSON.stringify(live)}'>${live.name}</option>
-          `;
-        })}
-      </select>
-    `;
-  }
-
-  displayModalButton() {
-    const modalButtonContainer = document.querySelector(
-      ".onlyjoy__modalButtonBox"
-    );
-    modalButtonContainer.innerHTML = "";
-    modalButtonContainer.insertAdjacentHTML(
-      "beforeend",
-      '<button class="onlyjoy__modalFormButton">등록하기</button>'
-    );
+    this.#addTeamModalContainer.insertAdjacentHTML("beforeend", markUp);
   }
 }
 

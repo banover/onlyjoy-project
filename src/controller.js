@@ -1,7 +1,6 @@
 import matchCardView from "./views/matchCardView.js";
 import matchCardSettingBarView from "./views/matchCardSettingBarView.js";
 import addTeamModalView from "./views/addTeamModalView.js";
-// import modalRestSelectionView from "./views/modalRestSelectionView.js";
 import * as Model from "./model.js";
 
 init();
@@ -23,11 +22,11 @@ async function renderThisWeekMatchCards() {
     matchCardSettingBarView.addHandlerDisplayAddTeamModal(
       controlDisplayingAddTeamModal
     );
-    //
+
     addTeamModalView.addHandlerCloseModal();
     addTeamModalView.addHandlerDisplayRestSelect(controlDisplayingRestSelect);
     addTeamModalView.addHandlerAddNewTeam(controlAddingNewTeam);
-    //
+
     matchCardView.render(Model.state.matchCardData);
   } catch (error) {
     console.log(error);
@@ -40,10 +39,7 @@ function controlFilteringMatchCards(formData) {
 }
 
 function controlDisplayingAddTeamModal() {
-  addTeamModalView.render();
-  // addTeamModalView.addHandlerCloseModal();
-  // addTeamModalView.addHandlerDisplayRestSelect(controlDisplayingRestSelect);
-  // addTeamModalView.addHandlerAddNewTeam(controlAddingNewTeam);
+  addTeamModalView.render(Model.state.availableLeague);
 }
 
 async function controlDisplayingRestSelect(league) {
@@ -51,16 +47,28 @@ async function controlDisplayingRestSelect(league) {
     "./views/modalRestSelectionView.js"
   );
   console.log(modalRestSelectionView);
-  modalRestSelectionView.renderSpinner(Model.state.spinnerItem);
-  await Model.loadAllTeamsInALeague(league);
-  console.log(Model.state.allTeamInALeague);
-  modalRestSelectionView.render(Model.getRestSelectionData());
+  try {
+    modalRestSelectionView.renderSpinner(Model.state.spinnerItem);
+    await Model.loadAllTeamsInALeague(league);
+    console.log(Model.state.allTeamInALeague);
+    modalRestSelectionView.render(Model.getRestSelectionData());
+  } catch (error) {
+    console.log(error);
+    modalRestSelectionView.renderError(error);
+  }
 }
 
 async function controlAddingNewTeam(formData) {
-  Model.state.bookmarkTeams.push(Model.createNewBookmarkTeam(formData));
-  Model.clearMatchCardData();
-  await Model.loadMatchesData();
-  matchCardSettingBarView.render(Model.getAllBookmarkTeam());
-  matchCardView.render(Model.state.matchCardData);
+  try {
+    matchCardView.renderSpinner(Model.state.spinnerItem);
+    Model.addingNewBookmarkTeam(formData);
+    await Model.loadMatchesData();
+    matchCardSettingBarView.render(Model.getAllBookmarkTeam());
+    matchCardView.render(Model.state.matchCardData);
+  } catch (error) {
+    console.log(error);
+    addTeamModalView.renderError(error);
+  }
 }
+
+// TODO : localStorage에 bookmark한 team youtube data 집어넣기

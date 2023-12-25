@@ -1,9 +1,9 @@
 export default class DateString {
   #currentDate = new Date();
   #yesterdayDate = new Date(
-    this.#currentDate.setDate(this.#currentDate.getDate() - 3)
+    this.#currentDate.setDate(this.#currentDate.getDate() - 1)
   );
-  //  위 -3을 -1로 바꿔야 하루 전이 됨 + magic Number를 피하자 config로..이동
+
   #nextWeekDateFromYesterday = new Date(
     this.#yesterdayDate.getFullYear(),
     this.#yesterdayDate.getMonth(),

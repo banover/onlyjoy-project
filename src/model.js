@@ -6,7 +6,6 @@ import { ONE_HOURS, NUMBER_OF_SPINNING_LOGO, THREE_HOURS } from "./config.js";
 export const state = {
   bookmarkTeams: [
     {
-      leagueId: 2021,
       name: "Tottenham",
       id: 73,
       player: "손흥민",
@@ -15,7 +14,6 @@ export const state = {
       logoUrl: "https://crests.football-data.org/73.svg",
     },
     {
-      leagueId: 2015,
       name: "PSG",
       id: 524,
       player: "이강인",
@@ -24,7 +22,6 @@ export const state = {
       logoUrl: "https://crests.football-data.org/524.png",
     },
     {
-      leagueId: 2002,
       name: "Bayern",
       id: 5,
       player: "김민재",
@@ -62,13 +59,21 @@ export const state = {
     },
   ],
 
-  // 리그 관련 array도 하나 만들어야함
+  availableLeague: [
+    { name: "EPL", code: "PL" },
+    { name: "Championship", code: "ELC" },
+    { name: "Bundesliga", code: "BL1" },
+    { name: "Ligue1", code: "FL1" },
+    { name: "Seria A", code: "SA" },
+    { name: "Primera Division", code: "PD" },
+    { name: "Primeira Liga", code: "PPL" },
+    { name: "Eredivisie", code: "DED" },
+  ],
 
   livechannelData: [],
   matchCardData: [],
   spinnerItem: [],
   allTeamInALeague: [],
-  // tempCount: 0,
 };
 
 function init() {
@@ -103,6 +108,7 @@ function createLiveStreamObject(data) {
 
 export async function loadMatchesData() {
   try {
+    clearStateMatchCardData();
     const DataDummys = await fetchMatchesDataWithinAWeek(state.bookmarkTeams);
     console.log(DataDummys);
     DataDummys.forEach((DataDummy) => {
@@ -114,6 +120,10 @@ export async function loadMatchesData() {
     console.log(error);
     throw error;
   }
+}
+
+function clearStateMatchCardData() {
+  state.matchCardData = [];
 }
 
 function createMatchObject(data) {
@@ -181,17 +191,14 @@ function getWinnerTeam(data) {
 }
 
 function getMatchScore(score) {
-  // if (score.winner) {
-  //   return `${score.fullTime.home} : ${score.fullTime.away}`;
-  // }
-  // return null;
   return `${score.fullTime.home} : ${score.fullTime.away}`;
 }
 
 function isCurrentTimeNearMatchTime(matchDate) {
+  const currentTime = Date.now();
+  const matchTime = new Date(matchDate);
   return (
-    new Date(matchDate) - Date.now() < ONE_HOURS &&
-    Date.now() - new Date(matchDate) < THREE_HOURS
+    matchTime - currentTime < ONE_HOURS && currentTime - matchTime < THREE_HOURS
   );
 }
 
@@ -211,14 +218,10 @@ export function getAllBookmarkTeam() {
   return state.bookmarkTeams.map((team) => team.name);
 }
 
-export function clearMatchCardData() {
-  state.matchCardData = [];
-}
-
 export function getFilterdMatchCardData(data) {
-  let matchesData;
+  let result;
   if (data.filteringMethod === "date") {
-    matchesData =
+    result =
       data.filteringTeam === "all"
         ? state.matchCardData
             .slice()
@@ -230,7 +233,7 @@ export function getFilterdMatchCardData(data) {
             .sort((a, b) => new Date(a.rawDate) - new Date(b.rawDate));
   }
   if (data.filteringMethod === "team") {
-    matchesData =
+    result =
       data.filteringTeam === "all"
         ? state.matchCardData.slice()
         : state.matchCardData.filter(
@@ -238,7 +241,7 @@ export function getFilterdMatchCardData(data) {
           );
   }
 
-  return matchesData;
+  return result;
 }
 
 export function getRestSelectionData() {
@@ -248,7 +251,11 @@ export function getRestSelectionData() {
   };
 }
 
-export function createNewBookmarkTeam(data) {
+export function addingNewBookmarkTeam(data) {
+  state.bookmarkTeams.push(createNewBookmarkTeam(data));
+}
+
+function createNewBookmarkTeam(data) {
   const teamData = JSON.parse(data.team);
   const liveStreamData = JSON.parse(data.liveStream);
   return {
@@ -260,7 +267,3 @@ export function createNewBookmarkTeam(data) {
     logoUrl: teamData.logo,
   };
 }
-
-// export function updateTempCount() {
-//   state.tempCount++;
-// }

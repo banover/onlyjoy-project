@@ -3,6 +3,8 @@ class matchCardSettingBarView {
   #matchCardSettingBarContainer = document.querySelector(
     ".onlyjoy__settingContainer"
   );
+  #modalElement = document.querySelector(".onlyjoy__addTeamModal");
+  #overlayElement = document.querySelector(".overlay");
 
   render(data) {
     this.#data = data;
@@ -16,15 +18,20 @@ class matchCardSettingBarView {
   addHandlerFilterMatchCards(handler) {
     this.#matchCardSettingBarContainer.addEventListener("submit", (e) => {
       e.preventDefault();
-      if (e.target.closest(".onlyjoy__filterForm")) {
-        console.log("filtring okay!");
-        const formElement = document.querySelector(".onlyjoy__filterForm");
-        const dataArr = [...new FormData(formElement)];
-        const formData = Object.fromEntries(dataArr);
-
-        handler(formData);
+      if (this.#isTargetFilterForm(e)) {
+        handler(this.#getFormData());
       }
     });
+  }
+
+  #isTargetFilterForm(e) {
+    return e.target.closest(".onlyjoy__filterForm");
+  }
+
+  #getFormData() {
+    const formElement = document.querySelector(".onlyjoy__filterForm");
+    const dataArr = [...new FormData(formElement)];
+    return Object.fromEntries(dataArr);
   }
 
   addHandlerDisplayAddTeamModal(handler) {
@@ -41,10 +48,8 @@ class matchCardSettingBarView {
   }
 
   #displayAddTeamModal() {
-    const modalElement = document.querySelector(".onlyjoy__addTeamModal");
-    const overlayElement = document.querySelector(".overlay");
-    overlayElement.style.display = "block";
-    modalElement.style.display = "flex";
+    this.#overlayElement.style.display = "block";
+    this.#modalElement.style.display = "flex";
   }
 
   #generateMarkup() {

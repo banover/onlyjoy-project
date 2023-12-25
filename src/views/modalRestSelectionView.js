@@ -1,23 +1,27 @@
-// export default class modalRestSelectionView {
 class modalRestSelectionView {
   #modalRestSelectionContainer;
-  //   #modalRestSelectionContainer = document.querySelector(
-  //     ".onlyjoy__modalRestSelectionContainer"
-  //   );
   #data;
 
+  // modalRestSelectionContainer 이 부분을 render나 spinnerRender일 때 계속
+  // setModalRestSelectionContainer해서 container 설정하는데
+  // 이유는 dynamic import를 하기 때문이다.
+  // 맨 처음에 import한 것을 계속 사용하는데, 그 import한 modalRestSelectionView
+  // instance의 modalRestSelectionContainer부분 element가 삭제(addTeamModal clear때문)됐다가 다시 만들어져서
+  // 기존의 container를 가리키면 원하는 데로 코드가 작동하지 않는다.
+
   render(data) {
+    this.#setModalRestSelectionContainer();
     this.#data = data;
-    this.#modalRestSelectionContainer = document.querySelector(
-      ".onlyjoy__modalRestSelectionContainer"
-    );
-    console.log("1");
     this.#clearModalRestSelectionContainer();
-    console.log("2");
-    console.log(this.#modalRestSelectionContainer);
     this.#modalRestSelectionContainer.insertAdjacentHTML(
       "beforeend",
       this.#generateMarkup()
+    );
+  }
+
+  #setModalRestSelectionContainer() {
+    this.#modalRestSelectionContainer = document.querySelector(
+      ".onlyjoy__modalRestSelectionContainer"
     );
   }
 
@@ -76,9 +80,8 @@ class modalRestSelectionView {
   }
 
   renderSpinner(teamsData) {
-    this.#modalRestSelectionContainer = document.querySelector(
-      ".onlyjoy__modalRestSelectionContainer"
-    );
+    this.#setModalRestSelectionContainer();
+    this.#clearModalRestSelectionContainer();
     const markUp = `
       <div class="spinner">
         ${teamsData
@@ -96,6 +99,21 @@ class modalRestSelectionView {
         
       </div>
      `;
+
+    this.#modalRestSelectionContainer.insertAdjacentHTML("beforeend", markUp);
+  }
+
+  renderError(error) {
+    this.#clearModalRestSelectionContainer();
+    const markUp = `
+      <div class="onlyjoy__matchCardError">
+        <img src="./public/warning.png" alt="a waring icon" />
+        <div class="onlyjoy__errorMessage">
+            <p>${error.message}</p>
+            <p>이용에 불편을 드려 죄송합니다.</p>
+        </div>
+      </div>
+    `;
 
     this.#modalRestSelectionContainer.insertAdjacentHTML("beforeend", markUp);
   }
