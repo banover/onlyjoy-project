@@ -56,6 +56,7 @@ body {
 
 .onlyjoy__matchCardContainer {
   width: 100%;
+  /* height: 50rem; */
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -357,6 +358,9 @@ body {
   gap: 3rem;
 }
 
+.onlyjoy__modalYoutubeChannelInput {
+}
+
 /* .onlyjoy__modalForm div:not(:first-child) {
   display: none;
 }
@@ -397,6 +401,27 @@ select option[disabled][selected] {
   width: 100%;
 }
 
+/* youtube modal */
+.onlyjoy__addYoutubeLiveStreamModal {
+  width: 50rem;
+  height: 60rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Do Hyeon", sans-serif;
+  display: none;
+}
+
+.onlyjoy__ChannelHandlerInput {
+  width: 100%;
+}
+
+/*  */
 .spinner {
   width: 100%;
   height: 30rem;
@@ -410,10 +435,12 @@ select option[disabled][selected] {
   animation: movingUpAndDownForFirstItem 6s linear infinite both;
 }
 
-.spinner img:not(:first-child, :last-child) {
+/* .spinner img:not(:first-child, :last-child) { */
+.spinner img:nth-child(2) {
   animation: movingUpAndDownForSecondItem 18s linear infinite both;
 }
-.spinner img:last-child {
+/* .spinner img:last-child { */
+.spinner img:nth-child(3) {
   animation: movingUpAndDownForThirdItem 18s linear infinite both;
 }
 
@@ -473,6 +500,7 @@ select option[disabled][selected] {
     transform: rotate(0deg);
   }
 } */
+
 @keyframes movingUpAndDownForFirstItem {
   0% {
     opacity: 0;

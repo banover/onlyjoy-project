@@ -1,6 +1,7 @@
 import matchCardView from "./views/matchCardView.js";
 import matchCardSettingBarView from "./views/matchCardSettingBarView.js";
 import addTeamModalView from "./views/addTeamModalView.js";
+import addYoutubeChannelModalView from "./views/addYoutubeChannelModalView.js";
 import * as Model from "./model.js";
 
 init();
@@ -11,6 +12,7 @@ async function init() {
 
 async function renderThisWeekMatchCards() {
   try {
+    console.log(Model.state.spinnerItem);
     matchCardView.renderSpinner(Model.state.spinnerItem);
     // await Model.loadYoutubeLiveStreamData();
     await Model.loadMatchesData();
@@ -22,15 +24,41 @@ async function renderThisWeekMatchCards() {
     matchCardSettingBarView.addHandlerDisplayAddTeamModal(
       controlDisplayingAddTeamModal
     );
-
+    matchCardSettingBarView.addHandlerDisplayAddYoutubeChannelModal(
+      controlDisplayingYoutubeChannel
+    );
     addTeamModalView.addHandlerCloseModal();
     addTeamModalView.addHandlerDisplayRestSelect(controlDisplayingRestSelect);
     addTeamModalView.addHandlerAddNewTeam(controlAddingNewTeam);
 
+    addYoutubeChannelModalView.addHandlerCloseModal();
+    addYoutubeChannelModalView.addHandlerAddYoutubeChannel(
+      controlAddingYoutubeChannel
+    );
     matchCardView.render(Model.state.matchCardData);
   } catch (error) {
     console.log(error);
     matchCardView.renderError(error);
+  }
+}
+
+// TODO : youtube channel title로 받지말고 channelID로 받자.. 그거 api 할당량 아끼고 코드도 간결
+async function controlAddingYoutubeChannel(channelData) {
+  try {
+    if (await Model.validateYoutubeChannel(channelData)) {
+      matchCardView.renderSpinner(Model.state.spinnerItem);
+      Model.addingNewBookmarkYoutubeChannel(channelData);
+      console.log(Model.state.bookmarkYoutubeChannels);
+      await Model.loadYoutubeLiveStreamData();
+      await Model.loadMatchesData();
+      matchCardView.render(Model.state.matchCardData);
+      return true;
+    }
+    return false;
+  } catch (error) {
+    console.log(error);
+    addYoutubeChannelModalView.renderError(error);
+    return false;
   }
 }
 
@@ -40,6 +68,10 @@ function controlFilteringMatchCards(formData) {
 
 function controlDisplayingAddTeamModal() {
   addTeamModalView.render(Model.state.availableLeague);
+}
+
+function controlDisplayingYoutubeChannel(channelData) {
+  addYoutubeChannelModalView.render();
 }
 
 async function controlDisplayingRestSelect(league) {
@@ -70,5 +102,3 @@ async function controlAddingNewTeam(formData) {
     addTeamModalView.renderError(error);
   }
 }
-
-// TODO : localStorage에 bookmark한 team youtube data 집어넣기

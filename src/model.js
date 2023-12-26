@@ -32,16 +32,18 @@ export const state = {
   ],
 
   bookmarkYoutubeChannels: [
-    {
-      channelTitle: "문도그",
-      channelId: "UCIJD-n6RnrFkO45qBjbdoVA",
-      channelHandle: "moondog10",
-    },
-    {
-      channelTitle: "이스타TV",
-      channelId: "UCIJD-n6RnrFkO45qBjbdoVA",
-      channelHandle: "@leestartv",
-    },
+    // "문도그",
+    // "이스타TV",
+    // {
+    //   channelTitle: "문도그",
+    //   channelId: "UCIJD-n6RnrFkO45qBjbdoVA",
+    //   channelHandle: "moondog10",
+    // },
+    // {
+    //   channelTitle: "이스타TV",
+    //   channelId: "UCIJD-n6RnrFkO45qBjbdoVA",
+    //   channelHandle: "@leestartv",
+    // },
   ],
 
   bookmarkLiveStreams: [
@@ -79,11 +81,15 @@ export const state = {
 function init() {
   state.bookmarkTeams = getBookmarkTeamsDataFromLocalStorage();
   console.log(state.bookmarkTeams);
-  // state.spinnerItem = createSpinnerItem();
+  state.spinnerItem = createSpinnerItem();
+  console.log(state.spinnerItem);
 }
 init();
 
 function createSpinnerItem() {
+  if (!state.bookmarkTeams.length) {
+    return [];
+  }
   return state.bookmarkTeams
     .map((team) => {
       return { name: team.name, logoUrl: team.logoUrl };
@@ -102,6 +108,12 @@ export async function loadYoutubeLiveStreamData() {
     const data = await fetchYoutubeChannelData(channel.channelHandle);
     console.log(data.items[0].snippet);
     state.livechannelData.push(createLiveStreamObject(data));
+    // const data = await fetchYoutubeChannelData(channel);
+    // const filteredData = data.items.filter(
+    //   (channelData) => channelData.snippet.channelTitle.trim() === channel
+    // );
+    // console.log(filteredData);
+    // state.livechannelData.push(createLiveStreamObject(filteredData));
   });
 }
 
@@ -282,4 +294,20 @@ function createNewBookmarkTeam(data) {
 
 function setLocalStorageBookmarkTeamsData() {
   localStorage.setItem("bookmarkTeams", JSON.stringify(state.bookmarkTeams));
+}
+
+export async function validateYoutubeChannel(data) {
+  const test = await fetchYoutubeChannelData(data.channel);
+  const testFilter = test.items.filter(
+    (channel) => channel.snippet.channelTitle.trim() === data.channel
+  );
+  console.log(test);
+  console.log(testFilter);
+  return testFilter ? true : false;
+  // return (await fetchYoutubeChannelData(data.channel)) ? true : false;
+}
+
+export function addingNewBookmarkYoutubeChannel(data) {
+  state.bookmarkYoutubeChannels.push(data.channel);
+  // setLocalStorageBookmarkTeamsData();
 }

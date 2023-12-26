@@ -1,6 +1,6 @@
 import { YOUTUBE_API_KEY } from "../config";
-export default async function fetchYoutubeChannelData(channelHandle) {
-  const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=channel&q=${channelHandle}&key=${YOUTUBE_API_KEY}`;
+export default async function fetchYoutubeChannelData(channelTitle) {
+  const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=channel&q=${channelTitle}&key=${YOUTUBE_API_KEY}`;
   try {
     const response = await fetch(url);
     const data = await response.json();
@@ -9,3 +9,5 @@ export default async function fetchYoutubeChannelData(channelHandle) {
     throw new Error(`fail to fetch youtube channel data: ${error.message}`);
   }
 }
+
+// channelId 가 handler임
