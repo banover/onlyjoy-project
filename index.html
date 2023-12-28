@@ -187,13 +187,13 @@
             </form> -->
           </div>
           <div class="onlyjoy__addYoutubeLiveStreamModal">
-            <!-- <div class="onlyjoy__modalExitButton">
+            <div class="onlyjoy__modalExitButton">
               <img src="./public/remove-button.png" alt="an exit-button icon" />
             </div>
             <span class="onlyjoy__modalHeading">Youtube Channel 등록</span>
             <form class="onlyjoy__modalForm">
               <div class="onlyjoy__modalYoutubeChannelInput">
-                <label class="onlyjoy__addItemName" for="channel">
+                <label class="onlyjoy__addItemName" for="channelHandle">
                   <img
                     src="./public/you-tube.png"
                     alt="a youtube channel icon"
@@ -203,16 +203,90 @@
                 <input
                   class="onlyjoy__ChannelHandlerInput"
                   type="text"
-                  name="channel"
-                  id="channel"
-                  placeholder="채널의 이름을 정확히 입력해 주세요"
+                  name="channelHandle"
+                  id="channelHandle"
+                  placeholder="채널Handle을 정확히 입력해 주세요"
                   required
                 />
               </div>
               <div class="onlyjoy__modalButtonBox">
-                <button class="onlyjoy__modalFormButton">등록하기</button>
+                <button class="onlyjoy__modalFormButton">채널 확인하기</button>
               </div>
-            </form> -->
+
+              <div class="onlyjoy__searchedYoutubeChannels">
+                <div class="onlyjoy__searchedYoutubeChannelsRadioButtons">
+                  <div class="onlyjoy__searchedYoutubeChannelsRadioButton">
+                    <input
+                      type="radio"
+                      value="채널ID"
+                      id="channelId"
+                      name="channelId"
+                    />
+                    <label
+                      for="channelId"
+                      class="onlyjoy__searchedYoutubeChannelsList"
+                    >
+                      <div class="onlyjoy__searchedYoutubeChannelButtonLabel">
+                        <img
+                          src="https://yt3.ggpht.com/Ph3zUHAtQqkXYwhDFc2SSllFrrdvVZhcg2oATcJf9BWKDUJuBNiWYCGhQ4mqS_YTstC4_Y1aiw=s800-c-k-c0xffffffff-no-rj-mo"
+                          alt="a youtube thumbnails"
+                          width="40"
+                          height="40"
+                        />
+                        <span>김진짜 Real KIM</span>
+                      </div>
+                    </label>
+                  </div>
+                  <div class="onlyjoy__searchedYoutubeChannelsRadioButton">
+                    <input
+                      type="radio"
+                      value="채널ID"
+                      id="channelId"
+                      name="channelId"
+                    />
+                    <label
+                      for="channelId"
+                      class="onlyjoy__searchedYoutubeChannelsList"
+                    >
+                      <div class="onlyjoy__searchedYoutubeChannelButtonLabel">
+                        <img
+                          src="https://yt3.ggpht.com/Ph3zUHAtQqkXYwhDFc2SSllFrrdvVZhcg2oATcJf9BWKDUJuBNiWYCGhQ4mqS_YTstC4_Y1aiw=s800-c-k-c0xffffffff-no-rj-mo"
+                          alt="a youtube thumbnails"
+                          width="40"
+                          height="40"
+                        />
+                        <span>김진짜 Real KIM</span>
+                      </div>
+                    </label>
+                  </div>
+                  <div class="onlyjoy__searchedYoutubeChannelsRadioButton">
+                    <input
+                      type="radio"
+                      value="채널ID"
+                      id="channelId"
+                      name="channelId"
+                    />
+                    <label
+                      for="channelId"
+                      class="onlyjoy__searchedYoutubeChannelsList"
+                    >
+                      <div class="onlyjoy__searchedYoutubeChannelButtonLabel">
+                        <img
+                          src="https://yt3.ggpht.com/Ph3zUHAtQqkXYwhDFc2SSllFrrdvVZhcg2oATcJf9BWKDUJuBNiWYCGhQ4mqS_YTstC4_Y1aiw=s800-c-k-c0xffffffff-no-rj-mo"
+                          alt="a youtube thumbnails"
+                          width="40"
+                          height="40"
+                        />
+                        <span>김진짜 Real KIM</span>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+                <div class="onlyjoy__modalButtonBox">
+                  <button class="onlyjoy__modalFormButton">채널 등록</button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </main>

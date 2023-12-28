@@ -2,6 +2,7 @@ import matchCardView from "./views/matchCardView.js";
 import matchCardSettingBarView from "./views/matchCardSettingBarView.js";
 import addTeamModalView from "./views/addTeamModalView.js";
 import addYoutubeChannelModalView from "./views/addYoutubeChannelModalView.js";
+// import searchedYoutubeChannelView from "./views/searchedYoutubeChannelView.js";
 import * as Model from "./model.js";
 
 init();
@@ -32,8 +33,8 @@ async function renderThisWeekMatchCards() {
     addTeamModalView.addHandlerAddNewTeam(controlAddingNewTeam);
 
     addYoutubeChannelModalView.addHandlerCloseModal();
-    addYoutubeChannelModalView.addHandlerAddYoutubeChannel(
-      controlAddingYoutubeChannel
+    addYoutubeChannelModalView.addHandlerCheckYoutubeChannel(
+      controlDisplayingSearchedYoutubeChannels
     );
     matchCardView.render(Model.state.matchCardData);
   } catch (error) {
@@ -43,23 +44,33 @@ async function renderThisWeekMatchCards() {
 }
 
 // TODO : youtube channel title로 받지말고 channelID로 받자.. 그거 api 할당량 아끼고 코드도 간결
-async function controlAddingYoutubeChannel(channelData) {
+async function controlDisplayingSearchedYoutubeChannels(channelTitle) {
+  const { default: searchedYoutubeChannelView } = await import(
+    "./views/searchedYoutubeChannelView.js"
+  );
+  console.log(searchedYoutubeChannelView);
   try {
-    if (await Model.validateYoutubeChannel(channelData)) {
-      matchCardView.renderSpinner(Model.state.spinnerItem);
-      Model.addingNewBookmarkYoutubeChannel(channelData);
-      console.log(Model.state.bookmarkYoutubeChannels);
-      await Model.loadYoutubeLiveStreamData();
-      await Model.loadMatchesData();
-      matchCardView.render(Model.state.matchCardData);
-      return true;
-    }
-    return false;
-  } catch (error) {
-    console.log(error);
-    addYoutubeChannelModalView.renderError(error);
-    return false;
-  }
+    // renderSpinner 돌리기 youtubeChannelModal에서..
+    searchedYoutubeChannelView.renderSpinner(Model.state.spinnerItem);
+    // youtube channel data 불러오기
+    // await Model.loadSearchedYoutubeChannels(channelTitle);
+    // console.log(Model.state.searchedYoutubeChannels);
+    searchedYoutubeChannelView.render(Model.state.searchedYoutubeChannels);
+    // searced youtube채널 display하기
+  } catch (error) {}
+  // try {
+  //   matchCardView.renderSpinner(Model.state.spinnerItem);
+  //   Model.addingNewBookmarkYoutubeChannel(data);
+  //   console.log(Model.state.bookmarkYoutubeChannels);
+  //   // await Model.loadYoutubeLiveStreamData();
+  //   await Model.loadMatchesData();
+  //   matchCardView.render(Model.state.matchCardData);
+  //   return true;
+  // } catch (error) {
+  //   console.log(error);
+  //   addYoutubeChannelModalView.renderError(error);
+  //   return false;
+  // }
 }
 
 function controlFilteringMatchCards(formData) {

@@ -31,10 +31,12 @@ class addYoutubeChannelModalView {
     this.#overlayElement.style.display = "none";
   }
 
-  addHandlerAddYoutubeChannel(handler) {
-    this.#modalContainer.addEventListener("submit", async (e) => {
+  addHandlerCheckYoutubeChannel(handler) {
+    // this.#modalContainer.addEventListener("submit", async (e) => {
+    this.#modalContainer.addEventListener("click", async (e) => {
       e.preventDefault();
-      if (e.target.closest(".onlyjoy__modalForm")) {
+      // if (e.target.closest(".onlyjoy__modalForm")) {
+      if (e.target.closest(".onlyjoy__modalFormButton")) {
         const submitBtnElement = document.querySelector(
           ".onlyjoy__modalFormButton"
         );
@@ -42,18 +44,29 @@ class addYoutubeChannelModalView {
           ".onlyjoy__ChannelHandlerInput"
         );
 
+        // const formElement = document.querySelector(".onlyjoy__modalForm");
+        // const dataArr = [...new FormData(formElement)];
+        // const data = Object.fromEntries(dataArr);
+        // console.log(data);
+        const inputValue = inputElement.value;
+        console.log(inputValue);
+        inputElement.disabled = true;
+        submitBtnElement.disabled = true;
+        await handler(inputValue);
+        inputElement.disabled = false;
+        submitBtnElement.disabled = false;
+      }
+    });
+  }
+
+  addHandlerAddNewYoutubeChannel() {
+    this.#modalContainer.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (e.target.closest(".onlyjoy__modalForm")) {
         const formElement = document.querySelector(".onlyjoy__modalForm");
         const dataArr = [...new FormData(formElement)];
         const data = Object.fromEntries(dataArr);
         console.log(data);
-        inputElement.disabled = true;
-        submitBtnElement.disabled = true;
-        if (await handler(data)) {
-          this.#closeModal();
-          this.#closeOverlay();
-        }
-        inputElement.disabled = false;
-        submitBtnElement.disabled = false;
       }
     });
   }
@@ -66,7 +79,7 @@ class addYoutubeChannelModalView {
         <span class="onlyjoy__modalHeading">Youtube Channel 등록</span>
         <form class="onlyjoy__modalForm">
             <div class="onlyjoy__modalYoutubeChannelInput">
-                <label class="onlyjoy__addItemName" for="channel">
+                <label class="onlyjoy__addItemName" for="channelHandle">
                     <img
                     src="./public/you-tube.png"
                     alt="a youtube channel icon"
@@ -76,15 +89,17 @@ class addYoutubeChannelModalView {
                 <input
                     class="onlyjoy__ChannelHandlerInput"
                     type="text"
-                    name="channel"
-                    id="channel"
-                    placeholder="채널의 이름을 정확히 입력해 주세요"
+                    name="channelHandle"
+                    id="channelHandle"
+                    placeholder="채널Handle을 정확히 입력해 주세요"
                     required
                 />
             </div>
             <div class="onlyjoy__modalButtonBox">
-                <button class="onlyjoy__modalFormButton">등록하기</button>
+                <button class="onlyjoy__modalFormButton">채널 확인하기</button>
             </div>
+            <div class="onlyjoy__searchedYoutubeChannels"></div>
+
         </form>    
     `;
   }

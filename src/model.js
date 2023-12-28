@@ -34,16 +34,16 @@ export const state = {
   bookmarkYoutubeChannels: [
     // "문도그",
     // "이스타TV",
-    // {
-    //   channelTitle: "문도그",
-    //   channelId: "UCIJD-n6RnrFkO45qBjbdoVA",
-    //   channelHandle: "moondog10",
-    // },
-    // {
-    //   channelTitle: "이스타TV",
-    //   channelId: "UCIJD-n6RnrFkO45qBjbdoVA",
-    //   channelHandle: "@leestartv",
-    // },
+    {
+      channelTitle: "문도그",
+      channelId: "UCIJD-n6RnrFkO45qBjbdoVA",
+      channelHandle: "moondog10",
+    },
+    {
+      channelTitle: "이스타TV",
+      channelId: "UCIJD-n6RnrFkO45qBjbdoVA",
+      channelHandle: "@leestartv",
+    },
   ],
 
   bookmarkLiveStreams: [
@@ -76,6 +76,7 @@ export const state = {
   matchCardData: [],
   spinnerItem: [],
   allTeamInALeague: [],
+  searchedYoutubeChannels: [],
 };
 
 function init() {
@@ -296,18 +297,22 @@ function setLocalStorageBookmarkTeamsData() {
   localStorage.setItem("bookmarkTeams", JSON.stringify(state.bookmarkTeams));
 }
 
-export async function validateYoutubeChannel(data) {
-  const test = await fetchYoutubeChannelData(data.channel);
-  const testFilter = test.items.filter(
-    (channel) => channel.snippet.channelTitle.trim() === data.channel
-  );
-  console.log(test);
-  console.log(testFilter);
-  return testFilter ? true : false;
-  // return (await fetchYoutubeChannelData(data.channel)) ? true : false;
+export async function loadSearchedYoutubeChannels(channelTitle) {
+  const channelData = await fetchYoutubeChannelData(channelTitle);
+  state.searchedYoutubeChannels = channelData.items;
 }
 
 export function addingNewBookmarkYoutubeChannel(data) {
-  state.bookmarkYoutubeChannels.push(data.channel);
+  console.log(data);
+  // state.bookmarkYoutubeChannels.push(channelHandle);
+  // state.livechannelData.push(createLiveStreamObject(data.channel));
   // setLocalStorageBookmarkTeamsData();
+}
+
+function createBookmarkYoutubeChannel(data) {
+  return {
+    channelTitle: "",
+    channelId: "",
+    channelHandle: "",
+  };
 }
