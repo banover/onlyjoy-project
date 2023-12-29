@@ -10,11 +10,9 @@
     "test": "jest"
   },
   "devDependencies": {
-    "jest": "^29.7.0",
     "vite": "^5.0.2"
   },
   "dependencies": {
-    "@types/jest": "^29.5.10",
     "axios": "^1.6.2"
   }
 }

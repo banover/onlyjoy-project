@@ -1,6 +1,7 @@
-import fetchYoutubeChannelData from "./services/fetchYoutubeChannelData.js";
+import fetchYoutubeChannelDataFromChannelId from "./services/fetchYoutubeChannelDataFromChannelId.js";
 import fetchMatchesDataWithinAWeek from "./services/fetchMatchesDataWithinAWeek.js";
 import fetchAllTeamsInALeague from "./services/fetchAllTeamsInALeague.js";
+import fetchSearchedYoutubeChannelData from "./services/fetchSearchedYoutubeChannelData.js";
 import { ONE_HOURS, NUMBER_OF_SPINNING_LOGO, THREE_HOURS } from "./config.js";
 
 export const state = {
@@ -32,18 +33,14 @@ export const state = {
   ],
 
   bookmarkYoutubeChannels: [
-    // "문도그",
-    // "이스타TV",
-    {
-      channelTitle: "문도그",
-      channelId: "UCIJD-n6RnrFkO45qBjbdoVA",
-      channelHandle: "moondog10",
-    },
-    {
-      channelTitle: "이스타TV",
-      channelId: "UCIJD-n6RnrFkO45qBjbdoVA",
-      channelHandle: "@leestartv",
-    },
+    // {
+    //   channelTitle: "문도그",
+    //   channelId: "UCIJD-n6RnrFkO45qBjbdoVA",
+    // },
+    // {
+    //   channelTitle: "이스타TV",
+    //   channelId: "UCIJD-n6RnrFkO45qBjbdoVA",
+    // },
   ],
 
   bookmarkLiveStreams: [
@@ -82,10 +79,22 @@ export const state = {
 function init() {
   state.bookmarkTeams = getBookmarkTeamsDataFromLocalStorage();
   console.log(state.bookmarkTeams);
+  state.bookmarkYoutubeChannels =
+    getBookmarkYoutubeChannelDataFromLocalStorage();
   state.spinnerItem = createSpinnerItem();
-  console.log(state.spinnerItem);
 }
 init();
+
+function getBookmarkTeamsDataFromLocalStorage() {
+  return localStorage.getItem("bookmarkTeams")
+    ? JSON.parse(localStorage.getItem("bookmarkTeams"))
+    : [];
+}
+function getBookmarkYoutubeChannelDataFromLocalStorage() {
+  return localStorage.getItem("bookmarkYoutubeChannels")
+    ? JSON.parse(localStorage.getItem("bookmarkTeams"))
+    : [];
+}
 
 function createSpinnerItem() {
   if (!state.bookmarkTeams.length) {
@@ -98,32 +107,34 @@ function createSpinnerItem() {
     .filter((_, index) => index < NUMBER_OF_SPINNING_LOGO);
 }
 
-function getBookmarkTeamsDataFromLocalStorage() {
-  return localStorage.getItem("bookmarkTeams")
-    ? JSON.parse(localStorage.getItem("bookmarkTeams"))
-    : [];
-}
-
 export async function loadYoutubeLiveStreamData() {
-  state.bookmarkYoutubeChannels.forEach(async (channel) => {
-    const data = await fetchYoutubeChannelData(channel.channelHandle);
-    console.log(data.items[0].snippet);
-    state.livechannelData.push(createLiveStreamObject(data));
-    // const data = await fetchYoutubeChannelData(channel);
-    // const filteredData = data.items.filter(
-    //   (channelData) => channelData.snippet.channelTitle.trim() === channel
-    // );
-    // console.log(filteredData);
-    // state.livechannelData.push(createLiveStreamObject(filteredData));
-  });
+  try {
+    clearStateLivechannelData();
+    state.bookmarkYoutubeChannels.forEach(async (channel) => {
+      const data = await fetchYoutubeChannelDataFromChannelId(
+        channel.channelId
+      );
+      console.log(data);
+      console.log(data.items[0].snippet);
+      state.livechannelData.push(createLiveStreamObject(data.items[0].snippet));
+      console.log(state.livechannelData);
+    });
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
 }
 
-function createLiveStreamObject(data) {
+function clearStateLivechannelData() {
+  state.livechannelData = [];
+}
+
+function createLiveStreamObject(channel) {
   return {
-    title: data.items[0].snippet.channelTitle,
-    id: data.items[0].snippet.channelId,
-    liveStatus: data.items[0].snippet.liveBroadcastContent,
-    url: `https://www.youtube.com/channel/${data.items[0].snippet.channelId}`,
+    title: channel.channelTitle,
+    id: channel.channelId,
+    liveStatus: channel.liveBroadcastContent,
+    url: `https://www.youtube.com/channel/${channel.channelId}`,
   };
 }
 
@@ -298,21 +309,26 @@ function setLocalStorageBookmarkTeamsData() {
 }
 
 export async function loadSearchedYoutubeChannels(channelTitle) {
-  const channelData = await fetchYoutubeChannelData(channelTitle);
+  const channelData = await fetchSearchedYoutubeChannelData(channelTitle);
   state.searchedYoutubeChannels = channelData.items;
 }
 
-export function addingNewBookmarkYoutubeChannel(data) {
-  console.log(data);
-  // state.bookmarkYoutubeChannels.push(channelHandle);
-  // state.livechannelData.push(createLiveStreamObject(data.channel));
-  // setLocalStorageBookmarkTeamsData();
+export function addingNewBookmarkYoutubeChannel(channelData) {
+  console.log(channelData);
+  state.bookmarkYoutubeChannels.push(createBookmarkYoutubeChannel(channelData));
+  setLocalStorageBookmarkYoutubeChannelData();
 }
 
-function createBookmarkYoutubeChannel(data) {
+function createBookmarkYoutubeChannel(channelData) {
   return {
-    channelTitle: "",
-    channelId: "",
-    channelHandle: "",
+    channelTitle: channelData.channelTitle,
+    channelId: channelData.channelId,
   };
+}
+
+function setLocalStorageBookmarkYoutubeChannelData() {
+  localStorage.setItem(
+    "bookmarkYoutubeChannels",
+    JSON.stringify(state.bookmarkYoutubeChannels)
+  );
 }

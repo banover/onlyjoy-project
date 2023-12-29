@@ -32,9 +32,7 @@ class addYoutubeChannelModalView {
   }
 
   addHandlerCheckYoutubeChannel(handler) {
-    // this.#modalContainer.addEventListener("submit", async (e) => {
     this.#modalContainer.addEventListener("click", async (e) => {
-      e.preventDefault();
       // if (e.target.closest(".onlyjoy__modalForm")) {
       if (e.target.closest(".onlyjoy__modalFormButton")) {
         const submitBtnElement = document.querySelector(
@@ -44,10 +42,6 @@ class addYoutubeChannelModalView {
           ".onlyjoy__ChannelHandlerInput"
         );
 
-        // const formElement = document.querySelector(".onlyjoy__modalForm");
-        // const dataArr = [...new FormData(formElement)];
-        // const data = Object.fromEntries(dataArr);
-        // console.log(data);
         const inputValue = inputElement.value;
         console.log(inputValue);
         inputElement.disabled = true;
@@ -59,14 +53,18 @@ class addYoutubeChannelModalView {
     });
   }
 
-  addHandlerAddNewYoutubeChannel() {
-    this.#modalContainer.addEventListener("submit", (e) => {
+  addHandlerAddNewYoutubeChannel(handler) {
+    this.#modalContainer.addEventListener("submit", async (e) => {
       e.preventDefault();
       if (e.target.closest(".onlyjoy__modalForm")) {
         const formElement = document.querySelector(".onlyjoy__modalForm");
         const dataArr = [...new FormData(formElement)];
         const data = Object.fromEntries(dataArr);
-        console.log(data);
+        const channelData = JSON.parse(data.channelData);
+        console.log(channelData);
+        await handler(channelData);
+        this.#closeOverlay();
+        this.#closeModal();
       }
     });
   }
@@ -79,7 +77,7 @@ class addYoutubeChannelModalView {
         <span class="onlyjoy__modalHeading">Youtube Channel 등록</span>
         <form class="onlyjoy__modalForm">
             <div class="onlyjoy__modalYoutubeChannelInput">
-                <label class="onlyjoy__addItemName" for="channelHandle">
+                <label class="onlyjoy__addItemName" for="searchedTitle">
                     <img
                     src="./public/you-tube.png"
                     alt="a youtube channel icon"
@@ -89,9 +87,9 @@ class addYoutubeChannelModalView {
                 <input
                     class="onlyjoy__ChannelHandlerInput"
                     type="text"
-                    name="channelHandle"
-                    id="channelHandle"
-                    placeholder="채널Handle을 정확히 입력해 주세요"
+                    name="searchedTitle"
+                    id="searchedTitle"
+                    placeholder="채널 이름을 입력해 주세요"
                     required
                 />
             </div>

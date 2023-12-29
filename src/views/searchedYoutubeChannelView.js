@@ -12,17 +12,6 @@ class searchedYoutubeChannelView {
       "beforeend",
       this.#generateMarkup()
     );
-
-    // const a = document.querySelectorAll(
-    //   ".onlyjoy__searchedYoutubeChannelsRadioButtons input"
-    // );
-    // console.log(a);
-    // a.forEach((input) =>
-    //   input.addEventListener("click", () => {
-    //     console.log("omg 클릭");
-    //     input.checked = true;
-    //   })
-    // );
   }
 
   //   addHandlerCheckYoutubeChannel(handler) {
@@ -54,87 +43,20 @@ class searchedYoutubeChannelView {
   //   }
 
   #generateMarkup() {
-    return `
-    <div class="onlyjoy__searchedYoutubeChannelsRadioButtons">
-                  <div class="onlyjoy__searchedYoutubeChannelsRadioButton">
-                    <input
-                      type="radio"
-                      value="채널ID"
-                      id="channelId"
-                      name="channelId"                     
-                    />
-                    <label
-                      for="channelId"
-                      class="onlyjoy__searchedYoutubeChannelsList"
-                    >
-                      <div class="onlyjoy__searchedYoutubeChannelButtonLabel">
-                        <img
-                          src="https://yt3.ggpht.com/Ph3zUHAtQqkXYwhDFc2SSllFrrdvVZhcg2oATcJf9BWKDUJuBNiWYCGhQ4mqS_YTstC4_Y1aiw=s800-c-k-c0xffffffff-no-rj-mo"
-                          alt="a youtube thumbnails"
-                          width="40"
-                          height="40"
-                        />
-                        <span>김진짜 Real KIM</span>
-                      </div>
-                    </label>
-                  </div>
-                  <div class="onlyjoy__searchedYoutubeChannelsRadioButton">
-                    <input
-                      type="radio"
-                      value="채널ID"
-                      id="channelId"
-                      name="channelId"
-                    />
-                    <label
-                      for="channelId"
-                      class="onlyjoy__searchedYoutubeChannelsList"
-                    >
-                      <div class="onlyjoy__searchedYoutubeChannelButtonLabel">
-                        <img
-                          src="https://yt3.ggpht.com/Ph3zUHAtQqkXYwhDFc2SSllFrrdvVZhcg2oATcJf9BWKDUJuBNiWYCGhQ4mqS_YTstC4_Y1aiw=s800-c-k-c0xffffffff-no-rj-mo"
-                          alt="a youtube thumbnails"
-                          width="40"
-                          height="40"
-                        />
-                        <span>김진짜 Real KIM</span>
-                      </div>
-                    </label>
-                  </div>
-                  <div class="onlyjoy__searchedYoutubeChannelsRadioButton">
-                    <input
-                      type="radio"
-                      value="채널ID"
-                      id="channelId"
-                      name="channelId"
-                    />
-                    <label
-                      for="channelId"
-                      class="onlyjoy__searchedYoutubeChannelsList"
-                    >
-                      <div class="onlyjoy__searchedYoutubeChannelButtonLabel">
-                        <img
-                          src="https://yt3.ggpht.com/Ph3zUHAtQqkXYwhDFc2SSllFrrdvVZhcg2oATcJf9BWKDUJuBNiWYCGhQ4mqS_YTstC4_Y1aiw=s800-c-k-c0xffffffff-no-rj-mo"
-                          alt="a youtube thumbnails"
-                          width="40"
-                          height="40"
-                        />
-                        <span>김진짜 Real KIM</span>
-                      </div>
-                    </label>
-                  </div>
-                </div>
-                <div class="onlyjoy__modalButtonBox">
-            <button class="onlyjoy__modalUploadChannelButton">채널 등록</button>
-        </div>  
-    `;
     return `    
         <div class="onlyjoy__searchedYoutubeChannelsRadioButtons">        
             ${this.#data
               .map((channelData) => {
                 return `                
                     <div class="onlyjoy__searchedYoutubeChannelsRadioButton">
-                        <input type="radio" value="${channelData.snippet.channelId}" id="${channelData.snippet.channelId}" name="channelId" />
-                        <label for="${channelData.snippet.channelId}" class="onlyjoy__searchedYoutubeChannelsList">
+                        <input type="radio" 
+                          value='${JSON.stringify(channelData.snippet)}'
+                          id="${channelData.snippet.channelId}"
+                          name="channelData"
+                        />                        
+                        <label for="${
+                          channelData.snippet.channelId
+                        }" class="onlyjoy__searchedYoutubeChannelsList">
                             <div class="onlyjoy__searchedYoutubeChannelButtonLabel">
                                 <img
                                 src="${channelData.snippet.thumbnails.high.url}"

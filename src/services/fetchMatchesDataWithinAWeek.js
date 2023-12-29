@@ -1,7 +1,6 @@
 import axios from "axios";
 import { FOOTBALL_API_TOKEN, BASE_URL } from "../config.js";
 import DateString from "../helpers/DateString.js";
-// import * as Model from "../model.js";
 
 export default async function fetchMatchesDataWithinAWeek(bookmarkTeams) {
   if (!bookmarkTeams) {
@@ -9,7 +8,6 @@ export default async function fetchMatchesDataWithinAWeek(bookmarkTeams) {
   }
   const date = new DateString();
   const dateParameter = `dateFrom=${date.yesterday}&&dateTo=${date.afterAWeekFromYesterday}`;
-  console.log(dateParameter);
   let urls = bookmarkTeams.map((team) => {
     return `${BASE_URL}/teams/${team.id}/matches?${dateParameter}`;
   });

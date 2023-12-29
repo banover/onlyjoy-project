@@ -5,6 +5,9 @@ export default defineConfig({
   plugins: [],
   // Vite 개발 서버 설정 정의
   server: {
+    watch: {
+      usePolling: true,
+    },
     // Proxy 설정
     proxy: {
       // 경로가 "/api" 로 시작하는 요청을 대상으로 proxy 설정
