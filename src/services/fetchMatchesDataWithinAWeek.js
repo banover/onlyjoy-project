@@ -25,6 +25,6 @@ export default async function fetchMatchesDataWithinAWeek(bookmarkTeams) {
     return responses;
   } catch (error) {
     console.log(error);
-    throw new Error(`fail to fetch matches data: ${error.message}`);
+    throw new Error(`경기 정보를 불러오는데 실패했습니다.`);
   }
 }

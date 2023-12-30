@@ -1,10 +1,9 @@
 class searchedYoutubeChannelView {
-  #searchedYoutubeChannelDataContainer = document.querySelector(
-    ".onlyjoy__searchedYoutubeChannels"
-  );
+  #searchedYoutubeChannelDataContainer;
   #data;
 
   render(data) {
+    this.#setModalSearchedYoutubeChannelDataContainer();
     this.#data = data;
     console.log(this.#data);
     this.#clearSearchedYoutubeChannelDataContainer();
@@ -14,33 +13,11 @@ class searchedYoutubeChannelView {
     );
   }
 
-  //   addHandlerCheckYoutubeChannel(handler) {
-  //     this.#modalContainer.addEventListener("submit", async (e) => {
-  //       e.preventDefault();
-  //       if (e.target.closest(".onlyjoy__modalForm")) {
-  //         const submitBtnElement = document.querySelector(
-  //           ".onlyjoy__modalFormButton"
-  //         );
-  //         const inputElement = document.querySelector(
-  //           ".onlyjoy__ChannelHandlerInput"
-  //         );
-
-  //         const formElement = document.querySelector(".onlyjoy__modalForm");
-  //         const dataArr = [...new FormData(formElement)];
-  //         const data = Object.fromEntries(dataArr);
-  //         console.log(data);
-  //         inputElement.disabled = true;
-  //         submitBtnElement.disabled = true;
-  //         handler(data.channelHandle);
-  //         // if (await handler(data)) {
-  //         //   this.#closeModal();
-  //         //   this.#closeOverlay();
-  //         // }
-  //         inputElement.disabled = false;
-  //         submitBtnElement.disabled = false;
-  //       }
-  //     });
-  //   }
+  #setModalSearchedYoutubeChannelDataContainer() {
+    this.#searchedYoutubeChannelDataContainer = document.querySelector(
+      ".onlyjoy__searchedYoutubeChannels"
+    );
+  }
 
   #generateMarkup() {
     return `    
@@ -83,7 +60,7 @@ class searchedYoutubeChannelView {
   }
 
   renderSpinner(teamsData) {
-    // this.#setModalRestSelectionContainer();
+    this.#setModalSearchedYoutubeChannelDataContainer();
     this.#clearSearchedYoutubeChannelDataContainer();
     const markUp = `
       <div class="spinner">
@@ -110,9 +87,10 @@ class searchedYoutubeChannelView {
   }
 
   renderError(error) {
+    this.#setModalSearchedYoutubeChannelDataContainer();
     this.#clearSearchedYoutubeChannelDataContainer();
     const markUp = `
-        <div class="onlyjoy__matchCardError">
+        <div class="onlyjoy__matchCardError small">
           <img src="./public/warning.png" alt="a waring icon" />
           <div class="onlyjoy__errorMessage">
               <p>${error.message}</p>

@@ -1,7 +1,9 @@
 import matchCardView from "./views/matchCardView.js";
 import matchCardSettingBarView from "./views/matchCardSettingBarView.js";
 import addTeamModalView from "./views/addTeamModalView.js";
+import modalRestSelectionView from "./views/modalRestSelectionView.js";
 import addYoutubeChannelModalView from "./views/addYoutubeChannelModalView.js";
+import searchedYoutubeChannelView from "./views/searchedYoutubeChannelView.js";
 import * as Model from "./model.js";
 
 init();
@@ -13,7 +15,7 @@ async function init() {
 async function renderThisWeekMatchCards() {
   try {
     matchCardView.renderSpinner(Model.state.spinnerItem);
-    await Model.loadYoutubeLiveStreamData();
+    // await Model.loadYoutubeLiveStreamData();
     await Model.loadMatchesData();
     console.log(Model.state.matchCardData);
 
@@ -33,11 +35,11 @@ async function renderThisWeekMatchCards() {
     addTeamModalView.addHandlerAddNewTeam(controlAddingNewTeam);
 
     addYoutubeChannelModalView.addHandlerCloseModal();
-    addYoutubeChannelModalView.addHandlerCheckYoutubeChannel(
+    addYoutubeChannelModalView.addHandlerSearchYoutubeChannel(
       controlDisplayingSearchedYoutubeChannels
     );
-    addYoutubeChannelModalView.addHandlerAddNewYoutubeChannel(
-      controlAddingNewYoutubeChannel
+    addYoutubeChannelModalView.addHandlerAddNewBookmarkYoutubeChannel(
+      controlAddingNewBookmarkYoutubeChannel
     );
     matchCardView.render(Model.state.matchCardData);
   } catch (error) {
@@ -54,18 +56,14 @@ function controlDisplayingAddTeamModal() {
   addTeamModalView.render(Model.state.availableLeague);
 }
 
-function controlDisplayingYoutubeChannel(channelData) {
+function controlDisplayingYoutubeChannel() {
   addYoutubeChannelModalView.render();
 }
 
 async function controlDisplayingRestSelect(league) {
-  const { default: modalRestSelectionView } = await import(
-    "./views/modalRestSelectionView.js"
-  );
   try {
     modalRestSelectionView.renderSpinner(Model.state.spinnerItem);
     await Model.loadAllTeamsInALeague(league);
-    console.log(Model.state.allTeamInALeague);
     modalRestSelectionView.render(Model.getRestSelectionData());
   } catch (error) {
     console.log(error);
@@ -87,9 +85,6 @@ async function controlAddingNewTeam(formData) {
 }
 
 async function controlDisplayingSearchedYoutubeChannels(channelTitle) {
-  const { default: searchedYoutubeChannelView } = await import(
-    "./views/searchedYoutubeChannelView.js"
-  );
   try {
     searchedYoutubeChannelView.renderSpinner(Model.state.spinnerItem);
     await Model.loadSearchedYoutubeChannels(channelTitle);
@@ -100,12 +95,13 @@ async function controlDisplayingSearchedYoutubeChannels(channelTitle) {
   }
 }
 
-async function controlAddingNewYoutubeChannel(channelData) {
+async function controlAddingNewBookmarkYoutubeChannel(channelData) {
   try {
     matchCardView.renderSpinner(Model.state.spinnerItem);
     Model.addingNewBookmarkYoutubeChannel(channelData);
     console.log(Model.state.bookmarkYoutubeChannels);
     await Model.loadYoutubeLiveStreamData();
+    // 바로 위 코드에서 catch된 error가 throw되지 않음.. 따라서 이 밑에 catch에서 catch가 안됨
     await Model.loadMatchesData();
     matchCardView.render(Model.state.matchCardData);
   } catch (error) {

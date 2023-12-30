@@ -8,6 +8,7 @@ class modalRestSelectionView {
   // 맨 처음에 import한 것을 계속 사용하는데, 그 import한 modalRestSelectionView
   // instance의 modalRestSelectionContainer부분 element가 삭제(addTeamModal clear때문)됐다가 다시 만들어져서
   // 기존의 container를 가리키면 원하는 데로 코드가 작동하지 않는다.
+  // 추후 일기 쓸 때 활용할 계획, 당분간 살려두길..
 
   render(data) {
     this.#setModalRestSelectionContainer();
@@ -104,9 +105,10 @@ class modalRestSelectionView {
   }
 
   renderError(error) {
+    this.#setModalRestSelectionContainer();
     this.#clearModalRestSelectionContainer();
     const markUp = `
-      <div class="onlyjoy__matchCardError">
+      <div class="onlyjoy__matchCardError small">
         <img src="./public/warning.png" alt="a waring icon" />
         <div class="onlyjoy__errorMessage">
             <p>${error.message}</p>

@@ -9,5 +9,3 @@ export default async function fetchYoutubeChannelDataFromChannelId(channelId) {
     throw new Error(`fail to fetch youtube channel data: ${error.message}`);
   }
 }
-
-// channelId 가 handler임

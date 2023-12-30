@@ -70,7 +70,7 @@ class addTeamModalView {
   }
 
   #isTargetModalForm(e) {
-    return e.target.closest(".onlyjoy__modalForm");
+    return e.target.closest(".onlyjoy__teamModalForm");
   }
 
   #isFormDataValidate(formData) {
@@ -84,7 +84,7 @@ class addTeamModalView {
   }
 
   #getFormData() {
-    const formElement = document.querySelector(".onlyjoy__modalForm");
+    const formElement = document.querySelector(".onlyjoy__teamModalForm");
     const dataArr = [...new FormData(formElement)];
     return Object.fromEntries(dataArr);
   }
@@ -95,7 +95,7 @@ class addTeamModalView {
         <img src="./public/remove-button.png" alt="an exit-button icon">
       </div>
       <span class="onlyjoy__modalHeading">팀 등록</span>
-      <form class="onlyjoy__modalForm">
+      <form class="onlyjoy__teamModalForm">
         <div class="onlyjoy__modalLeagueSelection">
           <label class="onlyjoy__addItemName" for="league">
               <img src="./public/stadium.png" alt="a stadium icon" />
@@ -123,7 +123,7 @@ class addTeamModalView {
   renderError(error) {
     this.#clearAddTeamModalContainer();
     const markUp = `
-      <div class="onlyjoy__matchCardError">
+      <div class="onlyjoy__matchCardError small">
         <img src="./public/warning.png" alt="a waring icon" />
         <div class="onlyjoy__errorMessage">
             <p>${error.message}</p>

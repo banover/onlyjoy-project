@@ -1,8 +1,7 @@
 import axios from "axios";
 import { BASE_URL, FOOTBALL_API_TOKEN } from "../config";
-export default async function fetchAllTeamsInALeague(leagueId) {
-  const url = `${BASE_URL}/competitions/${leagueId}/teams`;
-  // league id 뿐 아니라 code도 됨 ex. PL
+export default async function fetchAllTeamsInALeague(leagueCode) {
+  const url = `${BASE_URL}/competitions/${leagueCode}/teams`;
   try {
     const data = await axios
       .get(url, {
@@ -15,5 +14,6 @@ export default async function fetchAllTeamsInALeague(leagueId) {
     return data.data.teams;
   } catch (error) {
     console.error(error);
+    throw new Error("해당 리그의 모든 팀을 불러오는데 실패했습니다.");
   }
 }

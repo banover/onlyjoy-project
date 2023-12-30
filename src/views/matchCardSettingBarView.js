@@ -105,6 +105,21 @@ class matchCardSettingBarView {
   #clearMatchCardSettingBarContainer() {
     this.#matchCardSettingBarContainer.innerHTML = "";
   }
+
+  renderError(error) {
+    this.#clearMatchCardSettingBarContainer();
+    const markUp = `
+      <div class="onlyjoy__matchCardError">
+        <img src="./public/warning.png" alt="a waring icon" />
+        <div class="onlyjoy__errorMessage">
+            <p>${error.message}</p>
+            <p>이용에 불편을 드려 죄송합니다.</p>
+        </div>
+      </div>
+    `;
+
+    this.#matchCardSettingBarContainer.insertAdjacentHTML("beforeend", markUp);
+  }
 }
 
 export default new matchCardSettingBarView();

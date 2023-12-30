@@ -92,7 +92,7 @@ function getBookmarkTeamsDataFromLocalStorage() {
 }
 function getBookmarkYoutubeChannelDataFromLocalStorage() {
   return localStorage.getItem("bookmarkYoutubeChannels")
-    ? JSON.parse(localStorage.getItem("bookmarkTeams"))
+    ? JSON.parse(localStorage.getItem("bookmarkYoutubeChannels"))
     : [];
 }
 
@@ -109,20 +109,32 @@ function createSpinnerItem() {
 
 export async function loadYoutubeLiveStreamData() {
   try {
+    console.log(state.bookmarkYoutubeChannels);
+    if (state.bookmarkYoutubeChannels.length === 0) {
+      return;
+    }
     clearStateLivechannelData();
     state.bookmarkYoutubeChannels.forEach(async (channel) => {
-      const data = await fetchYoutubeChannelDataFromChannelId(
-        channel.channelId
-      );
-      console.log(data);
-      console.log(data.items[0].snippet);
-      state.livechannelData.push(createLiveStreamObject(data.items[0].snippet));
-      console.log(state.livechannelData);
+      try {
+        const data = await fetchYoutubeChannelDataFromChannelId(
+          channel.channelId
+        );
+        console.log(data);
+        console.log(data.items[0].snippet);
+        state.livechannelData.push(
+          createLiveStreamObject(data.items[0].snippet)
+        );
+        console.log(state.livechannelData);
+      } catch (error) {
+        console.log(error);
+        throw error;
+      }
     });
   } catch (error) {
     console.log(error);
-    throw error;
+    throw new Error("test");
   }
+  // callback안의 async function을 위해 try/catch썻지만, 그 밖으면 error가 throw 안됨..
 }
 
 function clearStateLivechannelData() {
@@ -253,26 +265,26 @@ export function getAllBookmarkTeam() {
   return state.bookmarkTeams.map((team) => team.name);
 }
 
-export function getFilterdMatchCardData(data) {
+export function getFilterdMatchCardData(formData) {
   let result;
-  if (data.filteringMethod === "date") {
+  if (formData.filteringMethod === "date") {
     result =
-      data.filteringTeam === "all"
+      formData.filteringTeam === "all"
         ? state.matchCardData
             .slice()
             .sort((a, b) => new Date(a.rawDate) - new Date(b.rawDate))
         : state.matchCardData
             .filter(
-              (matchData) => matchData.searchedTeam === data.filteringTeam
+              (matchData) => matchData.searchedTeam === formData.filteringTeam
             )
             .sort((a, b) => new Date(a.rawDate) - new Date(b.rawDate));
   }
-  if (data.filteringMethod === "team") {
+  if (formData.filteringMethod === "team") {
     result =
-      data.filteringTeam === "all"
+      formData.filteringTeam === "all"
         ? state.matchCardData.slice()
         : state.matchCardData.filter(
-            (matchData) => matchData.searchedTeam === data.filteringTeam
+            (matchData) => matchData.searchedTeam === formData.filteringTeam
           );
   }
 
@@ -286,18 +298,18 @@ export function getRestSelectionData() {
   };
 }
 
-export function addingNewBookmarkTeam(data) {
-  state.bookmarkTeams.push(createNewBookmarkTeam(data));
+export function addingNewBookmarkTeam(formData) {
+  state.bookmarkTeams.push(createNewBookmarkTeam(formData));
   setLocalStorageBookmarkTeamsData();
 }
 
-function createNewBookmarkTeam(data) {
-  const teamData = JSON.parse(data.team);
-  const liveStreamData = JSON.parse(data.liveStream);
+function createNewBookmarkTeam(formData) {
+  const teamData = JSON.parse(formData.team);
+  const liveStreamData = JSON.parse(formData.liveStream);
   return {
     name: teamData.name,
     id: teamData.id,
-    player: data.player,
+    player: formData.player,
     liveStream: liveStreamData.name,
     liveUrl: liveStreamData.url,
     logoUrl: teamData.logo,
