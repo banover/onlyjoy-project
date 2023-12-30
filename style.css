@@ -319,10 +319,12 @@ body {
   left: 0;
 
   background-color: rgba(0, 0, 0, 0.8);
+  /* 제거할것 밑에 */
+  height: 100vh;
   display: none;
 }
 
-.onlyjoy__addTeamModal {
+.onlyjoy__manageTeamModal {
   width: 50rem;
   height: 60rem;
   display: flex;
@@ -334,6 +336,8 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: "Do Hyeon", sans-serif;
+  /* 제거할것 밑에 */
+  /* margin-top: 40rem; */
   display: none;
 }
 
@@ -343,17 +347,83 @@ body {
   left: 100%;
   transform: translate(-120%, 0);
 }
+
 .onlyjoy__modalExitButton img {
   width: 4rem;
   height: 4rem;
   cursor: pointer;
 }
 
+.onlyjoy__manageTeamButtonBox {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  padding: 3rem 0rem;
+  margin-top: 2rem;
+}
+
+.teamButton {
+  border: 1px solid black;
+  background-color: black;
+  font-size: 4rem;
+  color: white;
+  padding: 1rem 2rem;
+  cursor: pointer;
+}
+
+.teamButton:hover {
+  background-color: white;
+  color: black;
+}
+
+.onlyjoy__addTeamButton {
+}
+
+.onlyjoy__removeTeamButton {
+}
+
+.onlyjoy__currentTeamContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  gap: 3rem;
+  padding: 0 6rem;
+}
+
+.onlyjoy__currentTeamHeading {
+  font-size: 4rem;
+}
+
+.onlyjoy__currentTeamItemLists {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.onlyjoy__currentTeamList {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.onlyjoy__currentTeamList img {
+  display: block;
+  width: 4rem;
+  height: 4rem;
+}
+
+.onlyjoy__currentTeamList span {
+  font-size: 3rem;
+}
+.onlyjoy__addTeamContainer {
+  padding: 0 6rem;
+}
+
 .onlyjoy__modalHeading {
   font-size: 5rem;
 }
 
-.onlyjoy__teamModalForm {
+.onlyjoy__teamAddModalForm {
   display: flex;
   flex-direction: column;
   gap: 3rem;

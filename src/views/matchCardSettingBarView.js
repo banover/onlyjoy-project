@@ -3,7 +3,7 @@ class matchCardSettingBarView {
   #matchCardSettingBarContainer = document.querySelector(
     ".onlyjoy__settingContainer"
   );
-  #addTeamModalElement = document.querySelector(".onlyjoy__addTeamModal");
+  #manageTeamModalElement = document.querySelector(".onlyjoy__manageTeamModal");
   #addYoutubeChannelModalElement = document.querySelector(
     ".onlyjoy__addYoutubeLiveStreamModal"
   );
@@ -37,7 +37,7 @@ class matchCardSettingBarView {
     return Object.fromEntries(dataArr);
   }
 
-  addHandlerDisplayAddTeamModal(handler) {
+  addHandlerDisplayManageTeamModal(handler) {
     this.#matchCardSettingBarContainer.addEventListener("click", (e) => {
       if (this.#isTargetAddTeamButton(e)) {
         this.#displayAddTeamModal();
@@ -52,7 +52,7 @@ class matchCardSettingBarView {
 
   #displayAddTeamModal() {
     this.#overlayElement.style.display = "block";
-    this.#addTeamModalElement.style.display = "flex";
+    this.#manageTeamModalElement.style.display = "flex";
   }
 
   addHandlerDisplayAddYoutubeChannelModal(handler) {

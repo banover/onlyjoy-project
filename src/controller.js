@@ -1,6 +1,7 @@
 import matchCardView from "./views/matchCardView.js";
 import matchCardSettingBarView from "./views/matchCardSettingBarView.js";
-import addTeamModalView from "./views/addTeamModalView.js";
+import manageTeamModalView from "./views/manageTeamModalView.js";
+import modalAddTeamFormView from "./views/modalAddTeamView.js";
 import modalRestSelectionView from "./views/modalRestSelectionView.js";
 import addYoutubeChannelModalView from "./views/addYoutubeChannelModalView.js";
 import searchedYoutubeChannelView from "./views/searchedYoutubeChannelView.js";
@@ -23,16 +24,25 @@ async function renderThisWeekMatchCards() {
     matchCardSettingBarView.addHandlerFilterMatchCards(
       controlFilteringMatchCards
     );
-    matchCardSettingBarView.addHandlerDisplayAddTeamModal(
-      controlDisplayingAddTeamModal
+    matchCardSettingBarView.addHandlerDisplayManageTeamModal(
+      controlDisplayingManageTeamModal
     );
     matchCardSettingBarView.addHandlerDisplayAddYoutubeChannelModal(
       controlDisplayingYoutubeChannel
     );
 
-    addTeamModalView.addHandlerCloseModal();
-    addTeamModalView.addHandlerDisplayRestSelect(controlDisplayingRestSelect);
-    addTeamModalView.addHandlerAddNewTeam(controlAddingNewTeam);
+    manageTeamModalView.addHandlerCloseModal();
+    manageTeamModalView.addHandlerDisplayAddTeamForm(
+      controlDisplayingAddTeamForm
+    );
+    // TODO: 아래 코드 만들기
+    // manageTeamModalView.addHandlerDisplayRemoveTeamSelect(
+    //   controlDisplayingRemoveTeamForm
+    // );
+    manageTeamModalView.addHandlerDisplayRestSelect(
+      controlDisplayingRestSelect
+    );
+    manageTeamModalView.addHandlerAddNewTeam(controlAddingNewTeam);
 
     addYoutubeChannelModalView.addHandlerCloseModal();
     addYoutubeChannelModalView.addHandlerSearchYoutubeChannel(
@@ -48,16 +58,25 @@ async function renderThisWeekMatchCards() {
   }
 }
 
+// TODO:
+// function controlDisplayingRemoveTeamForm(){
+//  modalRemoveTeamFormView.render();
+// }
+
 function controlFilteringMatchCards(formData) {
   matchCardView.render(Model.getFilterdMatchCardData(formData));
 }
 
-function controlDisplayingAddTeamModal() {
-  addTeamModalView.render(Model.state.availableLeague);
+function controlDisplayingManageTeamModal() {
+  manageTeamModalView.render();
 }
 
 function controlDisplayingYoutubeChannel() {
   addYoutubeChannelModalView.render();
+}
+
+function controlDisplayingAddTeamForm() {
+  modalAddTeamFormView.render(Model.state.availableLeague);
 }
 
 async function controlDisplayingRestSelect(league) {
@@ -80,7 +99,7 @@ async function controlAddingNewTeam(formData) {
     matchCardView.render(Model.state.matchCardData);
   } catch (error) {
     console.log(error);
-    addTeamModalView.renderError(error);
+    manageTeamModalView.renderError(error);
   }
 }
 
