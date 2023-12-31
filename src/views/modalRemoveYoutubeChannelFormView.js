@@ -19,25 +19,26 @@ class modalRemoveYoutubeChannelFormView {
   }
 
   #generateMarkup() {
-    // 이거 data넘겨받아서 다시 수정해야함...
-    return ` 
-        <span class="onlyjoy__modalHeading">채널 제거</span>
-        <form class="onlyjoy__teamRemoveModalForm">
-            <div class="onlyjoy__modalRemoveTeamSelection">                  
-                <select name="removeTeam" id="removeTeam" required>
-                    <option disabled selected>제거할 팀을 선택해 주세요</option>
+    return `
+        <div class="onlyjoy__channelRemoveHeading">
+          <img src="../public/you-tube.png" alt="a youtube icon">
+          <span class="onlyjoy__formHeading">CHANNEL 제거</span>
+        </div>        
+        <form class="onlyjoy__channelRemoveModalForm">
+            <div class="onlyjoy__modalRemoveChannelSelection">                             
+                <select name="removeChannel" id="removeChannel" required>
+                    <option disabled selected>제거할 채널을 선택해 주세요</option>
                     ${this.#data
-                      .map((team) => {
+                      .map((channel) => {
                         return `
-                                <option value="${team.name}">${team.name}</option>
-                            `;
+                            <option value="${channel.channelTitle}">${channel.channelTitle}</option>
+                          `;
                       })
-                      .join(" ")}
-                    
+                      .join(" ")}                    
                 </select>
             </div>
             <div class="onlyjoy__modalButtonBox">
-                <button class="onlyjoy__modalRemoveTeamButton">
+                <button class="onlyjoy__modalRemoveChannelButton">
                 팀 제거하기
                 </button>
             </div>

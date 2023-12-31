@@ -6,9 +6,9 @@ import modalRemoveTeamFormView from "./views/modalRemoveTeamFormView.js";
 import modalAddTeamRestSelectionView from "./views/modalAddTeamRestSelectionView.js";
 import manageYoutubeChannelModalView from "./views/manageYoutubeChannelModalView.js";
 import searchedYoutubeChannelView from "./views/searchedYoutubeChannelView.js";
-import * as Model from "./model.js";
 import modalAddYoutubeChannelFormView from "./views/modalAddYoutubeChannelFormView.js";
 import modalRemoveYoutubeChannelFormView from "./views/modalRemoveYoutubeChannelFormView.js";
+import * as Model from "./model.js";
 
 init();
 
@@ -54,6 +54,9 @@ async function renderThisWeekMatchCards() {
     manageYoutubeChannelModalView.addHandlerDisplayRemoveYoutubeChannelForm(
       controlDisplayingRemoveYoutubeChannelForm
     );
+    manageYoutubeChannelModalView.addHandlerRemoveBookmarkYoutubeChannel(
+      controlRemovingBookmarkYoutubeChannel
+    );
     manageYoutubeChannelModalView.addHandlerSearchYoutubeChannel(
       controlDisplayingSearchedYoutubeChannels
     );
@@ -65,14 +68,6 @@ async function renderThisWeekMatchCards() {
     console.log(error);
     matchCardView.renderError(error);
   }
-}
-
-function controlDisplayingRemoveYoutubeChannelForm() {
-  modalRemoveYoutubeChannelFormView.render();
-}
-
-function controlDisplayingAddYoutubeChannelForm() {
-  modalAddYoutubeChannelFormView.render();
 }
 
 function controlFilteringMatchCards(formData) {
@@ -129,6 +124,29 @@ async function controlRemoveingBookmarkTeam(formData) {
   } catch (error) {
     console.log(error);
     manageTeamModalView.renderError(error);
+  }
+}
+
+function controlDisplayingAddYoutubeChannelForm() {
+  modalAddYoutubeChannelFormView.render();
+}
+
+function controlDisplayingRemoveYoutubeChannelForm() {
+  modalRemoveYoutubeChannelFormView.render(Model.state.bookmarkYoutubeChannels);
+}
+
+async function controlRemovingBookmarkYoutubeChannel(formData) {
+  try {
+    matchCardView.renderSpinner(Model.state.spinnerItem);
+    Model.removingBookmarkYoutubeChannel(formData);
+    console.log(Model.state.bookmarkYoutubeChannels);
+    await Model.loadYoutubeLiveStreamData();
+    // 바로 위 코드에서 catch된 error가 throw되지 않음.. 따라서 이 밑에 catch에서 catch가 안됨
+    await Model.loadMatchesData();
+    matchCardView.render(Model.state.matchCardData);
+  } catch (error) {
+    console.log(error);
+    manageYoutubeChannelModalView.renderError(error);
   }
 }
 

@@ -499,19 +499,53 @@ select option[disabled][selected] {
   gap: 2.5rem;
 }
 
+.onlyjoy__formHeading {
+  font-size: 3rem;
+}
+
 .onlyjoy__teamRemoveModalForm {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
+/*  */
+.onlyjoy__channelRemoveHeading {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
 
+.onlyjoy__channelRemoveHeading img {
+  width: 5rem;
+  height: 5rem;
+}
+
+.onlyjoy__channelRemoveModalForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  /* padding-top: 1.5rem; */
+}
+
+.onlyjoy__modalRemoveChannelSelection {
+  width: 100%;
+  display: flex;
+}
+
+.onlyjoy__modalRemoveChannelSelection select {
+  width: 100%;
+}
+
+/*  */
 .onlyjoy__modalRemoveTeamSelection {
   width: 100%;
-  /* padding: 1rem 0; */
 }
 
 .onlyjoy__modalRemoveTeamButton {
+}
+.onlyjoy__modalRemoveChannelButton {
 }
 
 /* youtube modal */
@@ -577,12 +611,17 @@ select option[disabled][selected] {
 }
 
 .onlyjoy__manageYoutubeChannelContainerBox {
+  /* width: 100%;
+  height: auto; */
 }
 
 .onlyjoy__addChannelFormContainer {
 }
 
 .onlyjoy__removeChannelFormContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .onlyjoy__ChannelModalForm {
@@ -594,7 +633,7 @@ select option[disabled][selected] {
 .onlyjoy__modalYoutubeChannelInput {
   display: flex;
   flex-direction: column;
-  gap: 2.8rem;
+  gap: 1.5rem;
 }
 
 .onlyjoy__searchedYoutubeChannels {

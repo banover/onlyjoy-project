@@ -357,3 +357,17 @@ function setLocalStorageBookmarkYoutubeChannelData() {
     JSON.stringify(state.bookmarkYoutubeChannels)
   );
 }
+
+export function removingBookmarkYoutubeChannel(formData) {
+  console.log(formData);
+  state.bookmarkYoutubeChannels = getNewBookmarkYoutubeChannelsAfterRemove(
+    formData.removeChannel
+  );
+  setLocalStorageBookmarkYoutubeChannelData();
+}
+
+function getNewBookmarkYoutubeChannelsAfterRemove(removedChannel) {
+  return state.bookmarkYoutubeChannels.filter(
+    (channel) => channel.channelTitle !== removedChannel
+  );
+}
