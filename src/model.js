@@ -320,9 +320,21 @@ function setLocalStorageBookmarkTeamsData() {
   localStorage.setItem("bookmarkTeams", JSON.stringify(state.bookmarkTeams));
 }
 
+export function removingNewBookmarkTeam(formData) {
+  state.bookmarkTeams = getNewBookmarkTeamsAfterRemove(formData);
+  setLocalStorageBookmarkTeamsData();
+}
+
+function getNewBookmarkTeamsAfterRemove(formData) {
+  return state.bookmarkTeams.filter(
+    (team) => team.name !== formData.removeTeam
+  );
+}
+
 export async function loadSearchedYoutubeChannels(channelTitle) {
   const channelData = await fetchSearchedYoutubeChannelData(channelTitle);
   state.searchedYoutubeChannels = channelData.items;
+  console.log(state.searchedYoutubeChannels);
 }
 
 export function addingNewBookmarkYoutubeChannel(channelData) {
@@ -335,6 +347,7 @@ function createBookmarkYoutubeChannel(channelData) {
   return {
     channelTitle: channelData.channelTitle,
     channelId: channelData.channelId,
+    channelLogo: channelData.thumbnails.high.url,
   };
 }
 

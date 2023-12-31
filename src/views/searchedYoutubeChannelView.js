@@ -20,7 +20,8 @@ class searchedYoutubeChannelView {
   }
 
   #generateMarkup() {
-    return `    
+    return `
+        <span class="onlyjoy__searchedYoutubeChannelsHeading">channel 검색 결과</span>
         <div class="onlyjoy__searchedYoutubeChannelsRadioButtons">        
             ${this.#data
               .map((channelData) => {

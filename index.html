@@ -172,7 +172,7 @@
             </div>
 
             <div class="onlyjoy__currentTeamContainer">
-              <span class="onlyjoy__currentTeamHeading">현재 등록된 팀</span>
+              <!-- <span class="onlyjoy__currentTeamHeading">현재 등록된 팀</span>
               <div class="onlyjoy__currentTeamItemLists">
                 <div class="onlyjoy__currentTeamList">
                   <img
@@ -181,29 +181,13 @@
                   />
                   <span>토트넘</span>
                 </div>
-              </div>
+              </div> -->
             </div>
             <div class="onlyjoy__addTeamContainer">
-              <span class="onlyjoy__modalHeading">팀 등록</span>
+              <!-- <span class="onlyjoy__modalHeading">팀 등록</span>
               <form class="onlyjoy__teamAddModalForm">
                 <div class="onlyjoy__modalLeagueSelection">
-                  <label class="onlyjoy__addItemName" for="league">
-                    <img src="./public/stadium.png" alt="a stadium icon" />
-                    <span>리그</span>
-                  </label>
-                  <select name="league" id="league" required>
-                    <option disabled selected>리그를 선택해 주세요</option>
-                    <option value="${league.code}">test</option>
-                  </select>
-                </div>
-                <div class="onlyjoy__modalRestSelectionContainer"></div>
-              </form>
-            </div>
-            <div class="onlyjoy__removeTeamContainer">
-              <!-- <span class="onlyjoy__modalHeading">팀 제거</span>
-              <form class="onlyjoy__teamModalForm">
-                <div class="onlyjoy__modalLeagueSelection">
-                  <label class="onlyjoy__addItemName" for="league">
+                  <label class="onlyjoy__selectionLabel" for="league">
                     <img src="./public/stadium.png" alt="a stadium icon" />
                     <span>리그</span>
                   </label>
@@ -215,34 +199,75 @@
                 <div class="onlyjoy__modalRestSelectionContainer"></div>
               </form> -->
             </div>
+            <div class="onlyjoy__removeTeamContainer">
+              <!-- <span class="onlyjoy__modalHeading">팀 제거</span>
+              <form class="onlyjoy__teamRemoveModalForm">
+                <div class="onlyjoy__modalRemoveTeamSelection">
+                  <select name="removeTeam" id="removeTeam" required>
+                    <option disabled selected>제거할 팀을 선택해 주세요</option>
+                    <option value="${league.code}">test</option>
+                  </select>
+                </div>
+                <div class="onlyjoy__modalButtonBox">
+                  <button class="onlyjoy__modalRemoveTeamButton">
+                    팀 제거하기
+                  </button>
+                </div>
+              </form> -->
+            </div>
           </div>
 
           <div class="onlyjoy__addYoutubeLiveStreamModal">
             <div class="onlyjoy__modalExitButton">
               <img src="./public/remove-button.png" alt="an exit-button icon" />
             </div>
-            <span class="onlyjoy__modalHeading">Youtube Channel 등록</span>
-            <form class="onlyjoy__modalForm">
+
+            <!-- <span class="onlyjoy__modalHeading">Youtube Channel 등록</span> -->
+            <span class="onlyjoy__modalHeading">Youtube Channel 관리</span>
+            <div class="onlyjoy__manageYoutubeChannelButtonBox">
+              <button class="onlyjoy__addChannelButton teamButton">
+                채널 등록
+              </button>
+              <button class="onlyjoy__addChannelButton teamButton">
+                채널 제거
+              </button>
+            </div>
+
+            <span class="onlyjoy__currentYoutubeChannalHeading"
+              >현재 등록된 channel</span
+            >
+            <div class="onlyjoy__currentBookmarkYoutubeChannelLists">
+              <div class="onlyjoy__currentYoutubeChannelList">
+                <img
+                  src="https://crests.football-data.org/73.svg"
+                  alt="채널로고"
+                />
+                <span>토트넘</span>
+              </div>
+            </div>
+
+            <form class="onlyjoy__ChannelModalForm">
               <div class="onlyjoy__modalYoutubeChannelInput">
-                <label class="onlyjoy__addItemName" for="channelHandle">
+                <label class="onlyjoy__inputLabel" for="searchedTitle">
                   <img
                     src="./public/you-tube.png"
                     alt="a youtube channel icon"
                   />
-                  <span>채널 Handle</span>
+                  <span>channel 검색</span>
                 </label>
                 <input
-                  class="onlyjoy__ChannelHandlerInput"
+                  class="onlyjoy__ChannelTitleInput"
                   type="text"
-                  name="channelHandle"
-                  id="channelHandle"
-                  placeholder="채널Handle을 정확히 입력해 주세요"
+                  name="searchedTitle"
+                  id="searchedTitle"
+                  placeholder="채널 이름을 입력해 주세요"
                   required
                 />
               </div>
               <div class="onlyjoy__modalButtonBox">
-                <button class="onlyjoy__modalFormButton">채널 확인하기</button>
+                <button class="onlyjoy__searchButton">채널 확인하기</button>
               </div>
+              <div class="onlyjoy__searchedYoutubeChannels"></div>
 
               <div class="onlyjoy__searchedYoutubeChannels">
                 <div class="onlyjoy__searchedYoutubeChannelsRadioButtons">

@@ -14,7 +14,7 @@ class modalAddTeamFormView {
 
   #setModalAddTeamContainer() {
     this.#addTeamContainer = document.querySelector(
-      ".onlyjoy__addTeamContainer"
+      ".onlyjoy__addTeamFormContainer"
     );
   }
 
@@ -23,7 +23,7 @@ class modalAddTeamFormView {
         <span class="onlyjoy__modalHeading">팀 등록</span>
         <form class="onlyjoy__teamAddModalForm">
         <div class="onlyjoy__modalLeagueSelection">
-            <label class="onlyjoy__addItemName" for="league">
+            <label class="onlyjoy__selectionLabel" for="league">
                 <img src="./public/stadium.png" alt="a stadium icon" />
                 <span>리그</span>
             </label>

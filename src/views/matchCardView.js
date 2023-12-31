@@ -106,6 +106,7 @@ class matchCardView {
   }
 
   renderSpinner(teamsData) {
+    this.#clearMatchCardContainer();
     const markUp = `
       <div class="spinner">
         ${teamsData

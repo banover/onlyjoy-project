@@ -1,4 +1,4 @@
-class addYoutubeChannelModalView {
+class manageYoutubeChannelModalView {
   #modalContainer = document.querySelector(
     ".onlyjoy__addYoutubeLiveStreamModal"
   );
@@ -29,6 +29,26 @@ class addYoutubeChannelModalView {
 
   #closeOverlay() {
     this.#overlayElement.style.display = "none";
+  }
+
+  addHandlerDisplayAddYoutubeChannelForm(handler) {
+    this.#modalContainer.addEventListener("click", (e) => {
+      if (e.target.closest(".onlyjoy__addChannelButton")) {
+        handler();
+        // this.#closeModal();
+        // this.#closeOverlay();
+      }
+    });
+  }
+
+  addHandlerDisplayRemoveYoutubeChannelForm(handler) {
+    this.#modalContainer.addEventListener("click", (e) => {
+      if (e.target.closest(".onlyjoy__addChannelButton")) {
+        handler();
+        // this.#closeModal();
+        // this.#closeOverlay();
+      }
+    });
   }
 
   addHandlerSearchYoutubeChannel(handler) {
@@ -95,34 +115,40 @@ class addYoutubeChannelModalView {
 
   #generateMarkup() {
     return `
-        <div class="onlyjoy__modalExitButton">
-            <img src="./public/remove-button.png" alt="an exit-button icon" />
-        </div>
-        <span class="onlyjoy__modalHeading">Youtube Channel 등록</span>
-        <form class="onlyjoy__ChannelModalForm">
-            <div class="onlyjoy__modalYoutubeChannelInput">
-                <label class="onlyjoy__addItemName" for="searchedTitle">
-                    <img
-                    src="./public/you-tube.png"
-                    alt="a youtube channel icon"
-                    />
-                    <span>채널 Handle</span>
-                </label>
-                <input
-                    class="onlyjoy__ChannelTitleInput"
-                    type="text"
-                    name="searchedTitle"
-                    id="searchedTitle"
-                    placeholder="채널 이름을 입력해 주세요"
-                    required
+      <div class="onlyjoy__modalExitButton">
+        <img src="./public/remove-button.png" alt="an exit-button icon" />
+      </div>          
+      
+      <div class="onlyjoy__manageYoutubeChannelButtonBox">
+        <button class="onlyjoy__addChannelButton channelButton">
+          채널 등록
+        </button>
+        <button class="onlyjoy__removeChannelButton channelButton">
+          채널 제거
+        </button>
+      </div>
+      <span class="onlyjoy__currentYoutubeChannalHeading">등록된 channel</span>
+      <div class="onlyjoy__currentBookmarkYoutubeChannelLists">
+        ${this.#data
+          .map((channel) => {
+            return `
+              <div class="onlyjoy__currentYoutubeChannelList">
+                <img
+                  src="${channel.channelLogo}"
+                  alt="a ${channel.channelTitle} youtube channel logo"
                 />
-            </div>
-            <div class="onlyjoy__modalButtonBox">
-                <button class="onlyjoy__searchButton">채널 확인하기</button>
-            </div>
-            <div class="onlyjoy__searchedYoutubeChannels"></div>
+                <span>${channel.channelTitle}</span>
+              </div>
+            `;
+          })
+          .join(" ")}
+        
+      </div>
 
-        </form>    
+      <div class="onlyjoy__manageYoutubeChannelContainerBox">
+          <div class="onlyjoy__addChannelFormContainer"></div>
+          <div class="onlyjoy__removeChannelFormContainer"></div>
+      </div>      
     `;
   }
 
@@ -154,4 +180,4 @@ class addYoutubeChannelModalView {
   }
 }
 
-export default new addYoutubeChannelModalView();
+export default new manageYoutubeChannelModalView();

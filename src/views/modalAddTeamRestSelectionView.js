@@ -1,5 +1,5 @@
-class modalRestSelectionView {
-  #modalRestSelectionContainer;
+class modalAddTeamRestSelectionView {
+  #modalAddTeamRestSelectionContainer;
   #data;
 
   // modalRestSelectionContainer 이 부분을 render나 spinnerRender일 때 계속
@@ -13,15 +13,15 @@ class modalRestSelectionView {
   render(data) {
     this.#setModalRestSelectionContainer();
     this.#data = data;
-    this.#clearModalRestSelectionContainer();
-    this.#modalRestSelectionContainer.insertAdjacentHTML(
+    this.#clearModalAddTeamRestSelectionContainer();
+    this.#modalAddTeamRestSelectionContainer.insertAdjacentHTML(
       "beforeend",
       this.#generateMarkup()
     );
   }
 
   #setModalRestSelectionContainer() {
-    this.#modalRestSelectionContainer = document.querySelector(
+    this.#modalAddTeamRestSelectionContainer = document.querySelector(
       ".onlyjoy__modalRestSelectionContainer"
     );
   }
@@ -29,7 +29,7 @@ class modalRestSelectionView {
   #generateMarkup() {
     return `
         <div class="onlyjoy__modalTeamSelection">
-            <label class="onlyjoy__addItemName" for="team">
+            <label class="onlyjoy__selectionLabel" for="team">
                 <img src="./public/field.png" alt="a field icon" />
                 <span>팀</span>
             </label> 
@@ -48,14 +48,14 @@ class modalRestSelectionView {
             </select>        
         </div>
         <div class="onlyjoy__modalPlayerSelection">
-            <label class="onlyjoy__addItemName" for="player">
+            <label class="onlyjoy__inputLabel" for="player">
                 <img src="./public/jersey.png" alt="a jersey icon" />
                 <span>선수</span>
             </label>
             <input type="text" name="player" id="player" placeholder="응원하는 선수를 입력해 주세요" required>
         </div>
         <div class="onlyjoy__modalLiveSelection">
-            <label class="onlyjoy__addItemName" for="liveStream">
+            <label class="onlyjoy__selectionLabel" for="liveStream">
                 <img src="./public/live.png" alt="a live icon" />
                 <span>생중계</span>
             </label> 
@@ -76,13 +76,13 @@ class modalRestSelectionView {
       `;
   }
 
-  #clearModalRestSelectionContainer() {
-    this.#modalRestSelectionContainer.innerHTML = "";
+  #clearModalAddTeamRestSelectionContainer() {
+    this.#modalAddTeamRestSelectionContainer.innerHTML = "";
   }
 
   renderSpinner(teamsData) {
     this.#setModalRestSelectionContainer();
-    this.#clearModalRestSelectionContainer();
+    this.#clearModalAddTeamRestSelectionContainer();
     const markUp = `
       <div class="spinner">
         ${teamsData
@@ -101,12 +101,15 @@ class modalRestSelectionView {
       </div>
      `;
 
-    this.#modalRestSelectionContainer.insertAdjacentHTML("beforeend", markUp);
+    this.#modalAddTeamRestSelectionContainer.insertAdjacentHTML(
+      "beforeend",
+      markUp
+    );
   }
 
   renderError(error) {
     this.#setModalRestSelectionContainer();
-    this.#clearModalRestSelectionContainer();
+    this.#clearModalAddTeamRestSelectionContainer();
     const markUp = `
       <div class="onlyjoy__matchCardError small">
         <img src="./public/warning.png" alt="a waring icon" />
@@ -117,8 +120,11 @@ class modalRestSelectionView {
       </div>
     `;
 
-    this.#modalRestSelectionContainer.insertAdjacentHTML("beforeend", markUp);
+    this.#modalAddTeamRestSelectionContainer.insertAdjacentHTML(
+      "beforeend",
+      markUp
+    );
   }
 }
 
-export default new modalRestSelectionView();
+export default new modalAddTeamRestSelectionView();

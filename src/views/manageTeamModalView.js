@@ -38,20 +38,36 @@ class manageTeamModalView {
   addHandlerDisplayAddTeamForm(handler) {
     this.#manageTeamModalContainer.addEventListener("click", async (e) => {
       if (e.target.closest(".onlyjoy__addTeamButton")) {
+        this.#clearRemoveTeamFormContainer();
         handler();
       }
     });
+  }
+
+  #clearRemoveTeamFormContainer() {
+    const removeTeamFormContainer = document.querySelector(
+      ".onlyjoy__removeTeamFormContainer"
+    );
+    removeTeamFormContainer.innerHTML = "";
   }
 
   addHandlerDisplayRemoveTeamForm(handler) {
     this.#manageTeamModalContainer.addEventListener("click", async (e) => {
       if (e.target.closest(".onlyjoy__removeTeamButton")) {
+        this.#clearAddTeamFormContainer();
         handler();
       }
     });
   }
 
-  addHandlerDisplayRestSelect(handler) {
+  #clearAddTeamFormContainer() {
+    const addTeamFormContainer = document.querySelector(
+      ".onlyjoy__addTeamFormContainer"
+    );
+    addTeamFormContainer.innerHTML = "";
+  }
+
+  addHandlerDisplayAddTeamRestSelect(handler) {
     this.#manageTeamModalContainer.addEventListener("change", async (e) => {
       if (this.#isTargetModalLeagueSelect(e)) {
         this.#toggleActiveLeagueSelectElement(this.#getLeagueSelectElement());
@@ -74,15 +90,18 @@ class manageTeamModalView {
   }
 
   addHandlerAddNewTeam(handler) {
-    this.#manageTeamModalContainer.addEventListener("submit", (e) => {
+    this.#manageTeamModalContainer.addEventListener("submit", async (e) => {
       e.preventDefault();
       if (
         this.#isTargetModalForm(e) &&
-        this.#isFormDataValidate(this.#getFormData())
+        this.#isFormDataValidate(
+          this.#getFormData(this.#getTeamAddFormElement())
+        )
       ) {
+        // form button disable하기
         this.#closeModal();
         this.#closeOverlay();
-        handler(this.#getFormData());
+        await handler(this.#getFormData(this.#getTeamAddFormElement()));
       }
     });
   }
@@ -101,39 +120,33 @@ class manageTeamModalView {
     return true;
   }
 
-  #getFormData() {
-    const formElement = document.querySelector(".onlyjoy__teamAddModalForm");
+  #getFormData(formElement) {
     const dataArr = [...new FormData(formElement)];
     return Object.fromEntries(dataArr);
   }
 
-  // #generateMarkup() {
-  //   return `
-  //     <div class="onlyjoy__modalExitButton">
-  //       <img src="./public/remove-button.png" alt="an exit-button icon">
-  //     </div>
-  //     <span class="onlyjoy__modalHeading">팀 등록</span>
-  //     <form class="onlyjoy__teamModalForm">
-  //       <div class="onlyjoy__modalLeagueSelection">
-  //         <label class="onlyjoy__addItemName" for="league">
-  //             <img src="./public/stadium.png" alt="a stadium icon" />
-  //             <span>리그</span>
-  //         </label>
-  //         <select name="league" id="league" required>
-  //             <option disabled selected>리그를 선택해 주세요</option>
-  //             ${this.#data
-  //               .map(
-  //                 (league) =>
-  //                   `<option value="${league.code}">${league.name}</option>`
-  //               )
-  //               .join(" ")}
-  //         </select>
-  //       </div>
-  //       <div class="onlyjoy__modalRestSelectionContainer"></div>
-  //     </form>
-  //   `;
-  // }
+  #getTeamAddFormElement() {
+    return document.querySelector(".onlyjoy__teamAddModalForm");
+  }
 
+  addHandlerRemoveTeam(handler) {
+    this.#manageTeamModalContainer.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (e.target.closest(".onlyjoy__teamRemoveModalForm")) {
+        // modal button disable
+
+        this.#closeModal();
+        this.#closeOverlay();
+        await handler(this.#getFormData(this.#getTeamRemoveFormElement()));
+      }
+    });
+  }
+
+  #getTeamRemoveFormElement() {
+    return document.querySelector(".onlyjoy__teamRemoveModalForm");
+  }
+
+  // +idea : onlyjoy__currentTeamContainer 부분의 onlyjoy__currentTeamList부분들은 표를 만들어서 display해도 될 듯
   #generateMarkup() {
     return `
       <div class="onlyjoy__modalExitButton">
@@ -146,21 +159,32 @@ class manageTeamModalView {
       </div>
 
       <div class="onlyjoy__currentTeamContainer">
-        <span class="onlyjoy__currentTeamHeading">현재 등록된 팀</span>
-        <div class="onlyjoy__currentTeamItemLists">
-          <div class="onlyjoy__currentTeamList">
-            <img
-              src="https://crests.football-data.org/73.svg"
-              alt="팀로고"
-            />
-            <span>토트넘</span>
-          </div>
+        <span class="onlyjoy__currentTeamHeading">등록된 팀</span>
+        <div class="onlyjoy__currentBookmarkTeamItemLists">
+          ${
+            this.#data.length > 0
+              ? this.#data
+                  .map((team) => {
+                    return `
+                <div class="onlyjoy__currentTeamList">
+                  <img
+                    src="${team.logoUrl}"
+                    alt="a ${team.name} logo"
+                  />
+                  <span>${team.name}</span>
+                </div>
+              `;
+                  })
+                  .join(" ")
+              : `<p class="onlyjoy__currentTeamStatus">팀을 등록해 주세요.</p>`
+          }          
         </div>
       </div>
 
-      <div class="onlyjoy__addTeamContainer"></div>
-
-      <div class="onlyjoy__removeTeamContainer"></div>       
+      <div class="onlyjoy__manageTeamContainerBox">
+        <div class="onlyjoy__addTeamFormContainer"></div>
+        <div class="onlyjoy__removeTeamFormContainer"></div>
+      </div>       
     `;
   }
 
