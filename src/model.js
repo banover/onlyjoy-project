@@ -108,33 +108,26 @@ function createSpinnerItem() {
 }
 
 export async function loadYoutubeLiveStreamData() {
+  console.log(state.bookmarkYoutubeChannels);
+  if (state.bookmarkYoutubeChannels.length === 0) {
+    return;
+  }
+  clearStateLivechannelData();
   try {
-    console.log(state.bookmarkYoutubeChannels);
-    if (state.bookmarkYoutubeChannels.length === 0) {
-      return;
-    }
-    clearStateLivechannelData();
-    state.bookmarkYoutubeChannels.forEach(async (channel) => {
-      try {
-        const data = await fetchYoutubeChannelDataFromChannelId(
-          channel.channelId
-        );
-        console.log(data);
-        console.log(data.items[0].snippet);
-        state.livechannelData.push(
-          createLiveStreamObject(data.items[0].snippet)
-        );
-        console.log(state.livechannelData);
-      } catch (error) {
-        console.log(error);
-        throw error;
-      }
+    const data = await fetchYoutubeChannelDataFromChannelId(
+      state.bookmarkYoutubeChannels
+    );
+    data.forEach((channel) => {
+      state.livechannelData.push(
+        createLiveStreamObject(channel.items[0].snippet)
+      );
     });
+    console.log(state.livechannelData);
   } catch (error) {
     console.log(error);
-    throw new Error("test");
+    // throw error;
+    throw new Error("youtube channel 정보를 불러오는데 실패했습니다");
   }
-  // callback안의 async function을 위해 try/catch썻지만, 그 밖으면 error가 throw 안됨..
 }
 
 function clearStateLivechannelData() {
@@ -250,15 +243,21 @@ function isCurrentTimeNearMatchTime(matchDate) {
 }
 
 export async function loadAllTeamsInALeague(league) {
-  const data = await fetchAllTeamsInALeague(league);
-  state.allTeamInALeague = data.map((team) => {
-    return {
-      name: team.shortName,
-      id: team.id,
-      logo: team.crest,
-    };
-  });
-  console.log(data);
+  try {
+    const data = await fetchAllTeamsInALeague(league);
+    state.allTeamInALeague = data.map((team) => {
+      return {
+        name: team.shortName,
+        id: team.id,
+        logo: team.crest,
+      };
+    });
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+    throw error;
+    // throw new Error("해당 리그의 모든 팀을 불러오는데 실패했습니다.");
+  }
 }
 
 export function getAllBookmarkTeam() {
@@ -332,9 +331,14 @@ function getNewBookmarkTeamsAfterRemove(formData) {
 }
 
 export async function loadSearchedYoutubeChannels(channelTitle) {
-  const channelData = await fetchSearchedYoutubeChannelData(channelTitle);
-  state.searchedYoutubeChannels = channelData.items;
-  console.log(state.searchedYoutubeChannels);
+  try {
+    const channelData = await fetchSearchedYoutubeChannelData(channelTitle);
+    state.searchedYoutubeChannels = channelData.items;
+    console.log(state.searchedYoutubeChannels);
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
 }
 
 export function addingNewBookmarkYoutubeChannel(channelData) {

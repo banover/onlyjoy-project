@@ -13,7 +13,7 @@ export default async function fetchAllTeamsInALeague(leagueCode) {
 
     return data.data.teams;
   } catch (error) {
-    console.error(error);
+    console.log(error);
     throw new Error("해당 리그의 모든 팀을 불러오는데 실패했습니다.");
   }
 }

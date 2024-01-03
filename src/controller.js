@@ -30,7 +30,7 @@ async function renderThisWeekMatchCards() {
     matchCardSettingBarView.addHandlerDisplayManageTeamModal(
       controlDisplayingManageTeamModal
     );
-    matchCardSettingBarView.addHandlerDisplayAddYoutubeChannelModal(
+    matchCardSettingBarView.addHandlerDisplayManageYoutubeChannelModal(
       controlDisplayingYoutubeChannel
     );
 
@@ -106,7 +106,7 @@ async function controlAddingNewTeam(formData) {
     matchCardView.render(Model.state.matchCardData);
   } catch (error) {
     console.log(error);
-    manageTeamModalView.renderError(error);
+    matchCardView.renderError(error);
   }
 }
 
@@ -123,7 +123,7 @@ async function controlRemoveingBookmarkTeam(formData) {
     matchCardView.render(Model.state.matchCardData);
   } catch (error) {
     console.log(error);
-    manageTeamModalView.renderError(error);
+    matchCardView.renderError(error);
   }
 }
 
@@ -141,12 +141,11 @@ async function controlRemovingBookmarkYoutubeChannel(formData) {
     Model.removingBookmarkYoutubeChannel(formData);
     console.log(Model.state.bookmarkYoutubeChannels);
     await Model.loadYoutubeLiveStreamData();
-    // 바로 위 코드에서 catch된 error가 throw되지 않음.. 따라서 이 밑에 catch에서 catch가 안됨
     await Model.loadMatchesData();
     matchCardView.render(Model.state.matchCardData);
   } catch (error) {
     console.log(error);
-    manageYoutubeChannelModalView.renderError(error);
+    matchCardView.renderError(error);
   }
 }
 
@@ -167,11 +166,10 @@ async function controlAddingNewBookmarkYoutubeChannel(channelData) {
     Model.addingNewBookmarkYoutubeChannel(channelData);
     console.log(Model.state.bookmarkYoutubeChannels);
     await Model.loadYoutubeLiveStreamData();
-    // 바로 위 코드에서 catch된 error가 throw되지 않음.. 따라서 이 밑에 catch에서 catch가 안됨
     await Model.loadMatchesData();
     matchCardView.render(Model.state.matchCardData);
   } catch (error) {
     console.log(error);
-    manageYoutubeChannelModalView.renderError(error);
+    matchCardView.renderError(error);
   }
 }

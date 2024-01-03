@@ -624,7 +624,7 @@ select option[disabled][selected] {
   gap: 1.5rem;
 }
 
-.onlyjoy__ChannelModalForm {
+.onlyjoy__addChannelModalForm {
   display: flex;
   flex-direction: column;
   gap: 3rem;

@@ -34,39 +34,39 @@ class manageYoutubeChannelModalView {
   addHandlerDisplayAddYoutubeChannelForm(handler) {
     this.#modalContainer.addEventListener("click", (e) => {
       if (e.target.closest(".onlyjoy__addChannelButton")) {
-        this.#clearRemoveChannelFormContainer();
+        this.#clearManageYoutubeChannelContainerBox();
         handler();
       }
     });
   }
 
-  #clearRemoveChannelFormContainer() {
-    const removeChannelFormContainer = document.querySelector(
-      ".onlyjoy__removeChannelFormContainer"
-    );
-    removeChannelFormContainer.innerHTML = "";
+  #clearManageYoutubeChannelContainerBox() {
+    this.#getAddChannelFormContainer().innerHTML = "";
+    this.#getRemoveChannelFormContainer().innerHTML = "";
+    this.#getFormErrorContainer().innerHTML = "";
+  }
+
+  #getRemoveChannelFormContainer() {
+    return document.querySelector(".onlyjoy__removeChannelFormContainer");
   }
 
   addHandlerDisplayRemoveYoutubeChannelForm(handler) {
     this.#modalContainer.addEventListener("click", (e) => {
       if (e.target.closest(".onlyjoy__removeChannelButton")) {
-        this.#clearAddChannelFormContainer();
+        this.#clearManageYoutubeChannelContainerBox();
         handler();
       }
     });
   }
 
-  #clearAddChannelFormContainer() {
-    const removeChannelFormContainer = document.querySelector(
-      ".onlyjoy__addChannelFormContainer"
-    );
-    removeChannelFormContainer.innerHTML = "";
+  #getAddChannelFormContainer() {
+    return document.querySelector(".onlyjoy__addChannelFormContainer");
   }
 
   addHandlerRemoveBookmarkYoutubeChannel(handler) {
     this.#modalContainer.addEventListener("submit", async (e) => {
       if (e.target.closest(".onlyjoy__channelRemoveModalForm")) {
-        this.#inactiveRemoveFormSubmitButton();
+        this.#toggleActiveElement(this.#getRemoveChannelButtonElement());
         const data = this.#getFormData(this.#getChannelRemoveFormElement());
         await handler(data);
         this.#closeModal();
@@ -84,72 +84,59 @@ class manageYoutubeChannelModalView {
     return document.querySelector(".onlyjoy__channelRemoveModalForm");
   }
 
-  // 밑에 코드 중복이 있음 코드 정리하자..
-  #inactiveRemoveFormSubmitButton() {
-    const submitButtonElement = document.querySelector(
-      ".onlyjoy__modalRemoveChannelButton"
-    );
-    submitButtonElement.disabled = true;
+  #toggleActiveElement(element) {
+    element.disabled = element.disabled ? false : true;
+  }
+
+  #getRemoveChannelButtonElement() {
+    return document.querySelector(".onlyjoy__modalRemoveChannelButton");
   }
 
   addHandlerSearchYoutubeChannel(handler) {
     this.#modalContainer.addEventListener("click", async (e) => {
       if (e.target.closest(".onlyjoy__searchButton")) {
-        this.#toggleActiveSearchInputElement();
-        this.#toggleActiveSearchButtonElement();
+        this.#toggleActiveElement(this.#getSearchInputElement());
+        this.#toggleActiveElement(this.#getSearchButtonElement());
         await handler(this.#getSearchedYoutubeChannelTitle());
-        this.#toggleActiveSearchInputElement();
-        this.#toggleActiveSearchButtonElement();
+        this.#toggleActiveElement(this.#getSearchInputElement());
+        this.#toggleActiveElement(this.#getSearchButtonElement());
       }
     });
-  }
-
-  #toggleActiveSearchInputElement() {
-    const inputElement = this.#getSearchInputElement();
-    inputElement.disabled = inputElement.disabled ? false : true;
   }
 
   #getSearchInputElement() {
     return document.querySelector(".onlyjoy__ChannelTitleInput");
   }
 
-  #toggleActiveSearchButtonElement() {
-    const searchButtonElement = document.querySelector(
-      ".onlyjoy__searchButton"
-    );
-    searchButtonElement.disabled = searchButtonElement.disabled ? false : true;
+  #getSearchButtonElement() {
+    return document.querySelector(".onlyjoy__searchButton");
   }
 
   #getSearchedYoutubeChannelTitle() {
-    const inputElement = this.#getSearchInputElement();
-    return inputElement.value;
+    return this.#getSearchInputElement().value;
   }
 
   addHandlerAddNewBookmarkYoutubeChannel(handler) {
     this.#modalContainer.addEventListener("submit", async (e) => {
       e.preventDefault();
-      if (e.target.closest(".onlyjoy__ChannelModalForm")) {
-        this.#toggleActiveSearchInputElement();
-        this.#toggleActiveSearchButtonElement();
-        this.#inactiveFormSubmitButton();
+      if (e.target.closest(".onlyjoy__addChannelModalForm")) {
         const data = this.#getFormData(this.#getChannelAddFormElement());
+        this.#toggleActiveElement(this.#getSearchInputElement());
+        this.#toggleActiveElement(this.#getSearchButtonElement());
+        this.#toggleActiveElement(this.#getUploadChannelButtonElement());
         await handler(JSON.parse(data.channelData));
-        // error발생시 모달과 overlay는 유지되어야..
         this.#closeModal();
         this.#closeOverlay();
       }
     });
   }
 
-  #inactiveFormSubmitButton() {
-    const submitButtonElement = document.querySelector(
-      ".onlyjoy__modalUploadChannelButton"
-    );
-    submitButtonElement.disabled = true;
+  #getUploadChannelButtonElement() {
+    return document.querySelector(".onlyjoy__modalUploadChannelButton");
   }
 
   #getChannelAddFormElement() {
-    return document.querySelector(".onlyjoy__ChannelModalForm");
+    return document.querySelector(".onlyjoy__addChannelModalForm");
   }
 
   #generateMarkup() {
@@ -181,12 +168,11 @@ class manageYoutubeChannelModalView {
             `;
           })
           .join(" ")}
-        
       </div>
-
       <div class="onlyjoy__manageYoutubeChannelContainerBox">
           <div class="onlyjoy__addChannelFormContainer"></div>
           <div class="onlyjoy__removeChannelFormContainer"></div>
+          <div class="onlyjoy__formErrorContainer"></div>                 
       </div>      
     `;
   }
@@ -195,16 +181,8 @@ class manageYoutubeChannelModalView {
     this.#modalContainer.innerHTML = "";
   }
 
-  #clearSearchedYoutubeChannelContainer() {
-    const searchedYoutubeChannelsElement = document.querySelector(
-      ".onlyjoy__searchedYoutubeChannels"
-    );
-    searchedYoutubeChannelsElement.innerHTML = "";
-  }
-
   renderError(error) {
-    // this.#clearModalContainer();
-    this.#clearSearchedYoutubeChannelContainer();
+    this.#clearManageYoutubeChannelContainerBox();
     const markUp = `
       <div class="onlyjoy__matchCardError small">
         <img src="./public/warning.png" alt="a waring icon" />
@@ -215,7 +193,11 @@ class manageYoutubeChannelModalView {
       </div>
     `;
 
-    this.#modalContainer.insertAdjacentHTML("beforeend", markUp);
+    this.#getFormErrorContainer().insertAdjacentHTML("beforeend", markUp);
+  }
+
+  #getFormErrorContainer() {
+    return document.querySelector(".onlyjoy__formErrorContainer");
   }
 }
 
