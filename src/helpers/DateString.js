@@ -1,7 +1,7 @@
 export default class DateString {
   #currentDate = new Date();
   #yesterdayDate = new Date(
-    this.#currentDate.setDate(this.#currentDate.getDate() - 1)
+    this.#currentDate.setDate(this.#currentDate.getDate() - 8)
   );
 
   #nextWeekDateFromYesterday = new Date(

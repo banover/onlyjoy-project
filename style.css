@@ -65,25 +65,25 @@ body {
   /* position: relative; */
 }
 
-.onlyjoy__settingContainer {
+.onlyjoy__filteringBarContainer {
   width: 100%;
   display: flex;
   gap: 8rem;
   justify-content: center;
 }
 
-.onlyjoy__AddButtonBar {
+.onlyjoy__manageButtonBar {
   width: 15%;
   display: flex;
   gap: 2rem;
 }
 
-.onlyjoy__AddButtonBar button {
+.onlyjoy__manageButtonBar button {
   /* font-family: "Black Han Sans", sans-serif; */
   width: 12rem;
   height: 100%;
   border: none;
-  background-color: rgb(241, 239, 77);
+  /* background-color: rgb(241, 239, 77); */
   background-color: rgb(0, 0, 0);
   color: white;
   font-size: 2rem;
@@ -323,7 +323,7 @@ body {
   display: none;
 }
 
-.onlyjoy__manageTeamModal {
+.onlyjoy__manageBookmarkTeamModal {
   width: 50rem;
   /* height: 60rem; */
   height: auto;
@@ -376,7 +376,7 @@ body {
   color: black;
 }
 
-.onlyjoy__addTeamButton {
+.onlyjoy__manageBookmarkTeamButton {
 }
 
 .onlyjoy__removeTeamButton {
@@ -431,7 +431,7 @@ body {
   font-size: 4rem;
 }
 
-.onlyjoy__teamAddModalForm {
+.onlyjoy__addTeamForm {
   display: flex;
   flex-direction: column;
   gap: 3rem;
@@ -503,7 +503,7 @@ select option[disabled][selected] {
   font-size: 3rem;
 }
 
-.onlyjoy__teamRemoveModalForm {
+.onlyjoy__removeTeamForm {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -521,7 +521,7 @@ select option[disabled][selected] {
   height: 5rem;
 }
 
-.onlyjoy__channelRemoveModalForm {
+.onlyjoy__removeChannelForm {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -543,13 +543,13 @@ select option[disabled][selected] {
   width: 100%;
 }
 
-.onlyjoy__modalRemoveTeamButton {
+.onlyjoy__removeTeamSubmitButton {
 }
 .onlyjoy__modalRemoveChannelButton {
 }
 
 /* youtube modal */
-.onlyjoy__addYoutubeLiveStreamModal {
+.onlyjoy__manageBookmarkYoutubeChannelModal {
   width: 50rem;
   /* height: 60rem; */
   height: auto;
@@ -624,7 +624,7 @@ select option[disabled][selected] {
   gap: 1.5rem;
 }
 
-.onlyjoy__addChannelModalForm {
+.onlyjoy__addChannelForm {
   display: flex;
   flex-direction: column;
   gap: 3rem;

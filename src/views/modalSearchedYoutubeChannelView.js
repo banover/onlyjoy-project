@@ -1,4 +1,4 @@
-class searchedYoutubeChannelView {
+class modalSearchedYoutubeChannelView {
   #searchedYoutubeChannelDataContainer;
   #data;
 
@@ -107,4 +107,4 @@ class searchedYoutubeChannelView {
   }
 }
 
-export default new searchedYoutubeChannelView();
+export default new modalSearchedYoutubeChannelView();

@@ -1,34 +1,32 @@
-class matchCardSettingBarView {
+class matchCardFilteringBarView {
   #data;
-  #matchCardSettingBarContainer = document.querySelector(
-    ".onlyjoy__settingContainer"
+  #matchCardFilteringBarContainer = document.querySelector(
+    ".onlyjoy__filteringBarContainer"
   );
-  #manageTeamModalElement = document.querySelector(".onlyjoy__manageTeamModal");
-  #addYoutubeChannelModalElement = document.querySelector(
-    ".onlyjoy__addYoutubeLiveStreamModal"
+  #manageBookmarkTeamModalElement = document.querySelector(
+    ".onlyjoy__manageBookmarkTeamModal"
+  );
+  #manageBookmarkYoutubeChannelModalElement = document.querySelector(
+    ".onlyjoy__manageBookmarkYoutubeChannelModal"
   );
   #overlayElement = document.querySelector(".overlay");
 
   render(data) {
     this.#data = data;
-    this.#clearMatchCardSettingBarContainer();
-    this.#matchCardSettingBarContainer.insertAdjacentHTML(
+    this.#clearMatchCardFilteringBarContainer();
+    this.#matchCardFilteringBarContainer.insertAdjacentHTML(
       "beforeend",
       this.#generateMarkup()
     );
   }
 
   addHandlerFilterMatchCards(handler) {
-    this.#matchCardSettingBarContainer.addEventListener("submit", (e) => {
+    this.#matchCardFilteringBarContainer.addEventListener("submit", (e) => {
       e.preventDefault();
-      if (this.#isTargetFilterForm(e)) {
+      if (e.target.closest(".onlyjoy__filterForm")) {
         handler(this.#getFormData());
       }
     });
-  }
-
-  #isTargetFilterForm(e) {
-    return e.target.closest(".onlyjoy__filterForm");
   }
 
   #getFormData() {
@@ -37,40 +35,44 @@ class matchCardSettingBarView {
     return Object.fromEntries(dataArr);
   }
 
-  addHandlerDisplayManageTeamModal(handler) {
-    this.#matchCardSettingBarContainer.addEventListener("click", (e) => {
-      if (this.#isTargetAddTeamButton(e)) {
-        this.#displayAddTeamModal();
+  addHandlerDisplayManageBookmarkTeamModal(handler) {
+    this.#matchCardFilteringBarContainer.addEventListener("click", (e) => {
+      if (e.target.closest(".onlyjoy__manageBookmarkTeamButton")) {
+        this.#displayOverlay();
+        this.#displayManageBookmarkTeamModal();
         handler();
       }
     });
   }
 
-  #isTargetAddTeamButton(e) {
-    return e.target.closest(".onlyjoy__AddTeamButton");
-  }
-
-  #displayAddTeamModal() {
+  #displayOverlay() {
     this.#overlayElement.style.display = "block";
-    this.#manageTeamModalElement.style.display = "flex";
   }
 
-  addHandlerDisplayManageYoutubeChannelModal(handler) {
-    this.#matchCardSettingBarContainer.addEventListener("click", (e) => {
-      if (e.target.closest(".onlyjoy__AddLiveButton")) {
-        this.#overlayElement.style.display = "block";
-        this.#addYoutubeChannelModalElement.style.display = "flex";
+  #displayManageBookmarkTeamModal() {
+    this.#manageBookmarkTeamModalElement.style.display = "flex";
+  }
+
+  addHandlerDisplayManageBookmarkYoutubeChannelModal(handler) {
+    this.#matchCardFilteringBarContainer.addEventListener("click", (e) => {
+      if (e.target.closest(".onlyjoy__manageBookmarkYoutubeChannelButton")) {
+        this.#displayOverlay();
+        this.#displayManageBookmarkYoutubeChannelModal();
         handler();
       }
     });
+  }
+
+  #displayManageBookmarkYoutubeChannelModal() {
+    this.#manageBookmarkYoutubeChannelModalElement.style.display = "flex";
   }
 
   #generateMarkup() {
     return `
-    <div class="onlyjoy__settingContainer">
-      <div class="onlyjoy__AddButtonBar">
-        <button class="onlyjoy__AddTeamButton">+ TEAM</button>
-        <button class="onlyjoy__AddLiveButton">+ 입중계</button>
+    
+      <div class="onlyjoy__manageButtonBar">
+        <button class="onlyjoy__manageBookmarkTeamButton">+ TEAM</button>
+        <button class="onlyjoy__manageBookmarkYoutubeChannelButton">+ 입중계</button>
       </div>
       <div class="onlyjoy__matchCardFilterBar">
         <img src="./public/filter.png" alt="a filter icon" />
@@ -98,16 +100,16 @@ class matchCardSettingBarView {
           <button class="onlyjoy__searchBtn">정렬</button>
         </form>
       </div>
-    </div>
+    
     `;
   }
 
-  #clearMatchCardSettingBarContainer() {
-    this.#matchCardSettingBarContainer.innerHTML = "";
+  #clearMatchCardFilteringBarContainer() {
+    this.#matchCardFilteringBarContainer.innerHTML = "";
   }
 
   renderError(error) {
-    this.#clearMatchCardSettingBarContainer();
+    this.#clearMatchCardFilteringBarContainer();
     const markUp = `
       <div class="onlyjoy__matchCardError">
         <img src="./public/warning.png" alt="a waring icon" />
@@ -118,8 +120,11 @@ class matchCardSettingBarView {
       </div>
     `;
 
-    this.#matchCardSettingBarContainer.insertAdjacentHTML("beforeend", markUp);
+    this.#matchCardFilteringBarContainer.insertAdjacentHTML(
+      "beforeend",
+      markUp
+    );
   }
 }
 
-export default new matchCardSettingBarView();
+export default new matchCardFilteringBarView();

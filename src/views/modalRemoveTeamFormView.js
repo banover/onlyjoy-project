@@ -21,7 +21,7 @@ class modalRemoveTeamFormView {
   #generateMarkup() {
     return `           
         <span class="onlyjoy__modalHeading">팀 제거</span>
-        <form class="onlyjoy__teamRemoveModalForm">
+        <form class="onlyjoy__removeTeamForm">
             <div class="onlyjoy__modalRemoveTeamSelection">                  
                 <select name="removeTeam" id="removeTeam" required>
                     <option disabled selected>제거할 팀을 선택해 주세요</option>
@@ -36,7 +36,7 @@ class modalRemoveTeamFormView {
                 </select>
             </div>
             <div class="onlyjoy__modalButtonBox">
-                <button class="onlyjoy__modalRemoveTeamButton">
+                <button class="onlyjoy__removeTeamSubmitButton">
                 팀 제거하기
                 </button>
             </div>

@@ -1,11 +1,11 @@
 import matchCardView from "./views/matchCardView.js";
-import matchCardSettingBarView from "./views/matchCardSettingBarView.js";
-import manageTeamModalView from "./views/manageTeamModalView.js";
+import matchCardFilteringBarView from "./views/matchCardFilteringBarView.js";
+import manageBookmarkTeamModalView from "./views/manageBookmarkTeamModalView.js";
 import modalAddTeamFormView from "./views/modalAddTeamFormView.js";
 import modalRemoveTeamFormView from "./views/modalRemoveTeamFormView.js";
 import modalAddTeamRestSelectionView from "./views/modalAddTeamRestSelectionView.js";
-import manageYoutubeChannelModalView from "./views/manageYoutubeChannelModalView.js";
-import searchedYoutubeChannelView from "./views/searchedYoutubeChannelView.js";
+import manageBookmarkYoutubeChannelModalView from "./views/manageYoutubeChannelModalView.js";
+import modalSearchedYoutubeChannelView from "./views/modalSearchedYoutubeChannelView.js";
 import modalAddYoutubeChannelFormView from "./views/modalAddYoutubeChannelFormView.js";
 import modalRemoveYoutubeChannelFormView from "./views/modalRemoveYoutubeChannelFormView.js";
 import * as Model from "./model.js";
@@ -13,57 +13,63 @@ import * as Model from "./model.js";
 init();
 
 async function init() {
-  renderThisWeekMatchCards();
+  renderThisWeekMatchCardPage();
 }
 
-async function renderThisWeekMatchCards() {
-  try {
-    matchCardView.renderSpinner(Model.state.spinnerItem);
-    // await Model.loadYoutubeLiveStreamData();
-    await Model.loadMatchesData();
-    console.log(Model.state.matchCardData);
+// TODO: 팀을 선택해주세요 화면.. bookmarkteam이 있어도 뜸,
+// bookmarkteam 있는데 match가 없을 경우 띄울 markup준비
 
-    matchCardSettingBarView.render(Model.getAllBookmarkTeam());
-    matchCardSettingBarView.addHandlerFilterMatchCards(
+async function renderThisWeekMatchCardPage() {
+  try {
+    matchCardView.renderSpinner(Model.state.bookmarkTeamLogos);
+    // await Model.loadBookmarkYoutubeChannelLiveStream();
+    await Model.loadBookmarkTeamMatches();
+    console.log(Model.state.matchCards);
+
+    matchCardFilteringBarView.render(Model.getAllBookmarkTeamName());
+    matchCardFilteringBarView.addHandlerFilterMatchCards(
       controlFilteringMatchCards
     );
-    matchCardSettingBarView.addHandlerDisplayManageTeamModal(
-      controlDisplayingManageTeamModal
+    matchCardFilteringBarView.addHandlerDisplayManageBookmarkTeamModal(
+      controlDisplayingManageBookmarkTeamModal
     );
-    matchCardSettingBarView.addHandlerDisplayManageYoutubeChannelModal(
-      controlDisplayingYoutubeChannel
+    matchCardFilteringBarView.addHandlerDisplayManageBookmarkYoutubeChannelModal(
+      controlDisplayingManageBookmarkYoutubeChannelModal
     );
 
-    manageTeamModalView.addHandlerCloseModal();
-    manageTeamModalView.addHandlerDisplayAddTeamForm(
+    manageBookmarkTeamModalView.addHandlerCloseModal();
+    manageBookmarkTeamModalView.addHandlerDisplayAddTeamForm(
       controlDisplayingAddTeamForm
     );
-    manageTeamModalView.addHandlerDisplayAddTeamRestSelect(
+    manageBookmarkTeamModalView.addHandlerDisplayAddTeamRestSelect(
       controlDisplayingAddTeamRestSelect
     );
-    manageTeamModalView.addHandlerAddNewTeam(controlAddingNewTeam);
-    manageTeamModalView.addHandlerDisplayRemoveTeamForm(
+    manageBookmarkTeamModalView.addHandlerAddNewTeam(controlAddingNewTeam);
+    manageBookmarkTeamModalView.addHandlerDisplayRemoveTeamForm(
       controlDisplayingRemoveTeamForm
     );
-    manageTeamModalView.addHandlerRemoveTeam(controlRemoveingBookmarkTeam);
+    manageBookmarkTeamModalView.addHandlerRemoveTeam(
+      controlRemoveingBookmarkTeam
+    );
 
-    manageYoutubeChannelModalView.addHandlerCloseModal();
-    manageYoutubeChannelModalView.addHandlerDisplayAddYoutubeChannelForm(
+    manageBookmarkYoutubeChannelModalView.addHandlerCloseModal();
+    manageBookmarkYoutubeChannelModalView.addHandlerDisplayAddYoutubeChannelForm(
       controlDisplayingAddYoutubeChannelForm
     );
-    manageYoutubeChannelModalView.addHandlerDisplayRemoveYoutubeChannelForm(
-      controlDisplayingRemoveYoutubeChannelForm
-    );
-    manageYoutubeChannelModalView.addHandlerRemoveBookmarkYoutubeChannel(
-      controlRemovingBookmarkYoutubeChannel
-    );
-    manageYoutubeChannelModalView.addHandlerSearchYoutubeChannel(
+    manageBookmarkYoutubeChannelModalView.addHandlerSearchedYoutubeChannel(
       controlDisplayingSearchedYoutubeChannels
     );
-    manageYoutubeChannelModalView.addHandlerAddNewBookmarkYoutubeChannel(
+    manageBookmarkYoutubeChannelModalView.addHandlerAddNewBookmarkYoutubeChannel(
       controlAddingNewBookmarkYoutubeChannel
     );
-    matchCardView.render(Model.state.matchCardData);
+    manageBookmarkYoutubeChannelModalView.addHandlerDisplayRemoveYoutubeChannelForm(
+      controlDisplayingRemoveYoutubeChannelForm
+    );
+    manageBookmarkYoutubeChannelModalView.addHandlerRemoveBookmarkYoutubeChannel(
+      controlRemovingBookmarkYoutubeChannel
+    );
+
+    matchCardView.render(Model.state.matchCards);
   } catch (error) {
     console.log(error);
     matchCardView.renderError(error);
@@ -71,15 +77,17 @@ async function renderThisWeekMatchCards() {
 }
 
 function controlFilteringMatchCards(formData) {
-  matchCardView.render(Model.getFilterdMatchCardData(formData));
+  matchCardView.render(Model.getFilterdMatchCards(formData));
 }
 
-function controlDisplayingManageTeamModal() {
-  manageTeamModalView.render(Model.state.bookmarkTeams);
+function controlDisplayingManageBookmarkTeamModal() {
+  manageBookmarkTeamModalView.render(Model.state.bookmarkTeams);
 }
 
-function controlDisplayingYoutubeChannel() {
-  manageYoutubeChannelModalView.render(Model.state.bookmarkYoutubeChannels);
+function controlDisplayingManageBookmarkYoutubeChannelModal() {
+  manageBookmarkYoutubeChannelModalView.render(
+    Model.state.bookmarkYoutubeChannels
+  );
 }
 
 function controlDisplayingAddTeamForm() {
@@ -88,9 +96,9 @@ function controlDisplayingAddTeamForm() {
 
 async function controlDisplayingAddTeamRestSelect(league) {
   try {
-    modalAddTeamRestSelectionView.renderSpinner(Model.state.spinnerItem);
+    modalAddTeamRestSelectionView.renderSpinner(Model.state.bookmarkTeamLogos);
     await Model.loadAllTeamsInALeague(league);
-    modalAddTeamRestSelectionView.render(Model.getRestSelectionData());
+    modalAddTeamRestSelectionView.render(Model.getRestSelectOptions());
   } catch (error) {
     console.log(error);
     modalAddTeamRestSelectionView.renderError(error);
@@ -99,11 +107,11 @@ async function controlDisplayingAddTeamRestSelect(league) {
 
 async function controlAddingNewTeam(formData) {
   try {
-    matchCardView.renderSpinner(Model.state.spinnerItem);
-    Model.addingNewBookmarkTeam(formData);
-    await Model.loadMatchesData();
-    matchCardSettingBarView.render(Model.getAllBookmarkTeam());
-    matchCardView.render(Model.state.matchCardData);
+    matchCardView.renderSpinner(Model.state.bookmarkTeamLogos);
+    Model.addNewBookmarkTeam(formData);
+    await Model.loadBookmarkTeamMatches();
+    matchCardFilteringBarView.render(Model.getAllBookmarkTeamName());
+    matchCardView.render(Model.state.matchCards);
   } catch (error) {
     console.log(error);
     matchCardView.renderError(error);
@@ -116,11 +124,11 @@ function controlDisplayingRemoveTeamForm() {
 
 async function controlRemoveingBookmarkTeam(formData) {
   try {
-    matchCardView.renderSpinner(Model.state.spinnerItem);
-    Model.removingNewBookmarkTeam(formData);
-    await Model.loadMatchesData();
-    matchCardSettingBarView.render(Model.getAllBookmarkTeam());
-    matchCardView.render(Model.state.matchCardData);
+    matchCardView.renderSpinner(Model.state.bookmarkTeamLogos);
+    Model.removeBookmarkTeam(formData);
+    await Model.loadBookmarkTeamMatches();
+    matchCardFilteringBarView.render(Model.getAllBookmarkTeamName());
+    matchCardView.render(Model.state.matchCards);
   } catch (error) {
     console.log(error);
     matchCardView.renderError(error);
@@ -131,43 +139,45 @@ function controlDisplayingAddYoutubeChannelForm() {
   modalAddYoutubeChannelFormView.render();
 }
 
-function controlDisplayingRemoveYoutubeChannelForm() {
-  modalRemoveYoutubeChannelFormView.render(Model.state.bookmarkYoutubeChannels);
+async function controlDisplayingSearchedYoutubeChannels(channelTitle) {
+  try {
+    modalSearchedYoutubeChannelView.renderSpinner(
+      Model.state.bookmarkTeamLogos
+    );
+    await Model.loadSearchedYoutubeChannels(channelTitle);
+    modalSearchedYoutubeChannelView.render(Model.state.searchedYoutubeChannels);
+  } catch (error) {
+    console.log(error);
+    modalSearchedYoutubeChannelView.renderError(error);
+  }
 }
 
-async function controlRemovingBookmarkYoutubeChannel(formData) {
+async function controlAddingNewBookmarkYoutubeChannel(channelData) {
   try {
-    matchCardView.renderSpinner(Model.state.spinnerItem);
-    Model.removingBookmarkYoutubeChannel(formData);
+    matchCardView.renderSpinner(Model.state.bookmarkTeamLogos);
+    Model.addNewBookmarkYoutubeChannel(channelData);
     console.log(Model.state.bookmarkYoutubeChannels);
-    await Model.loadYoutubeLiveStreamData();
-    await Model.loadMatchesData();
-    matchCardView.render(Model.state.matchCardData);
+    await Model.loadBookmarkYoutubeChannelLiveStream();
+    await Model.loadBookmarkTeamMatches();
+    matchCardView.render(Model.state.matchCards);
   } catch (error) {
     console.log(error);
     matchCardView.renderError(error);
   }
 }
 
-async function controlDisplayingSearchedYoutubeChannels(channelTitle) {
-  try {
-    searchedYoutubeChannelView.renderSpinner(Model.state.spinnerItem);
-    await Model.loadSearchedYoutubeChannels(channelTitle);
-    searchedYoutubeChannelView.render(Model.state.searchedYoutubeChannels);
-  } catch (error) {
-    console.log(error);
-    searchedYoutubeChannelView.renderError(error);
-  }
+function controlDisplayingRemoveYoutubeChannelForm() {
+  modalRemoveYoutubeChannelFormView.render(Model.state.bookmarkYoutubeChannels);
 }
 
-async function controlAddingNewBookmarkYoutubeChannel(channelData) {
+async function controlRemovingBookmarkYoutubeChannel(formData) {
   try {
-    matchCardView.renderSpinner(Model.state.spinnerItem);
-    Model.addingNewBookmarkYoutubeChannel(channelData);
+    matchCardView.renderSpinner(Model.state.bookmarkTeamLogos);
+    Model.removeBookmarkYoutubeChannel(formData);
     console.log(Model.state.bookmarkYoutubeChannels);
-    await Model.loadYoutubeLiveStreamData();
-    await Model.loadMatchesData();
-    matchCardView.render(Model.state.matchCardData);
+    await Model.loadBookmarkYoutubeChannelLiveStream();
+    await Model.loadBookmarkTeamMatches();
+    matchCardView.render(Model.state.matchCards);
   } catch (error) {
     console.log(error);
     matchCardView.renderError(error);

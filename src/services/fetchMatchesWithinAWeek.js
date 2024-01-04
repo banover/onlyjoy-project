@@ -2,7 +2,7 @@ import axios from "axios";
 import { FOOTBALL_API_TOKEN, BASE_URL } from "../config.js";
 import DateString from "../helpers/DateString.js";
 
-export default async function fetchMatchesDataWithinAWeek(bookmarkTeams) {
+export default async function fetchMatchesWithinAWeek(bookmarkTeams) {
   if (!bookmarkTeams) {
     return;
   }

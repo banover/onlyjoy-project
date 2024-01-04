@@ -24,7 +24,7 @@ class modalRemoveYoutubeChannelFormView {
           <img src="../public/you-tube.png" alt="a youtube icon">
           <span class="onlyjoy__formHeading">CHANNEL 제거</span>
         </div>        
-        <form class="onlyjoy__channelRemoveModalForm">
+        <form class="onlyjoy__removeChannelForm">
             <div class="onlyjoy__modalRemoveChannelSelection">                             
                 <select name="removeChannel" id="removeChannel" required>
                     <option disabled selected>제거할 채널을 선택해 주세요</option>

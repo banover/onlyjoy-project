@@ -21,13 +21,13 @@ class modalAddTeamFormView {
   #generateMarkup() {
     return `           
         <span class="onlyjoy__modalHeading">팀 등록</span>
-        <form class="onlyjoy__teamAddModalForm">
+        <form class="onlyjoy__addTeamForm">
         <div class="onlyjoy__modalLeagueSelection">
             <label class="onlyjoy__selectionLabel" for="league">
                 <img src="./public/stadium.png" alt="a stadium icon" />
                 <span>리그</span>
             </label>
-            <select name="league" id="league" required>
+            <select class="onlyjoy__leagueSelect" name="league" id="league" required>
                 <option disabled selected>리그를 선택해 주세요</option>
                 ${this.#data
                   .map(

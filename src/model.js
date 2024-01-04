@@ -1,5 +1,5 @@
-import fetchYoutubeChannelDataFromChannelId from "./services/fetchYoutubeChannelDataFromChannelId.js";
-import fetchMatchesDataWithinAWeek from "./services/fetchMatchesDataWithinAWeek.js";
+import fetchYoutubeChannelsFromChannelId from "./services/fetchYoutubeChannelsFromChannelId.js";
+import fetchMatchesWithinAWeek from "./services/fetchMatchesWithinAWeek.js";
 import fetchAllTeamsInALeague from "./services/fetchAllTeamsInALeague.js";
 import fetchSearchedYoutubeChannelData from "./services/fetchSearchedYoutubeChannelData.js";
 import { ONE_HOURS, NUMBER_OF_SPINNING_LOGO, THREE_HOURS } from "./config.js";
@@ -69,10 +69,10 @@ export const state = {
     { name: "Eredivisie", code: "DED" },
   ],
 
-  livechannelData: [],
-  matchCardData: [],
-  spinnerItem: [],
-  allTeamInALeague: [],
+  liveChannels: [],
+  matchCards: [],
+  bookmarkTeamLogos: [],
+  allTeamsInALeague: [],
   searchedYoutubeChannels: [],
 };
 
@@ -81,7 +81,7 @@ function init() {
   console.log(state.bookmarkTeams);
   state.bookmarkYoutubeChannels =
     getBookmarkYoutubeChannelDataFromLocalStorage();
-  state.spinnerItem = createSpinnerItem();
+  state.bookmarkTeamLogos = createbookmarkTeamLogo();
 }
 init();
 
@@ -96,7 +96,7 @@ function getBookmarkYoutubeChannelDataFromLocalStorage() {
     : [];
 }
 
-function createSpinnerItem() {
+function createbookmarkTeamLogo() {
   if (!state.bookmarkTeams.length) {
     return [];
   }
@@ -107,31 +107,28 @@ function createSpinnerItem() {
     .filter((_, index) => index < NUMBER_OF_SPINNING_LOGO);
 }
 
-export async function loadYoutubeLiveStreamData() {
+export async function loadBookmarkYoutubeChannelLiveStream() {
   console.log(state.bookmarkYoutubeChannels);
   if (state.bookmarkYoutubeChannels.length === 0) {
     return;
   }
-  clearStateLivechannelData();
+  clearStateLiveChannels();
   try {
-    const data = await fetchYoutubeChannelDataFromChannelId(
+    const channels = await fetchYoutubeChannelsFromChannelId(
       state.bookmarkYoutubeChannels
     );
-    data.forEach((channel) => {
-      state.livechannelData.push(
-        createLiveStreamObject(channel.items[0].snippet)
-      );
+    channels.forEach((channel) => {
+      state.liveChannels.push(createLiveStreamObject(channel.items[0].snippet));
     });
-    console.log(state.livechannelData);
+    console.log(state.liveChannels);
   } catch (error) {
     console.log(error);
-    // throw error;
-    throw new Error("youtube channel 정보를 불러오는데 실패했습니다");
+    throw error;
   }
 }
 
-function clearStateLivechannelData() {
-  state.livechannelData = [];
+function clearStateLiveChannels() {
+  state.liveChannels = [];
 }
 
 function createLiveStreamObject(channel) {
@@ -143,17 +140,13 @@ function createLiveStreamObject(channel) {
   };
 }
 
-export async function loadMatchesData() {
+export async function loadBookmarkTeamMatches() {
   try {
-    clearStateMatchCardData();
-    const DataDummys = await fetchMatchesDataWithinAWeek(state.bookmarkTeams);
-    if (!DataDummys) {
-      return;
-    }
-    console.log(DataDummys);
-    DataDummys.forEach((DataDummy) => {
-      DataDummy.data.matches.forEach((match) => {
-        state.matchCardData.push(createMatchObject(match));
+    clearStateMatchCards();
+    const matchesDummy = await fetchMatchesWithinAWeek(state.bookmarkTeams);
+    matchesDummy?.forEach((matchDummy) => {
+      matchDummy.data.matches.forEach((match) => {
+        state.matchCards.push(createMatchObject(match));
       });
     });
   } catch (error) {
@@ -162,36 +155,43 @@ export async function loadMatchesData() {
   }
 }
 
-function clearStateMatchCardData() {
-  state.matchCardData = [];
+function clearStateMatchCards() {
+  state.matchCards = [];
 }
 
-function createMatchObject(data) {
-  const targetTeam = state.bookmarkTeams.filter(
-    (team) => team.id === data.homeTeam.id || team.id === data.awayTeam.id
-  );
+function createMatchObject(match) {
+  const targetTeam = getTargetTeam(match);
 
   return {
-    searchedTeam: targetTeam.at(0)?.name,
-    competition: data.competition.name,
-    homeTeam: data.homeTeam.shortName,
-    homeTeamEmblem: data.homeTeam.crest,
-    awayTeam: data.awayTeam.shortName,
-    awayTeamEmblem: data.awayTeam.crest,
-    rawDate: data.utcDate,
-    Date: getMatchDate(data.utcDate),
-    player: targetTeam.at(0)?.player,
-    status: getMatchStatus(data.status),
-    winner: getWinnerTeam(data),
-    score: getMatchScore(data.score),
+    searchedTeam: targetTeam.name,
+    competition: match.competition.name,
+    homeTeam: match.homeTeam.shortName,
+    homeTeamEmblem: match.homeTeam.crest,
+    awayTeam: match.awayTeam.shortName,
+    awayTeamEmblem: match.awayTeam.crest,
+    rawDate: match.utcDate,
+    Date: getMatchDate(match.utcDate),
+    player: targetTeam.player,
+    status: getMatchStatus(match.status),
+    winner: getWinnerTeam(match),
+    score: getMatchScore(match.score),
 
-    liveStream: targetTeam.at(0)?.liveStream,
-    liveUrl: targetTeam.at(0)?.liveUrl,
+    liveStream: targetTeam.liveStream,
+    liveUrl: targetTeam.liveUrl,
 
-    youtubeLiveChannels: isCurrentTimeNearMatchTime(data.utcDate)
-      ? state.livechannelData.filter((channel) => channel.liveStatus === "live")
+    youtubeLiveChannels: isCurrentTimeNearMatchTime(match.utcDate)
+      ? state.liveChannels.filter((channel) => channel.liveStatus === "live")
       : [],
   };
+}
+
+// 버그 예상됨, bookmark에 추가된 두 팀이 상대로 만나서 경기할 경우..
+function getTargetTeam(match) {
+  return state.bookmarkTeams
+    .filter(
+      (team) => team.id === match.homeTeam.id || team.id === match.awayTeam.id
+    )
+    .at(0);
 }
 
 function getMatchDate(date) {
@@ -217,17 +217,18 @@ function getMatchStatus(status) {
   return "식별 불가능";
 }
 
-function getWinnerTeam(data) {
-  if (!data.score.winner) {
+// getWinnerTeam보다 getMatchResult가 어떨까.. winnerTeam과 draw 경우를 분리하는게..더..깔끔하긴한데..
+function getWinnerTeam(match) {
+  if (!match.score.winner) {
     return null;
   }
-  if (data.score.winner === "DRAW") {
+  if (match.score.winner === "DRAW") {
     return "DRAW";
   }
-  if (data.score.winner === "AWAY_TEAM") {
-    return data.awayTeam.name;
+  if (match.score.winner === "AWAY_TEAM") {
+    return match.awayTeam.name;
   }
-  return data.homeTeam.name;
+  return match.homeTeam.name;
 }
 
 function getMatchScore(score) {
@@ -245,7 +246,7 @@ function isCurrentTimeNearMatchTime(matchDate) {
 export async function loadAllTeamsInALeague(league) {
   try {
     const data = await fetchAllTeamsInALeague(league);
-    state.allTeamInALeague = data.map((team) => {
+    state.allTeamsInALeague = data.map((team) => {
       return {
         name: team.shortName,
         id: team.id,
@@ -256,23 +257,22 @@ export async function loadAllTeamsInALeague(league) {
   } catch (error) {
     console.log(error);
     throw error;
-    // throw new Error("해당 리그의 모든 팀을 불러오는데 실패했습니다.");
   }
 }
 
-export function getAllBookmarkTeam() {
+export function getAllBookmarkTeamName() {
   return state.bookmarkTeams.map((team) => team.name);
 }
 
-export function getFilterdMatchCardData(formData) {
+export function getFilterdMatchCards(formData) {
   let result;
   if (formData.filteringMethod === "date") {
     result =
       formData.filteringTeam === "all"
-        ? state.matchCardData
+        ? state.matchCards
             .slice()
             .sort((a, b) => new Date(a.rawDate) - new Date(b.rawDate))
-        : state.matchCardData
+        : state.matchCards
             .filter(
               (matchData) => matchData.searchedTeam === formData.filteringTeam
             )
@@ -281,8 +281,8 @@ export function getFilterdMatchCardData(formData) {
   if (formData.filteringMethod === "team") {
     result =
       formData.filteringTeam === "all"
-        ? state.matchCardData.slice()
-        : state.matchCardData.filter(
+        ? state.matchCards.slice()
+        : state.matchCards.filter(
             (matchData) => matchData.searchedTeam === formData.filteringTeam
           );
   }
@@ -290,14 +290,14 @@ export function getFilterdMatchCardData(formData) {
   return result;
 }
 
-export function getRestSelectionData() {
+export function getRestSelectOptions() {
   return {
-    teams: state.allTeamInALeague,
+    teams: state.allTeamsInALeague,
     liveStreams: state.bookmarkLiveStreams,
   };
 }
 
-export function addingNewBookmarkTeam(formData) {
+export function addNewBookmarkTeam(formData) {
   state.bookmarkTeams.push(createNewBookmarkTeam(formData));
   setLocalStorageBookmarkTeamsData();
 }
@@ -319,7 +319,7 @@ function setLocalStorageBookmarkTeamsData() {
   localStorage.setItem("bookmarkTeams", JSON.stringify(state.bookmarkTeams));
 }
 
-export function removingNewBookmarkTeam(formData) {
+export function removeBookmarkTeam(formData) {
   state.bookmarkTeams = getNewBookmarkTeamsAfterRemove(formData);
   setLocalStorageBookmarkTeamsData();
 }
@@ -341,7 +341,7 @@ export async function loadSearchedYoutubeChannels(channelTitle) {
   }
 }
 
-export function addingNewBookmarkYoutubeChannel(channelData) {
+export function addNewBookmarkYoutubeChannel(channelData) {
   console.log(channelData);
   state.bookmarkYoutubeChannels.push(createBookmarkYoutubeChannel(channelData));
   setLocalStorageBookmarkYoutubeChannelData();
@@ -362,7 +362,7 @@ function setLocalStorageBookmarkYoutubeChannelData() {
   );
 }
 
-export function removingBookmarkYoutubeChannel(formData) {
+export function removeBookmarkYoutubeChannel(formData) {
   console.log(formData);
   state.bookmarkYoutubeChannels = getNewBookmarkYoutubeChannelsAfterRemove(
     formData.removeChannel

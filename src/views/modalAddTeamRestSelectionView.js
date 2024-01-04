@@ -71,7 +71,7 @@ class modalAddTeamRestSelectionView {
             </select>
         </div>
         <div class="onlyjoy__modalButtonBox">
-            <button class="onlyjoy__modalFormButton">등록하기</button>
+            <button class="onlyjoy__addTeamSubmitButton">등록하기</button>
         </div>
       `;
   }

@@ -1,6 +1,6 @@
 import { YOUTUBE_API_KEY } from "../config";
 
-export default async function fetchYoutubeChannelDataFromChannelId(
+export default async function fetchYoutubeChannelFromChannelId(
   bookmarkYoutubeChannels
 ) {
   let result = [];
@@ -19,6 +19,6 @@ export default async function fetchYoutubeChannelDataFromChannelId(
     return result;
   } catch (error) {
     console.log(error);
-    throw new Error(`youtube channel data를 불러오는데 실패했습니다.`);
+    throw new Error("youtube channel 정보를 불러오는데 실패했습니다");
   }
 }

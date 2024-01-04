@@ -105,11 +105,11 @@ class matchCardView {
       `;
   }
 
-  renderSpinner(teamsData) {
+  renderSpinner(teams) {
     this.#clearMatchCardContainer();
     const markUp = `
       <div class="spinner">
-        ${teamsData
+        ${teams
           .map((team) => {
             return `
             <img

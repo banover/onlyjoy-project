@@ -20,7 +20,7 @@ class modalAddYoutubeChannelFormView {
 
   #generateMarkup() {
     return `           
-        <form class="onlyjoy__addChannelModalForm">
+        <form class="onlyjoy__addChannelForm">
             <div class="onlyjoy__modalYoutubeChannelInput">
                 <label class="onlyjoy__inputLabel" for="searchedTitle">
                     <img
