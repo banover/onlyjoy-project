@@ -31,17 +31,26 @@ body {
   width: 100%;
   height: auto;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 3rem 0;
 }
 
 .onlyjoy__banner {
+  width: 100%;
+  width: 170rem;
+  margin: 0 auto;
   display: flex;
-  gap: 2.5rem;
-  animation: movingBackAndForth 20s infinite normal;
+  justify-content: space-evenly;
+  /* gap: 2.5rem; */
+  /* padding: 0 1.25rem; */
+  animation: movingBackAndForth 16s infinite normal;
 }
 
 .onlyjoy__bannerItem {
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
   align-items: center;
 }
 
@@ -57,19 +66,26 @@ body {
 
 .onlyjoy__matchCardContainer {
   width: 100%;
-  min-height: 70rem;
+  width: 160rem;
+  margin: 0 auto;
+  /* min-height: 70rem; */
   /* height 이거 없애자 추후에 수정.. */
   display: flex;
+  /* justify-content: center; */
+
   flex-direction: column;
   gap: 2rem;
+  padding: 0 2rem;
   /* position: relative; */
+  border-bottom: 1px solid black;
+  padding-bottom: 5rem;
 }
 
 .onlyjoy__filteringBarContainer {
   width: 100%;
   display: flex;
   gap: 8rem;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .onlyjoy__manageButtonBar {
@@ -152,32 +168,58 @@ body {
   font-size: 2.1rem;
 }
 
+.onlyjoy__noMatchDescription {
+  font-size: 10rem;
+  margin: 0 auto;
+  padding: 7rem 0;
+}
+
 .onlyjoy__matchCards {
   width: 100%;
   display: flex;
+
   /* justify-content: center; */
   flex-wrap: wrap;
   gap: 3rem;
+  /* justify-content: space-evenly; */
+  /* padding: 0 2rem; */
 }
 
-.onlyjoy__noTeamDescription {
-  font-size: 10rem;
-  margin: 0 auto;
-}
-
-.onlyjoy__match {
+.onlyjoy__matchCard {
   width: 50rem;
   height: auto;
+  /* height: 50rem; */
   display: flex;
   flex-direction: column;
-  gap: 5rem;
+  gap: 3rem;
+
+  /* padding: 2rem 2rem; */
+  position: relative;
 }
 
-.onlyjoy__matchRow {
+.onlyjoy__matchCard::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 38px);
+  top: 19px;
+  border-left: 1px solid black;
+}
+.onlyjoy__matchCard::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 38px);
+  top: 19px;
+  border-right: 1px solid black;
+}
+
+.onlyjoy__matchLeauge,
+.onlyjoy__matchPlayer {
   width: 100%;
 }
-
-.onlyjoy__matchRow span {
+.onlyjoy__matchLeauge span,
+.onlyjoy__matchPlayer span {
   display: block;
   font-size: 3rem;
   overflow: hidden;
@@ -185,8 +227,10 @@ body {
   text-transform: uppercase;
 }
 
-.onlyjoy__matchRow span::before,
-.onlyjoy__matchRow span::after {
+.onlyjoy__matchLeauge span::before,
+.onlyjoy__matchLeauge span::after,
+.onlyjoy__matchPlayer span::before,
+.onlyjoy__matchPlayer span::after {
   background-color: #000;
   content: "";
   display: inline-block;
@@ -196,26 +240,30 @@ body {
   width: 50%;
 }
 
-.onlyjoy__matchRow span::before {
+.onlyjoy__matchLeauge span::before,
+.onlyjoy__matchPlayer span::before {
   right: 0.5em;
   margin-left: -50%;
 }
 
-.onlyjoy__matchRow span::after {
+.onlyjoy__matchLeauge span::after,
+.onlyjoy__matchPlayer span::after {
   left: 0.5em;
   margin-right: -50%;
 }
 
-.onlyjoy__matchRow:not(:first-child) .row-line {
+.onlyjoy__matchPlayer .row-line {
   margin-top: 2rem;
 }
 
 .onlyjoy__matchDetails {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  /* padding: 0 7.5rem; */
-  /* font-size: 3rem; */
+  /* border-left: 1px solid black;
+  border-right: 1px solid black;
+  position: relative; */
 }
 
 .onlyjoy__matchTeams {
@@ -236,11 +284,18 @@ body {
 }
 
 .onlyjoy__team img {
+  /* 12 */
   width: 12rem;
   height: 12rem;
 }
 .onlyjoy__teamName {
-  width: 120%;
+  display: block;
+  width: 100%;
+  height: auto;
+  word-break: break-word;
+  /* width: 12rem; */
+  /* width: auto; */
+  /* 1.8 */
   font-size: 1.8rem;
   text-align: center;
   text-transform: uppercase;
@@ -732,15 +787,15 @@ select option[disabled][selected] {
 
 @keyframes movingBackAndForth {
   0% {
-    transform: translateX(0px);
+    transform: translateX(-20px);
   }
 
   50% {
-    transform: translateX(80px);
+    transform: translateX(20px);
   }
 
   100% {
-    transform: translateX(0px);
+    transform: translateX(-20px);
   }
 }
 

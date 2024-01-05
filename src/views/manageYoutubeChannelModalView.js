@@ -58,7 +58,7 @@ class manageBookmarkYoutubeChannelModalView {
     return document.querySelector(".onlyjoy__formErrorContainer");
   }
 
-  addHandlerSearchedYoutubeChannel(handler) {
+  addHandlerDisplaySearchedYoutubeChannel(handler) {
     this.#modalContainer.addEventListener("click", async (e) => {
       if (e.target.closest(".onlyjoy__searchButton")) {
         this.#toggleActiveElement(this.#getSearchInputElement());

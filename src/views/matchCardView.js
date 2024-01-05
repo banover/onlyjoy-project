@@ -16,15 +16,14 @@ class matchCardView {
   }
 
   #generateMarkup() {
-    return `
-      <div class="onlyjoy__matchCards">
+    return `      
       ${
         this.#data.length > 0
           ? this.#data
               .map((match) => {
                 return `
-          <div class="onlyjoy__match">
-            <div class="onlyjoy__matchRow">
+          <div class="onlyjoy__matchCard">
+            <div class="onlyjoy__matchLeauge">
               <span>${match.competition}</span>            
             </div>
             <div class="onlyjoy__matchDetails">
@@ -92,17 +91,16 @@ class matchCardView {
                 </p>
               </div>
             </div>
-            <div class="onlyjoy__matchRow">            
+            <div class="onlyjoy__matchPlayer">            
               <span>${match.player}</span>
             </div>
           </div>        
           `;
               })
               .join(" ")
-          : `<p class="onlyjoy__noTeamDescription">팀을 추가해 주세요!</p>`
-      }     
-      </div>    
-      `;
+          : `<p class="onlyjoy__noMatchDescription">경기 일정이 없습니다!</p>`
+      }            
+    `;
   }
 
   renderSpinner(teams) {

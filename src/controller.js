@@ -56,7 +56,7 @@ async function renderThisWeekMatchCardPage() {
     manageBookmarkYoutubeChannelModalView.addHandlerDisplayAddYoutubeChannelForm(
       controlDisplayingAddYoutubeChannelForm
     );
-    manageBookmarkYoutubeChannelModalView.addHandlerSearchedYoutubeChannel(
+    manageBookmarkYoutubeChannelModalView.addHandlerDisplaySearchedYoutubeChannel(
       controlDisplayingSearchedYoutubeChannels
     );
     manageBookmarkYoutubeChannelModalView.addHandlerAddNewBookmarkYoutubeChannel(
