@@ -77,14 +77,14 @@ class matchCardFilteringBarView {
       <div class="onlyjoy__matchCardFilterBar">
         <img src="./public/filter.png" alt="a filter icon" />
         <form class="onlyjoy__filterForm">
-          <div class="onlyjoy__select">
+          <div class="onlyjoy__filterSelect">
             <label for="filteringMethod">정렬 방식</label>
             <select id="filteringMethod" name="filteringMethod">
               <option value="date">일정순서</option>
               <option value="team">팀별순서</option>
             </select>
           </div>
-          <div class="onlyjoy__select">
+          <div class="onlyjoy__filterSelect">
             <label for="filteringTeam">팀 선택</label>
             <select id="filteringTeam" name="filteringTeam">
               <option value="all">모든 팀</option>

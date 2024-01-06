@@ -16,6 +16,8 @@ html {
 body {
   font-size: 1.6rem;
   /* font-family: "Do Hyeon", sans-serif; */
+  /* font-family: "Black Han Sans", sans-serif; */
+  font-family: "Jua", sans-serif;
   font-family: "Black Han Sans", sans-serif;
 }
 
@@ -27,19 +29,25 @@ body {
 .onlyjoy__header {
 }
 
+.onlyjoy__logo {
+  width: 26.7rem;
+  height: 14.2rem;
+  margin-left: 15rem;
+}
+
 .onlyjoy__main {
   width: 100%;
   height: auto;
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 4rem;
   padding: 3rem 0;
 }
 
 .onlyjoy__banner {
   width: 100%;
-  width: 170rem;
+  width: 180rem;
   margin: 0 auto;
   display: flex;
   justify-content: space-evenly;
@@ -50,18 +58,34 @@ body {
 
 .onlyjoy__bannerItem {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   align-items: center;
+  background-color: black;
+  color: white;
+  position: relative;
 }
 
 .onlyjoy__bannerItem img {
-  width: 4rem;
-  height: 4rem;
+  display: block;
+  width: 4.5rem;
+  height: 4.5rem;
+  position: absolute;
+}
+
+.onlyjoy__bannerItem img:first-child {
+  left: -4.2rem;
+}
+
+.onlyjoy__bannerItem img:last-child {
+  right: -4.2rem;
 }
 
 .onlyjoy__bannerItem p {
   font-size: 3rem;
   text-transform: uppercase;
+  padding: 0 3rem;
+  /* background-color: black;
+  color: white; */
 }
 
 .onlyjoy__matchCardContainer {
@@ -79,6 +103,10 @@ body {
   /* position: relative; */
   border-bottom: 1px solid black;
   padding-bottom: 5rem;
+  /* 추후 백그라운드 image넣을지 고려... */
+  /* background-image: url(./public/red-and-black-brush-stroke-banner-background-perfect-for-canva.jpg);
+  background-repeat: no-repeat;
+  background-size: cover; */
 }
 
 .onlyjoy__filteringBarContainer {
@@ -108,7 +136,7 @@ body {
   cursor: pointer;
 }
 
-.onlyjoy__AddButtonBar button:hover {
+.onlyjoy__manageButtonBar button:hover {
   background-color: rgb(0, 0, 0, 0.4);
   background-color: white;
   border: 1px solid black;
@@ -139,13 +167,13 @@ body {
   gap: 4rem;
 }
 
-.onlyjoy__select {
+.onlyjoy__filterSelect {
   width: 40%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-
+  /* font-family: "Jua", sans-serif; */
   font-size: 3rem;
 }
 
@@ -155,7 +183,9 @@ body {
   height: 100%;
   background-color: black;
   color: white;
+  /* font-family: "Jua", sans-serif; */
   font-size: 2rem;
+
   border: none;
   cursor: pointer;
 }
@@ -204,6 +234,7 @@ body {
   height: calc(100% - 38px);
   top: 19px;
   border-left: 1px solid black;
+  z-index: -1;
 }
 .onlyjoy__matchCard::after {
   content: "";
@@ -212,6 +243,7 @@ body {
   height: calc(100% - 38px);
   top: 19px;
   border-right: 1px solid black;
+  z-index: -1;
 }
 
 .onlyjoy__matchLeauge,
@@ -355,13 +387,78 @@ body {
   text-align: center;
 }
 .onlyjoy__matchTimes {
-  font-size: 2.1rem;
+  /* font-size: 2.1rem; */
 }
 
 .onlyjoy__matchBroadcasting {
 }
 
+.onlyjoy__matchBroadcasting a:link {
+  color: purple;
+}
+
+.onlyjoy__matchBroadcasting a:hover {
+  background-color: black;
+  color: white;
+  padding: 0.3rem;
+}
+
+.onlyjoy__matchBroadcasting a:visited {
+  color: purple;
+}
+
+.onlyjoy__matchBroadcasting a:visited:hover {
+  background-color: black;
+  color: white;
+  padding: 0.3rem;
+}
+
+.onlyjoy__matchBroadcasting a:active {
+  background-color: black;
+  color: white;
+  padding: 0.3rem;
+}
+
+.onlyjoy__matchBroadcasting a:focus {
+  background-color: black;
+  color: white;
+  padding: 0.3rem;
+}
+
 .onlyjoy__matchYouTubeLiveBroadcasting {
+  /* youtube live channels 나열 list임 */
+}
+
+.onlyjoy__matchYouTubeLiveBroadcasting a:link {
+  color: purple;
+}
+
+.onlyjoy__matchYouTubeLiveBroadcasting a:hover {
+  background-color: black;
+  color: white;
+  padding: 0.3rem;
+}
+
+.onlyjoy__matchYouTubeLiveBroadcasting a:visited {
+  color: purple;
+}
+
+.onlyjoy__matchYouTubeLiveBroadcasting a:visited:hover {
+  background-color: black;
+  color: white;
+  padding: 0.3rem;
+}
+
+.onlyjoy__matchYouTubeLiveBroadcasting a:active {
+  background-color: black;
+  color: white;
+  padding: 0.3rem;
+}
+
+.onlyjoy__matchYouTubeLiveBroadcasting a:focus {
+  background-color: black;
+  color: white;
+  padding: 0.3rem;
 }
 
 .onlyjoy__matchWinner {
@@ -387,11 +484,11 @@ body {
   gap: 4rem;
   background-color: white;
   position: absolute;
-  top: 50%;
+  top: 10%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: "Do Hyeon", sans-serif;
-  padding: 3rem 6rem;
+  transform: translate(-50%, 0%);
+  /* font-family: "Jua", sans-serif; */
+  padding: 5rem 6rem;
 
   display: none;
 }
@@ -413,8 +510,6 @@ body {
   display: flex;
   justify-content: center;
   gap: 3rem;
-
-  margin-top: 2rem;
 }
 
 .teamButton {
@@ -432,6 +527,10 @@ body {
 }
 
 .onlyjoy__manageBookmarkTeamButton {
+  /* font-family: "Jua", sans-serif; */
+}
+
+.onlyjoy__manageBookmarkYoutubeChannelButton {
 }
 
 .onlyjoy__removeTeamButton {
@@ -480,6 +579,10 @@ body {
 }
 
 .onlyjoy__addTeamFormContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .onlyjoy__modalHeading {
@@ -535,9 +638,19 @@ select option[disabled][selected] {
 }
 
 .onlyjoy__modalRestSelectionContainer {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 3rem;
+}
+
+.onlyjoy__modalTeamSelection,
+.onlyjoy__modalPlayerSelection,
+.onlyjoy__modalLiveSelection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .onlyjoy__modalButtonBox {
@@ -546,6 +659,19 @@ select option[disabled][selected] {
 
 .onlyjoy__modalButtonBox button {
   width: 100%;
+  border: 1px solid white;
+  background-color: black;
+  font-weight: bold;
+  font-size: 1.8rem;
+  color: white;
+  padding: 0.8rem 0;
+  cursor: pointer;
+}
+.onlyjoy__modalButtonBox button:hover {
+  font-size: 1.9rem;
+  color: black;
+  background-color: white;
+  border: 1px solid black;
 }
 
 .onlyjoy__removeTeamFormContainer {
@@ -613,18 +739,18 @@ select option[disabled][selected] {
   gap: 4rem;
   background-color: white;
   position: absolute;
-  top: 50%;
+  top: 10%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: "Do Hyeon", sans-serif;
-  padding: 3rem 6rem;
+  transform: translate(-50%, 0%);
+  /* transform: translate(-50%, -50%); */
+  /* font-family: "Jua", sans-serif; */
+  padding: 5rem 6rem;
   display: none;
 }
 
 .onlyjoy__manageYoutubeChannelButtonBox {
   display: flex;
   gap: 2rem;
-  margin-top: 2rem;
 }
 
 .onlyjoy__addChannelButton {
@@ -785,6 +911,182 @@ select option[disabled][selected] {
   /* width: 85%; */
 }
 
+.onlyjoy__footer {
+  width: 100%;
+  display: flex;
+  gap: 3rem;
+  padding: 1rem 0 5rem 0;
+}
+
+.onlyjoy__contributions {
+  width: 45%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-left: 15rem;
+  /* padding-right: 5rem; */
+  border-right: 1px solid black;
+}
+
+.onlyjoy__contributionsHeading {
+  width: 88%;
+  text-align: center;
+  background-color: black;
+  color: white;
+  font-size: 2.2rem;
+  padding: 1rem 0 0.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}
+
+.onlyjoy__contributeIcons {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.onlyjoy__icon {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.onlyjoy__icon img {
+  width: 3.2rem;
+  height: 3.2rem;
+}
+
+.onlyjoy__icon a:link {
+  color: black;
+  padding: 0.5rem 0.5rem;
+}
+
+.onlyjoy__icon a:hover {
+  background-color: black;
+  color: white;
+}
+.onlyjoy__icon a:focus {
+  background-color: black;
+  color: white;
+}
+
+.onlyjoy__icon a:visited {
+  color: black;
+}
+
+.onlyjoy__icon a:visited:hover {
+  background-color: black;
+  color: white;
+}
+.onlyjoy__icon a:visited:focus {
+  background-color: black;
+  color: white;
+}
+
+.onlyjoy__icon a:active {
+  background-color: black;
+  color: white;
+}
+
+.onlyjoy__projectDetails {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding-left: 5rem;
+}
+
+.onlyjoy__howToUse {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.onlyjoy__howToUse p {
+  width: 30%;
+  font-size: 2.5rem;
+  background-color: black;
+  color: white;
+  padding: 1rem 0 0.5rem 0;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.1rem;
+}
+.onlyjoy__howToUse ol {
+  width: 100%;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-left: 2.3rem;
+}
+
+.onlyjoy__useSpecification {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.onlyjoy__useSpecification p:first-child {
+  width: 30%;
+  font-size: 2.5rem;
+  background-color: black;
+  color: white;
+
+  padding: 1rem 0 0.5rem 0;
+  text-transform: uppercase;
+  text-align: center;
+
+  letter-spacing: 0.1rem;
+}
+
+.onlyjoy__useSpecification p:last-child {
+  font-size: 2rem;
+}
+
+.onlyjoy__copyright {
+  font-size: 1.8rem;
+  margin-left: 50rem;
+  margin-top: 1.5rem;
+}
+
+.onlyjoy__copyright a:link {
+  color: purple;
+}
+
+.onlyjoy__copyright a:hover {
+  background-color: black;
+  color: white;
+  padding: 0.5rem 0.5rem;
+}
+
+.onlyjoy__copyright a:visited {
+  color: purple;
+}
+
+.onlyjoy__copyright a:visited:hover {
+  background-color: black;
+  color: white;
+  padding: 0.5rem 0.5rem;
+}
+
+.onlyjoy__copyright a:active {
+  background-color: black;
+  color: white;
+}
+
+.onlyjoy__copyright a:focus {
+  background-color: black;
+  color: white;
+  padding: 0.5rem 0.5rem;
+}
+
 @keyframes movingBackAndForth {
   0% {
     transform: translateX(-20px);
@@ -798,31 +1100,6 @@ select option[disabled][selected] {
     transform: translateX(-20px);
   }
 }
-
-/* @keyframes movingUpAndDown {
-  0% {
-    opacity: 0;
-    transform: rotate(0);
-  }
-
-  25% {
-    transform: translateY(15px);
-  }
-
-  50% {
-    opacity: 1;
-    transform: rotate(0deg);
-  }
-
-  75% {
-    transform: translateY(-15px);
-  }
-
-  100% {
-    opacity: 0;
-    transform: rotate(0deg);
-  }
-} */
 
 @keyframes movingUpAndDownForFirstItem {
   0% {
