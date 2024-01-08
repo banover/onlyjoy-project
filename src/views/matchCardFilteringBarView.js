@@ -97,7 +97,7 @@ class matchCardFilteringBarView {
                 .join(" ")}          
             </select>
           </div>
-          <button class="onlyjoy__searchBtn">정렬</button>
+          <button class="onlyjoy__sortBtn">정렬</button>
         </form>
       </div>
     

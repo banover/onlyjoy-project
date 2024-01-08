@@ -174,7 +174,7 @@ class manageBookmarkTeamModalView {
 
       <div class="onlyjoy__currentTeamContainer">
         <span class="onlyjoy__currentTeamHeading">등록된 팀</span>
-        <div class="onlyjoy__currentBookmarkTeamItemLists">
+        <div class="onlyjoy__currentBookmarkTeamLists">
           ${
             this.#data.length > 0
               ? this.#data

@@ -19,12 +19,12 @@ class modalRemoveYoutubeChannelFormView {
   }
 
   #generateMarkup() {
-    return `
-        <div class="onlyjoy__channelRemoveHeading">
-          <img src="../public/you-tube.png" alt="a youtube icon">
-          <span class="onlyjoy__formHeading">CHANNEL 제거</span>
-        </div>        
+    return `              
         <form class="onlyjoy__removeChannelForm">
+            <label class="onlyjoy__channelRemoveHeading" for="removeChannel">
+              <img src="../public/you-tube.png" alt="a youtube icon">
+              <span >CHANNEL 제거</span>
+            </label> 
             <div class="onlyjoy__modalRemoveChannelSelection">                             
                 <select name="removeChannel" id="removeChannel" required>
                     <option disabled selected>제거할 채널을 선택해 주세요</option>

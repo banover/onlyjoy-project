@@ -47,7 +47,7 @@ class modalAddTeamRestSelectionView {
                   .join(" ")}
             </select>        
         </div>
-        <div class="onlyjoy__modalPlayerSelection">
+        <div class="onlyjoy__modalPlayerInput">
             <label class="onlyjoy__inputLabel" for="player">
                 <img src="./public/jersey.png" alt="a jersey icon" />
                 <span>선수</span>
