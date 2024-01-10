@@ -23,6 +23,7 @@ body {
   width: 100%;
   height: auto;
   padding: 0 14rem;
+  position: relative;
 }
 
 .onlyjoy__header {
@@ -36,7 +37,6 @@ body {
 .onlyjoy__logo {
   width: 26.7rem;
   height: 14.2rem;
-  /* margin-left: 15rem; */
 }
 
 .onlyjoy__main {
@@ -53,7 +53,7 @@ body {
   width: 100%;
   width: 159.5rem;
   height: 3.5rem;
-  /* margin: 0 auto; */
+
   display: flex;
   gap: 0.5rem;
 
@@ -67,28 +67,15 @@ body {
   display: flex;
   gap: 0rem;
   align-items: center;
-  /* background-color: black;
-  color: white; */
-  /* position: relative; */
 }
 
 .onlyjoy__bannerItem img {
   display: block;
   width: 3.5rem;
   height: 3.5rem;
-  /* position: absolute; */
-}
-
-.onlyjoy__bannerItem img:first-child {
-  /* left: -4.2rem; */
-}
-
-.onlyjoy__bannerItem img:last-child {
-  /* right: -4.2rem; */
 }
 
 .onlyjoy__bannerItem p {
-  /* width: rem; */
   font-size: 2.5rem;
   text-align: center;
   text-transform: uppercase;
@@ -99,22 +86,18 @@ body {
 
 .onlyjoy__matchCardContainer {
   width: 100%;
-  /* width: 160rem; */
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  /* padding: 0 2rem; */
   border-bottom: 1px solid black;
   padding-bottom: 5rem;
 }
 
 .onlyjoy__filteringBarContainer {
   width: 100%;
-  /* width: 159.5rem; */
   display: flex;
   gap: 8rem;
-  /* margin-left: 62.1rem; */
   justify-content: flex-end;
 }
 
@@ -125,7 +108,6 @@ body {
 }
 
 .onlyjoy__manageButtonBar button {
-  /* width: 12rem; */
   width: 11rem;
   height: 100%;
   border: none;
@@ -151,7 +133,6 @@ body {
   gap: 4rem;
   align-items: center;
   border: 1px solid rgb(0, 0, 0, 0.3);
-  /* margin-right: 1%; */
 }
 
 .onlyjoy__matchCardFilterBar img {
@@ -373,11 +354,6 @@ body {
   font-size: 2.1rem;
   text-align: center;
 }
-.onlyjoy__matchTimes {
-}
-
-.onlyjoy__matchBroadcasting {
-}
 
 .onlyjoy__matchBroadcasting a:link {
   color: purple;
@@ -409,10 +385,6 @@ body {
   background-color: black;
   color: white;
   padding: 0.3rem;
-}
-
-.onlyjoy__matchYouTubeLiveBroadcasting {
-  /* youtube live channels 나열 list임 */
 }
 
 .onlyjoy__matchYouTubeLiveBroadcasting a:link {
@@ -454,6 +426,7 @@ body {
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9;
   display: none;
 }
 
@@ -467,6 +440,7 @@ body {
   position: absolute;
   top: 10%;
   left: 50%;
+  z-index: 99;
   transform: translate(-50%, 0%);
   padding: 5rem 6rem;
   display: none;
@@ -503,9 +477,6 @@ body {
 .teamButton:hover {
   background-color: white;
   color: black;
-}
-
-.onlyjoy__removeTeamButton {
 }
 
 .onlyjoy__currentTeamContainer {
@@ -666,9 +637,6 @@ select option[disabled][selected] {
   gap: 2rem;
 }
 
-.onlyjoy__removeTeamSubmitButton {
-}
-
 .onlyjoy__manageBookmarkYoutubeChannelModal {
   width: 50rem;
   height: auto;
@@ -679,6 +647,7 @@ select option[disabled][selected] {
   position: absolute;
   top: 10%;
   left: 50%;
+  z-index: 99;
   transform: translate(-50%, 0%);
   padding: 5rem 6rem;
   display: none;
@@ -797,6 +766,7 @@ select option[disabled][selected] {
 }
 
 .onlyjoy__channelRemoveHeading span {
+  display: block;
   font-size: 3rem;
 }
 
@@ -880,13 +850,13 @@ select option[disabled][selected] {
 
 .onlyjoy__contributions {
   width: 45%;
-  /* width: 50%; */
+
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   margin-left: 2rem;
   padding-right: 3rem;
-  /* margin-left: 15rem; */
+
   border-right: 1px solid black;
 }
 
@@ -978,6 +948,7 @@ select option[disabled][selected] {
   text-align: center;
   letter-spacing: 0.1rem;
 }
+
 .onlyjoy__howToUse ol {
   width: 100%;
   font-size: 2rem;
@@ -1010,9 +981,10 @@ select option[disabled][selected] {
 }
 
 .onlyjoy__copyright {
+  width: 100%;
   font-size: 1.8rem;
   text-align: end;
-  /* margin-left: 50rem; */
+
   margin-top: 1.5rem;
 }
 
@@ -1050,17 +1022,14 @@ select option[disabled][selected] {
 @keyframes movingBackAndForth {
   0% {
     transform: translateX(-20%);
-    /* transform: translateX(-90px); */
   }
 
   50% {
     transform: translateX(20%);
-    /* transform: translateX(90px); */
   }
 
   100% {
     transform: translateX(-20%);
-    /* transform: translateX(-90px); */
   }
 }
 

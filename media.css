@@ -1,170 +1,163 @@
 /* 1839 */
 @media only screen and (max-width: 115em) {
-    .onlyjoy__filteringBarContainer {
-        width: 100%;
-        display: flex;
-        gap: 8rem;
-        justify-content: center;
-        /* padding-right: 0rem; */
-        /* padding-left: 20%; */
-        /* justify-content: flex-end;
-        padding-right: 26.3rem; */
-      }
-  
+  .onlyjoy__filteringBarContainer {
+    width: 100%;
+    display: flex;
+    gap: 8rem;
+    justify-content: center;
   }
+}
 
 /* 1663 */
 @media only screen and (max-width: 103.9375em) {
-    
-
-  
-  
-.onlyjoy__contributions {
+  .onlyjoy__contributions {
     width: 45%;
- 
+
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
     margin-left: 2rem;
     padding-right: 3rem;
-  
+
     border-right: 1px solid black;
   }
-  
+
   .onlyjoy__contributionsHeading {
-      
     font-size: 2rem;
-   
   }
-  
+
   .onlyjoy__contributeIcons {
-   
     gap: 0.2rem;
   }
-  
-  .onlyjoy__icon {    
+
+  .onlyjoy__icon {
     gap: 1rem;
   }
-  
+
   .onlyjoy__icon img {
     width: 2.8rem;
     height: 2.8rem;
   }
-
-  
-  
 }
 
 /* 1637 */
-@media only screen and (max-width: 102.3125em) {}
+@media only screen and (max-width: 102.3125em) {
+}
 .onlyjoy__projectDetails {
-    
-    padding-left: 3.5rem;
-  }
-
-/* 1583 */
-@media only screen and (max-width: 103.9375em) {   
-    .onlyjoy__contributionsHeading {
-      width: 100%;     
-    }   
-    
-  }
-
-/* 1460 */
-@media only screen and (max-width: 99.8125em) {
-    
-    /* TODO: contiributions heading 수정하기 */
+  padding-left: 3.5rem;
 }
 
+/* 1583 */
+@media only screen and (max-width: 103.9375em) {
+  .onlyjoy__contributionsHeading {
+    width: 100%;
+  }
+}
 
+/* 1460 */
+@media only screen and (max-width: 91.25em) {
+  .onlyjoy__contributionsHeading {
+    width: 100%;
+    font-size: 1.8rem;
+  }
+}
+
+/* 1433 */
+@media only screen and (max-width: 89.5625em) {
+  .onlyjoy__projectDetails {
+    padding-left: 2.5rem;
+  }
+
+  .onlyjoy__howToUse ol {
+    font-size: 1.8rem;
+  }
+}
+
+/* 1368 */
+@media only screen and (max-width: 85.5em) {
+  .onlyjoy__howToUse p {
+    width: 40%;
+  }
+
+  .onlyjoy__useSpecification p:first-child {
+    width: 40%;
+  }
+}
 
 /* 1326 */
-/* 1309 */
-/* @media only screen and (max-width: 81.8125em) { */
 @media only screen and (max-width: 82.875em) {
-    
-.onlyjoy__matchCardContainer {
-   
-   
-  
+  .onlyjoy__matchCardContainer {
     gap: 2rem;
-  
   }
-  
+
   .onlyjoy__filteringBarContainer {
-   
-    gap: 4rem;   
+    gap: 4rem;
   }
 
   .onlyjoy__matchCard {
     width: 45rem;
-   
+
     gap: 3rem;
   }
-  
-.onlyjoy__matchDetails {
-   
-    
+
+  .onlyjoy__matchDetails {
     gap: 2rem;
-   
   }
 
   .onlyjoy__matchTeams {
-    
     gap: 0rem;
-    
   }
 
   .onlyjoy__matchScore {
-   
     font-size: 6rem;
-  
   }
 
   .onlyjoy__matchStatus {
-    
     font-size: 1.8rem;
   }
 
   .onlyjoy__matchData {
-   
     gap: 2rem;
-  
+
     font-size: 1.8rem;
-    
+  }
+
+  .onlyjoy__contributions {
+    width: 50%;
+  }
+}
+
+/* 1267 */
+@media only screen and (max-width: 79.1875em) {
+  .onlyjoy__contributions {
+    width: 55%;
+  }
+
+  .onlyjoy__projectDetails {
+    padding-left: 1rem;
+  }
+
+  .onlyjoy__icon a:link {
+    font-size: 1.4rem;
   }
 }
 
 /* 1226 */
-/* 1209 */
-@media only screen and (max-width:76.625em ) {
-    .onlyjoy__matchCard {
-        width: 40rem;       
-        
-        gap: 1.5rem;
-      }
+@media only screen and (max-width: 76.625em) {
+  .onlyjoy__matchCard {
+    width: 40rem;
 
-    
-/* .onlyjoy__matchDetails {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    position: relative;
-  } */
-  
-  .onlyjoy__matchDetails::before {
-   
-    height: calc(100% + 3rem + 38px);
-    top: -34px;
-   
+    gap: 1.5rem;
   }
-  
-  .onlyjoy__matchDetails::after {
-   
+
+  .onlyjoy__matchDetails::before {
     height: calc(100% + 3rem + 38px);
     top: -34px;
- 
+  }
+
+  .onlyjoy__matchDetails::after {
+    height: calc(100% + 3rem + 38px);
+    top: -34px;
   }
 
   .onlyjoy__team img {
@@ -172,57 +165,70 @@
     height: 10rem;
   }
 }
-/* 1126 */
-/* 1109 */
-@media only screen and (max-width:70.375em ) {
 
-    .onlyjoy__filteringBarContainer {
-   
-        gap: 2rem;   
-      }
-
-      .onlyjoy__manageButtonBar {
-        width: 17rem;
-        
-        gap: 1rem;
-      }
-
-      .onlyjoy__matchCardFilterBar {
-       
-        width: 54rem;
-        height: 7rem;        
-        gap: 2rem;
-       
-        /* margin-right: 1%; */
-      }
-
-    .onlyjoy__matchCard {
-        width: 35rem;      
-        
-        gap: 1.5rem;
-      }
-
-    
-/* .onlyjoy__matchDetails {
+/* 1217 */
+@media only screen and (max-width: 76.0625em) {
+  .onlyjoy__contributionsHeading {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    position: relative;
-  } */
-  
-  .onlyjoy__matchDetails::before {
-   
-    height: calc(100% + 3rem + 38px);
-    top: -34px;
-   
+    font-size: 1.6rem;
   }
-  
-  .onlyjoy__matchDetails::after {
-   
+
+  .onlyjoy__howToUse p {
+    width: 45%;
+  }
+
+  .onlyjoy__useSpecification p:first-child {
+    width: 45%;
+  }
+}
+
+/* 1134 */
+@media only screen and (max-width: 70.875em) {
+  .onlyjoy__projectDetails {
+    padding-left: 0rem;
+  }
+
+  .onlyjoy__howToUse p {
+    font-size: 2rem;
+  }
+
+  .onlyjoy__useSpecification p:first-child {
+    font-size: 2rem;
+  }
+}
+
+/* 1126 */
+@media only screen and (max-width: 70.375em) {
+  .onlyjoy__filteringBarContainer {
+    gap: 2rem;
+  }
+
+  .onlyjoy__manageButtonBar {
+    width: 17rem;
+
+    gap: 1rem;
+  }
+
+  .onlyjoy__matchCardFilterBar {
+    width: 54rem;
+    height: 7rem;
+    gap: 2rem;
+  }
+
+  .onlyjoy__matchCard {
+    width: 35rem;
+
+    gap: 1.5rem;
+  }
+
+  .onlyjoy__matchDetails::before {
     height: calc(100% + 3rem + 38px);
     top: -34px;
- 
+  }
+
+  .onlyjoy__matchDetails::after {
+    height: calc(100% + 3rem + 38px);
+    top: -34px;
   }
 
   .onlyjoy__team img {
@@ -231,1515 +237,770 @@
   }
 
   .onlyjoy__matchData {
-   
     gap: 1.5rem;
-  
+
     font-size: 1.7rem;
-    
   }
 
-  .onlyjoy__teamName { 
-        
+  .onlyjoy__teamName {
     font-size: 1.5rem;
-   
   }
 
   .onlyjoy__matchScore {
-   
     font-size: 5rem;
-  
   }
 
   .onlyjoy__matchStatus {
-    
     font-size: 1.5rem;
   }
-
-
-
 }
+
+/* 1079 */
+@media only screen and (max-width: 67.4375em) {
+  .onlyjoy__copyright {
+    font-size: 1.6rem;
+    margin-top: 1.3rem;
+  }
+}
+
 /* 1026 */
-/* 1009 */
-@media only screen and (max-width:64.125em ) {
-    .onlyjoy__matchCard {
-        width: 50rem;
-      
-        gap: 3rem;
-      }
-
-      .onlyjoy__matchDetails {
-     
-        gap: 3rem;
-       
-      }
-      
-      .onlyjoy__matchDetails::before {
-    
-        height: calc(100% + 6rem + 38px);
-        top: -49px;
-       
-      }
-      
-      .onlyjoy__matchDetails::after {
-        
-        height: calc(100% + 6rem + 38px);
-        top: -49px;
-     
-      }
-
-      .onlyjoy__matchTeams {
-      
-      
-        gap: 3rem;
-      
-      }
-      
-      .onlyjoy__team {
-        width: 12rem;
-     
-        gap: 2rem;
-     
-      }
-      
-      .onlyjoy__team img {
-        width: 12rem;
-        height: 12rem;
-      }
-      
-      .onlyjoy__teamName {
-     
-      
-        font-size: 1.8rem;
-    
-      }
-      
-      .onlyjoy__teamPosition {
-        font-size: 1.2rem;
-        margin-top: -1.5rem;
-      }
-
-      .onlyjoy__matchScore {
-        
-        font-size: 8rem;
-        margin-top: -4.5rem;
-      }
-      
-      .onlyjoy__matchStatus {
-        
-        font-size: 2rem;
-      }
-
-      .onlyjoy__matchData {
-      
-        gap: 2.5rem;
-       
-        font-size: 2.1rem;
-      
-      }
-
-      .onlyjoy__matchCardFilterBar {        
-        width: 55rem;
-        height: 7rem;
-        display: flex;
-        gap: 2rem;
-    
-      
-      }
-
-      .onlyjoy__matchCardFilterBar img {
-        width: 9%;
-        height: 5rem;
-      }      
-
-      .onlyjoy__filterForm {
-      
-        gap: 2rem;
-      }
-}
-/* 884 */
-/* 867 */
-@media only screen and (max-width: 55.25em) {
-    .onlyjoy {
-        padding: 0 0;
-    }
-    .onlyjoy__header {
-        width: 100%;       
-      }
-
-      .onlyjoy__header a{
-        width: 26.7rem;
-        /* display: block; */
-        margin: 0 auto;
-      }
-
-      .onlyjoy__logo {
-        width: 26.7rem;
-        width: 100%;
-        height: 14.2rem;
-         
-         
-        }
-       
-
-    .onlyjoy__filteringBarContainer {       
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;        
-        
-      }
-
-      .onlyjoy__manageButtonBar {        
-       
-        width: 100%;
-        justify-content: flex-end;
-        height: 7rem;        
-        gap: 2rem;
-        margin-right:3.5rem;       
-        
-      }
-      
-      .onlyjoy__manageButtonBar button {        
-        width: 14rem;
-     
-        
-    
-        font-size: 2.4rem;
-       
-      }
-      
-      .onlyjoy__manageButtonBar button:hover {
-     
-        
-        font-size: 2.4rem;
-      }
-
-
-}
-/* 579 */
-@media only screen and (max-width:36.1875em ) {
-    .onlyjoy__matchCardFilterBar {      
-        width: 50rem;
-        height: 7rem;        
-        gap: 0rem;         
-       
-      }
-      
-
-    .onlyjoy__matchCardFilterBar img {
-        display: none;
-      }
-
-      .onlyjoy__filterForm {
-      
-        padding-left:2rem;
-        gap: 3rem;
-      }
-
-    
-}
-/* 518 */
-@media only screen and (max-width:32.375em ) {
-    .onlyjoy__matchCardFilterBar {
-        
-        width: 38rem;
-        height: 7rem;
-      
-      }
-    .onlyjoy__filterForm {
-      
-        padding-left:1rem;
-        gap: 1rem;
-      }
-
-      .onlyjoy__filterSelect {
-        width: 35%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        font-size: 3rem;
-      }
-
-      .onlyjoy__manageButtonBar {
-        width: 24rem;
-      
-      }
-
-     
-
-      .onlyjoy__banner{
-        display: none;
-      }
-    
-      
-     
-
-    .onlyjoy__matchCard {
-        width: 40rem;
-      
-        gap: 3rem;
-      }
-
-      .onlyjoy__matchDetails {
-     
-        gap: 2rem;
-       
-      }
-      
-     
-      
-     
-     
-
-      .onlyjoy__matchTeams {
-      
-      
-        gap: 0rem;
-      
-      }
-      
-      
-      
-      .onlyjoy__team img {
-        width: 10rem;
-        height: 10rem;
-      }
-      
-      .onlyjoy__teamName {
-     
-      
-        font-size: 1.6rem;
-    
-      }
-      
-      .onlyjoy__teamPosition {
-        font-size: 1.2rem;
-        margin-top: -1.5rem;
-      }
-
-      .onlyjoy__matchScore {
-        
-        font-size: 6rem;
-        
-      }
-      
-      .onlyjoy__matchStatus {
-        
-        font-size: 1.7rem;
-      }
-
-      .onlyjoy__matchData {
-      
-        gap: 2rem;
-       
-        font-size: 1.8rem;
-      
-      }
-}
-/* 401 */
-@media only screen and (max-width: 29.5625em) {
-    .onlyjoy__matchCard {
-        width: 35rem;
-      
-        gap: 2rem;
-      }
-
-      .onlyjoy__matchDetails {
-     
-        gap: 2rem;
-       
-      }
-      
-      .onlyjoy__matchDetails::before {
-    
-        height: calc(100% + 4rem + 38px);
-        top: -39px;
-       
-      }
-      
-      .onlyjoy__matchDetails::after {
-        
-        height: calc(100% + 4rem + 38px);
-        top: -39px;
-     
-      }
-
-      .onlyjoy__matchTeams {
-      
-      
-       
-      
-      }
-      
-      .onlyjoy__team {
-      
-     
-      }
-      
-      .onlyjoy__team img {
-        width: 8rem;
-        height: 8rem;
-      }
-      
-      .onlyjoy__teamName {
-     
-      
-        font-size: 1.4rem;
-    
-      }
-      
-      .onlyjoy__teamPosition {
-        font-size: 1.1rem;
-       
-      }
-
-      .onlyjoy__matchScore {
-        
-        font-size: 5rem;
-        
-      }
-      
-      .onlyjoy__matchStatus {
-        
-        font-size: 1.6rem;
-      }
-
-      .onlyjoy__matchData {
-      
-        gap: 2rem;       
-        font-size: 1.7rem;
-      
-      }
-}
-/* 384 */
-@media only screen and (max-width: 24em) {
-    .onlyjoy__matchCardFilterBar {
-        
-        width: 35rem;
-    
-      
-      }
-    .onlyjoy__filterForm {
-      
-        padding-left:1rem;
-        gap: 1rem;
-      }
-
-      .onlyjoy__filterSelect {
-        width: 35%;
-     
-        font-size: 2.4rem;
-      }  
-    
-}
-@media only screen and (max-width: ) {
-  .onlyjoy {
-    width: 100%;
-    height: auto;
-  }
-
-  .onlyjoy__header {
-  }
-
-  .onlyjoy__logo {
-    width: 26.7rem;
-    height: 14.2rem;
-    margin-left: 15rem;
-  }
-
-  .onlyjoy__main {
-    width: 100%;
-    height: auto;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
-    padding: 3rem 0;
-  }
-
-  .onlyjoy__banner {
-    
-    gap: 8rem;
-    
-    animation: movingBackAndForth 16s infinite normal;
-  }
-
-  .onlyjoy__bannerItem {
-    display: flex;
-    gap: 1.5rem;
-    align-items: center;
-    background-color: black;
-    color: white;
-    position: relative;
-  }
-
-  .onlyjoy__bannerItem img {
-    display: block;
-    width: 3.5rem;
-    height: 3.5rem;
-    position: absolute;
-  }
-
-  .onlyjoy__bannerItem img:first-child {
-    left: -4.2rem;
-  }
-
-  .onlyjoy__bannerItem img:last-child {
-    right: -4.2rem;
-  }
-
-  .onlyjoy__bannerItem p {
-    font-size: 2.5rem;
-    text-transform: uppercase;
-    padding: 0 3rem;
-  }
-
-  .onlyjoy__matchCardContainer {
-    width: 100%;
-    /* width: 160rem; */
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    /* padding: 0 2rem; */
-    border-bottom: 1px solid black;
-    padding-bottom: 5rem;
-  }
-  
-  .onlyjoy__filteringBarContainer {
-    width: 100%;
-    display: flex;
-    gap: 8rem;
-    justify-content: flex-end;    
-  }
-  
-  .onlyjoy__manageButtonBar {
-    
-    width: 24rem;
-    display: flex;
-    gap: 2rem;
-  }
-  
-  .onlyjoy__manageButtonBar button {
-    /* width: 12rem; */
-    width: 11rem;
-    height: 100%;
-    border: none;
-    background-color: rgb(0, 0, 0);
-    color: white;
-    font-size: 2rem;
-    cursor: pointer;
-  }
-  
-  .onlyjoy__manageButtonBar button:hover {
-    background-color: rgb(0, 0, 0, 0.4);
-    background-color: white;
-    border: 1px solid black;
-    color: black;
-    font-size: 2.1rem;
-  }
-  
-  .onlyjoy__matchCardFilterBar {
-    width: 40%;
-    width: 63.8rem;
-    height: 7rem;
-    display: flex;
-    gap: 4rem;
-    align-items: center;
-    border: 1px solid rgb(0, 0, 0, 0.3);
-  }
-  
-  .onlyjoy__matchCardFilterBar img {
-    width: 10%;
-    height: 6rem;
-  }
-  
-  .onlyjoy__filterForm {
-  
-    gap: 4rem;
-  }
-  
-  .onlyjoy__filterSelect {
-    width: 40%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-size: 3rem;
-  }
-  
-  .onlyjoy__searchBtn {
-    width: 20%;
-    width: 9.1rem;
-    height: 100%;
-    background-color: black;
-    color: white;
-    font-size: 2rem;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .onlyjoy__searchBtn:hover {
-    background-color: rgb(0, 0, 0, 0.4);
-    background-color: white;
-    border: 1px solid black;
-    color: black;
-    font-size: 2.1rem;
-  }
-  
-  .onlyjoy__noMatchDescription {
-    font-size: 10rem;
-    margin: 0 auto;
-    padding: 7rem 0;
-  }
-  
-  .onlyjoy__matchCards {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 3rem;
-  }
-  
+@media only screen and (max-width: 64.125em) {
   .onlyjoy__matchCard {
     width: 50rem;
-    height: auto;
-    display: flex;
-    flex-direction: column;
+
     gap: 3rem;
   }
-  
-  .onlyjoy__matchLeauge,
-  .onlyjoy__matchPlayer {
-    width: 100%;
-  }
-  
-  .onlyjoy__matchLeauge span,
-  .onlyjoy__matchPlayer span {
-    display: block;
-    font-size: 3rem;
-    overflow: hidden;
-    text-align: center;
-    text-transform: uppercase;
-  }
-  
-  .onlyjoy__matchLeauge span::before,
-  .onlyjoy__matchLeauge span::after,
-  .onlyjoy__matchPlayer span::before,
-  .onlyjoy__matchPlayer span::after {
-    background-color: #000;
-    content: "";
-    display: inline-block;
-    height: 1px;
-    position: relative;
-    vertical-align: middle;
-    width: 50%;
-  }
-  
-  .onlyjoy__matchLeauge span::before,
-  .onlyjoy__matchPlayer span::before {
-    right: 0.5em;
-    margin-left: -50%;
-  }
-  
-  .onlyjoy__matchLeauge span::after,
-  .onlyjoy__matchPlayer span::after {
-    left: 0.5em;
-    margin-right: -50%;
-  }
-  
-  .onlyjoy__matchPlayer .row-line {
-    margin-top: 2rem;
-  }
-  
+
   .onlyjoy__matchDetails {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
     gap: 3rem;
-    position: relative;
   }
-  
+
   .onlyjoy__matchDetails::before {
-    content: "";
-    position: absolute;
-    width: 100%;
     height: calc(100% + 6rem + 38px);
     top: -49px;
-    border-left: 1px solid black;
-    z-index: -1;
   }
-  
+
   .onlyjoy__matchDetails::after {
-    content: "";
-    position: absolute;
-    width: 100%;
     height: calc(100% + 6rem + 38px);
     top: -49px;
-    border-right: 1px solid black;
-    z-index: -1;
   }
-  
+
   .onlyjoy__matchTeams {
-    width: 100%;
-    display: flex;
     gap: 3rem;
-    justify-content: center;
-    align-items: center;
   }
-  
+
   .onlyjoy__team {
     width: 12rem;
-    height: auto;
-    display: flex;
-    flex-direction: column;
+
     gap: 2rem;
-    align-items: center;
   }
-  
+
   .onlyjoy__team img {
     width: 12rem;
     height: 12rem;
   }
+
   .onlyjoy__teamName {
-    display: block;
-    width: 100%;
-    height: auto;
-    word-break: break-word;
-  
     font-size: 1.8rem;
-    text-align: center;
-    text-transform: uppercase;
   }
-  
+
   .onlyjoy__teamPosition {
     font-size: 1.2rem;
     margin-top: -1.5rem;
   }
-  
-  .onlyjoy__afterMatch {
-    width: 17rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0rem;
-  }
-  .onlyjoy__duringMatch {
-    width: 17rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0rem;
-  }
-  
+
   .onlyjoy__matchScore {
-    display: block;
     font-size: 8rem;
     margin-top: -4.5rem;
   }
-  
+
   .onlyjoy__matchStatus {
-    text-align: center;
     font-size: 2rem;
   }
-  
-  .onlyjoy__beforeMatch {
-    width: 17rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0rem;
-  }
-  
-  .onlyjoy__matchReady {
-    display: block;
-    font-size: 6rem;
-    margin-top: -2.5rem;
-  }
-  
+
   .onlyjoy__matchData {
-    display: flex;
-    flex-direction: column;
     gap: 2.5rem;
-    margin: 0 auto;
+
     font-size: 2.1rem;
-    text-align: center;
   }
-  .onlyjoy__matchTimes {
-  }
-  
-  .onlyjoy__matchBroadcasting {
-  }
-  
-  .onlyjoy__matchBroadcasting a:link {
-    color: purple;
-  }
-  
-  .onlyjoy__matchBroadcasting a:hover {
-    background-color: black;
-    color: white;
-    padding: 0.3rem;
-  }
-  
-  .onlyjoy__matchBroadcasting a:visited {
-    color: purple;
-  }
-  
-  .onlyjoy__matchBroadcasting a:visited:hover {
-    background-color: black;
-    color: white;
-    padding: 0.3rem;
-  }
-  
-  .onlyjoy__matchBroadcasting a:active {
-    background-color: black;
-    color: white;
-    padding: 0.3rem;
-  }
-  
-  .onlyjoy__matchBroadcasting a:focus {
-    background-color: black;
-    color: white;
-    padding: 0.3rem;
-  }
-  
-  .onlyjoy__matchYouTubeLiveBroadcasting {
-    /* youtube live channels 나열 list임 */
-  }
-  
-  .onlyjoy__matchYouTubeLiveBroadcasting a:link {
-    color: purple;
-  }
-  
-  .onlyjoy__matchYouTubeLiveBroadcasting a:hover {
-    background-color: black;
-    color: white;
-    padding: 0.3rem;
-  }
-  
-  .onlyjoy__matchYouTubeLiveBroadcasting a:visited {
-    color: purple;
-  }
-  
-  .onlyjoy__matchYouTubeLiveBroadcasting a:visited:hover {
-    background-color: black;
-    color: white;
-    padding: 0.3rem;
-  }
-  
-  .onlyjoy__matchYouTubeLiveBroadcasting a:active {
-    background-color: black;
-    color: white;
-    padding: 0.3rem;
-  }
-  
-  .onlyjoy__matchYouTubeLiveBroadcasting a:focus {
-    background-color: black;
-    color: white;
-    padding: 0.3rem;
-  }
-  
-  .overlay {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.8);
-    display: none;
-  }
-  
-  .onlyjoy__manageBookmarkTeamModal {
-    width: 50rem;
-    height: auto;
+
+  .onlyjoy__matchCardFilterBar {
+    width: 55rem;
+    height: 7rem;
     display: flex;
-    flex-direction: column;
-    gap: 4rem;
-    background-color: white;
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    padding: 5rem 6rem;
-    display: none;
-  }
-  
-  .onlyjoy__modalExitButton {
-    position: absolute;
-    top: 1rem;
-    left: 100%;
-    transform: translate(-120%, 0);
-  }
-  
-  .onlyjoy__modalExitButton img {
-    width: 4rem;
-    height: 4rem;
-    cursor: pointer;
-  }
-  
-  .onlyjoy__manageTeamButtonBox {
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-  }
-  
-  .teamButton {
-    border: 1px solid black;
-    background-color: black;
-    font-size: 4rem;
-    color: white;
-    padding: 1rem 2rem;
-    cursor: pointer;
-  }
-  
-  .teamButton:hover {
-    background-color: white;
-    color: black;
-  }
-  
-  .onlyjoy__removeTeamButton {
-  }
-  
-  .onlyjoy__currentTeamContainer {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-  }
-  
-  .onlyjoy__currentTeamHeading {
-    font-size: 4rem;
-  }
-  
-  .onlyjoy__currentBookmarkTeamLists {
-    display: flex;
-    gap: 2.5rem;
-    flex-wrap: wrap;
-  }
-  
-  .onlyjoy__currentTeamList {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  .onlyjoy__currentTeamList img {
-    display: block;
-    width: 3rem;
-    height: 3rem;
-  }
-  
-  .onlyjoy__currentTeamList span {
-    font-size: 2.5rem;
-  }
-  
-  .onlyjoy__currentTeamStatus {
-    font-size: 3rem;
-  }
-  
-  .onlyjoy__manageTeamContainerBox {
-    width: 100%;
-  }
-  
-  .onlyjoy__addTeamFormContainer {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
     gap: 2rem;
   }
-  
-  .onlyjoy__modalHeading {
-    font-size: 4rem;
-  }
-  
-  .onlyjoy__addTeamForm {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-  }
-  
-  .onlyjoy__modalLeagueSelection {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .onlyjoy__selectionLabel {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-  }
-  
-  .onlyjoy__selectionLabel img {
-    width: 5rem;
+
+  .onlyjoy__matchCardFilterBar img {
+    width: 9%;
     height: 5rem;
   }
-  
-  .onlyjoy__selectionLabel span {
-    text-transform: uppercase;
-    font-size: 3rem;
-  }
-  
-  select option[disabled][selected] {
-    display: none;
-  }
-  
-  .onlyjoy__inputLabel {
-    display: flex;
-    align-items: center;
+
+  .onlyjoy__filterForm {
     gap: 2rem;
   }
-  
-  .onlyjoy__inputLabel img {
-    width: 5rem;
-    height: 5rem;
+}
+
+/* 929 */
+@media only screen and (max-width: 58.0625em) {
+  .onlyjoy__copyright {
+    font-size: 1.3rem;
+
+    margin-top: 1.3rem;
   }
-  
-  .onlyjoy__inputLabel span {
-    text-transform: uppercase;
-    font-size: 3rem;
-  }
-  
-  .onlyjoy__modalRestSelectionContainer {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-  }
-  
-  .onlyjoy__modalTeamSelection,
-  .onlyjoy__modalPlayerInput,
-  .onlyjoy__modalLiveSelection {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .onlyjoy__modalButtonBox {
-    width: 100%;
-  }
-  
-  .onlyjoy__modalButtonBox button {
-    width: 100%;
-    border: 1px solid white;
-    background-color: black;
-    font-weight: bold;
-    font-size: 1.8rem;
-    color: white;
-    padding: 0.8rem 0;
-    cursor: pointer;
-  }
-  
-  .onlyjoy__modalButtonBox button:hover {
-    font-size: 1.9rem;
-    color: black;
-    background-color: white;
-    border: 1px solid black;
-  }
-  
-  .onlyjoy__removeTeamFormContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-  }
-  
-  .onlyjoy__removeTeamForm {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-  
-  .onlyjoy__modalRemoveTeamSelection {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-  
-  .onlyjoy__removeTeamSubmitButton {
-  }
-  
-  .onlyjoy__manageBookmarkYoutubeChannelModal {
-    width: 50rem;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
-    background-color: white;
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    padding: 5rem 6rem;
-    display: none;
-  }
-  
-  .onlyjoy__manageYoutubeChannelButtonBox {
-    display: flex;
-    gap: 2rem;
-  }
-  
-  .channelButton {
-    border: 1px solid black;
-    background-color: black;
-    font-size: 3.2rem;
-    color: white;
-    padding: 1rem 2rem;
-    cursor: pointer;
-  }
-  
-  .channelButton:hover {
-    background-color: white;
-    color: black;
-  }
-  
-  .onlyjoy__currentYoutubeChannalHeading {
-    font-size: 4rem;
-  }
-  
-  .onlyjoy__currentBookmarkYoutubeChannelLists {
-    display: flex;
-    gap: 2.5rem;
-    flex-wrap: wrap;
-  }
-  
-  .onlyjoy__currentYoutubeChannelList {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  .onlyjoy__currentYoutubeChannelList img {
-    width: 4rem;
-    height: 4rem;
-  }
-  
-  .onlyjoy__manageYoutubeChannelContainerBox {
-    width: 100%;
-  }
-  
-  .onlyjoy__addChannelFormContainer {
-    width: 100%;
-  }
-  
-  .onlyjoy__removeChannelFormContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-  .onlyjoy__addChannelForm {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-  }
-  
-  .onlyjoy__modalAddYoutubeChannelInput {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-  .onlyjoy__searchedYoutubeChannels {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-  
-  .onlyjoy__searchedYoutubeChannelsHeading {
-    font-size: 3rem;
-  }
-  
-  .onlyjoy__searchedYoutubeChannelsRadioButtons {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-  
-  .onlyjoy__searchedYoutubeChannelsRadioButton {
-    display: flex;
-    gap: 2rem;
-  }
-  
-  .onlyjoy__searchedYoutubeChannelButtonLabel {
-    display: flex;
-    gap: 2rem;
-    align-items: center;
-  }
-  
-  .onlyjoy__removeChannelForm {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-  }
-  
-  .onlyjoy__channelRemoveHeading {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-  }
-  
-  .onlyjoy__channelRemoveHeading img {
-    width: 5rem;
-    height: 5rem;
-  }
-  
-  .onlyjoy__channelRemoveHeading span {
-    font-size: 3rem;
-  }
-  
-  .onlyjoy__modalRemoveChannelSelection {
-    width: 100%;
-    display: flex;
-  }
-  
-  .onlyjoy__modalRemoveChannelSelection select {
-    width: 100%;
-  }
-  
-  .onlyjoy__modalRemoveChannelButton {
-  }
-  
-  .spinner {
-    width: 100%;
-    height: 30rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8rem;
-  }
-  
-  .spinner img:first-child {
-    animation: movingUpAndDownForFirstItem 6s linear infinite both;
-  }
-  
-  .spinner img:nth-child(2) {
-    animation: movingUpAndDownForSecondItem 18s linear infinite both;
-  }
-  
-  .spinner img:nth-child(3) {
-    animation: movingUpAndDownForThirdItem 18s linear infinite both;
-  }
-  
-  .onlyjoy__matchCardError {
-    width: 100%;
-    display: flex;
-    gap: 3rem;
-    justify-content: center;
-    padding: 10rem 0;
-    font-size: 4rem;
-  }
-  
-  .small {
-    padding: 2rem 0;
-    font-size: 2.5rem;
-  }
-  
-  .onlyjoy__matchCardError img {
-    width: 12.8rem;
-    height: 12.8rem;
-  }
-  
-  .onlyjoy__errorMessage {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    justify-content: center;
-  }
-  
-  .small .onlyjoy__errorMessage {
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    justify-content: center;
-  }
-  
-  .onlyjoy__errorMessage p {
-    display: block;
-  }
-  
+}
+
+/* 902 */
+@media only screen and (max-width: 56.375em) {
   .onlyjoy__footer {
-    width: 100%;
-    display: flex;
-    gap: 3rem;
+    flex-direction: column;
+    gap: 5rem;
     padding: 1rem 0 5rem 0;
-  }
-  
-  .onlyjoy__contributions {
-    width: 45%;
-    /* width: 50%; */
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+
     margin-left: 2rem;
-    padding-right: 3rem;
-    /* margin-left: 15rem; */
-    border-right: 1px solid black;
   }
-  
-  .onlyjoy__contributionsHeading {
-    width: 88%;
-    text-align: center;
-    background-color: black;
-    color: white;
-    font-size: 2.2rem;
-    padding: 1rem 0 0.5rem 0;
-    text-transform: uppercase;
-    letter-spacing: 0.1rem;
-  }
-  
-  .onlyjoy__contributeIcons {
-    width: 100%;
+
+  .onlyjoy__contributions {
+    width: 94%;
     display: flex;
     flex-direction: column;
-    gap: 0.2rem;
-  }
-  
-  .onlyjoy__icon {
-    width: 100%;
-    display: flex;
-    align-items: center;
     gap: 1.5rem;
+    margin-left: 0rem;
+    padding-right: 0rem;
+    border-right: none;
   }
-  
-  .onlyjoy__icon img {
-    width: 3.2rem;
-    height: 3.2rem;
+
+  .onlyjoy__contributionsHeading {
+    width: 100%;
+    font-size: 2.2rem;
   }
-  
+
   .onlyjoy__icon a:link {
-    color: black;
-    padding: 0.5rem 0.5rem;
+    font-size: 1.6rem;
   }
-  
-  .onlyjoy__icon a:hover {
-    background-color: black;
-    color: white;
-  }
-  .onlyjoy__icon a:focus {
-    background-color: black;
-    color: white;
-  }
-  
-  .onlyjoy__icon a:visited {
-    color: black;
-  }
-  
-  .onlyjoy__icon a:visited:hover {
-    background-color: black;
-    color: white;
-  }
-  .onlyjoy__icon a:visited:focus {
-    background-color: black;
-    color: white;
-  }
-  
-  .onlyjoy__icon a:active {
-    background-color: black;
-    color: white;
-  }
-  
+
   .onlyjoy__projectDetails {
-    width: 65%;
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-    padding-left: 5rem;
+    width: 88%;
+    gap: 5rem;
+    padding-left: 0rem;
   }
-  
+
   .onlyjoy__howToUse {
     width: 100%;
-  
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
   }
-  
+
   .onlyjoy__howToUse p {
-    width: 30%;
-    font-size: 2.5rem;
-    background-color: black;
-    color: white;
-    padding: 1rem 0 0.5rem 0;
-    text-transform: uppercase;
-    text-align: center;
-    letter-spacing: 0.1rem;
+    width: 50%;
+    font-size: 2.8rem;
   }
+
   .onlyjoy__howToUse ol {
     width: 100%;
-    font-size: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-left: 2.3rem;
+    font-size: 2.2rem;
+    padding-left: 0.3rem;
   }
-  
+
   .onlyjoy__useSpecification {
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 2rem;
   }
-  
+
   .onlyjoy__useSpecification p:first-child {
-    width: 30%;
-    font-size: 2.5rem;
-    background-color: black;
-    color: white;
-    padding: 1rem 0 0.5rem 0;
-    text-transform: uppercase;
-    text-align: center;
-    letter-spacing: 0.1rem;
+    width: 50%;
+    font-size: 2.8rem;
   }
-  
+
   .onlyjoy__useSpecification p:last-child {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
-  
+
   .onlyjoy__copyright {
     font-size: 1.8rem;
-    text-align: end;
-    /* margin-left: 50rem; */
     margin-top: 1.5rem;
   }
-  
-  .onlyjoy__copyright a:link {
-    color: purple;
+}
+
+/* 884 */
+@media only screen and (max-width: 55.25em) {
+  .onlyjoy {
+    padding: 0 0;
   }
-  
-  .onlyjoy__copyright a:hover {
-    background-color: black;
-    color: white;
-    padding: 0.5rem 0.5rem;
+  .onlyjoy__header {
+    width: 100%;
   }
-  
-  .onlyjoy__copyright a:visited {
-    color: purple;
+
+  .onlyjoy__header a {
+    width: 26.7rem;
+    margin: 0 auto;
   }
-  
-  .onlyjoy__copyright a:visited:hover {
-    background-color: black;
-    color: white;
-    padding: 0.5rem 0.5rem;
+
+  .onlyjoy__logo {
+    width: 26.7rem;
+    width: 100%;
+    height: 14.2rem;
   }
-  
-  .onlyjoy__copyright a:active {
-    background-color: black;
-    color: white;
+
+  .onlyjoy__filteringBarContainer {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
   }
-  
-  .onlyjoy__copyright a:focus {
-    background-color: black;
-    color: white;
-    padding: 0.5rem 0.5rem;
+
+  .onlyjoy__manageButtonBar {
+    width: 100%;
+    justify-content: flex-end;
+    height: 7rem;
+    gap: 2rem;
+    margin-right: 3.5rem;
   }
-  
-  @keyframes movingBackAndForth {
-    0% {
-      transform: translateX(-90px);
-    }
-  
-    50% {
-      transform: translateX(90px);
-    }
-  
-    100% {
-      transform: translateX(-90px);
-    }
+
+  .onlyjoy__manageButtonBar button {
+    width: 14rem;
+
+    font-size: 2.4rem;
   }
-  
-  @keyframes movingUpAndDownForFirstItem {
-    0% {
-      opacity: 0;
-    }
-  
-    25% {
-      transform: translateY(15px);
-    }
-  
-    50% {
-      opacity: 1;
-    }
-  
-    75% {
-      transform: translateY(-15px);
-    }
-  
-    100% {
-      opacity: 0;
-      transform: translateY(0px);
-    }
+
+  .onlyjoy__manageButtonBar button:hover {
+    font-size: 2.4rem;
   }
-  
-  @keyframes movingUpAndDownForSecondItem {
-    0%,
-    33.33% {
-      opacity: 0;
-      transform: translateY(0px);
-    }
-  
-    41.665% {
-      transform: translateY(15px);
-    }
-  
-    50% {
-      opacity: 1;
-    }
-  
-    58.335% {
-      transform: translateY(-15px);
-    }
-  
-    66.66% {
-      opacity: 0;
-      transform: translateY(0px);
-    }
-  
-    74.995% {
-      transform: translateY(15px);
-    }
-  
-    83.33% {
-      opacity: 1;
-    }
-  
-    91.665% {
-      transform: translateY(-15px);
-    }
-  
-    100% {
-      opacity: 0;
-      transform: translateY(0px);
-    }
+
+  .onlyjoy__footer {
+    width: 100%;
+    display: flex;
+
+    padding: 1rem 8rem 5rem 8rem;
   }
-  
-  @keyframes movingUpAndDownForThirdItem {
-    0%,
-    66.66% {
-      opacity: 0;
-      transform: translateY(0px);
-    }
-  
-    74.995% {
-      transform: translateY(15px);
-    }
-  
-    83.33% {
-      opacity: 1;
-    }
-  
-    91.665% {
-      transform: translateY(-15px);
-    }
-  
-    100% {
-      opacity: 0;
-      transform: translateY(0px);
-    }
+
+  .onlyjoy__contributionsHeading {
+    width: 100%;
+    font-size: 2.2rem;
   }
-  
+
+  .onlyjoy__icon {
+    gap: 1.5rem;
+  }
+
+  .onlyjoy__icon a:link {
+    font-size: 1.8rem;
+  }
+
+  .onlyjoy__projectDetails {
+    width: 100%;
+
+    padding-left: 0rem;
+  }
+
+  .onlyjoy__howToUse p {
+    width: 35%;
+    font-size: 2.4rem;
+  }
+
+  .onlyjoy__howToUse ol {
+    width: 100%;
+    font-size: 2rem;
+    padding-left: 0.3rem;
+  }
+
+  .onlyjoy__useSpecification p:first-child {
+    width: 35%;
+    font-size: 2.4rem;
+  }
+
+  .onlyjoy__useSpecification p:last-child {
+    font-size: 1.9rem;
+  }
+
+  .onlyjoy__copyright {
+    font-size: 1.8rem;
+    margin-top: 1.5rem;
+  }
+}
+
+/* 653 */
+@media only screen and (max-width: 40.8125em) {
+  .onlyjoy__contributionsHeading {
+    width: 100%;
+    font-size: 1.8rem;
+  }
+
+  .onlyjoy__icon {
+    gap: 1rem;
+  }
+
+  .onlyjoy__icon a:link {
+    font-size: 1.5rem;
+  }
+
+  .onlyjoy__howToUse p {
+    width: 45%;
+    font-size: 2.2rem;
+  }
+
+  .onlyjoy__howToUse ol {
+    font-size: 1.8rem;
+  }
+
+  .onlyjoy__useSpecification p:first-child {
+    width: 45%;
+    font-size: 2.2rem;
+  }
+
+  .onlyjoy__useSpecification p:last-child {
+    font-size: 1.8rem;
+  }
+
+  .onlyjoy__copyright {
+    font-size: 1.5rem;
+  }
+}
+
+/* 579 */
+@media only screen and (max-width: 36.1875em) {
+  .onlyjoy__matchCardFilterBar {
+    width: 50rem;
+    height: 7rem;
+    gap: 0rem;
+  }
+
+  .onlyjoy__matchCardFilterBar img {
+    display: none;
+  }
+
+  .onlyjoy__filterForm {
+    padding-left: 2rem;
+    gap: 3rem;
+  }
+}
+
+@media only screen and (max-width: 32.6875em) {
+  .onlyjoy__manageBookmarkTeamModal {
+    width: 40rem;
+    gap: 3rem;
+    padding: 3rem 4rem;
+  }
+
+  .onlyjoy__manageTeamButtonBox {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+  }
+
+  .teamButton {
+    font-size: 2.2rem;
+    padding: 1rem 2rem;
+  }
+
+  .onlyjoy__currentTeamContainer {
+    gap: 2rem;
+  }
+
+  .onlyjoy__currentTeamHeading {
+    font-size: 3rem;
+  }
+
+  .onlyjoy__currentBookmarkTeamLists {
+    gap: 2rem;
+  }
+
+  .onlyjoy__currentTeamList img {
+    display: block;
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .onlyjoy__currentTeamList span {
+    font-size: 2.2rem;
+  }
+
+  .onlyjoy__currentTeamStatus {
+    font-size: 2.6rem;
+  }
+
+  .onlyjoy__addTeamFormContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .onlyjoy__modalHeading {
+    font-size: 3rem;
+  }
+
+  .onlyjoy__addTeamForm {
+    gap: 2.5rem;
+  }
+
+  .onlyjoy__modalLeagueSelection {
+    gap: 0.6rem;
+  }
+
+  .onlyjoy__selectionLabel {
+    gap: 1.5rem;
+  }
+
+  .onlyjoy__selectionLabel img {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .onlyjoy__selectionLabel span {
+    font-size: 2.6rem;
+  }
+
+  select option[disabled][selected] {
+    display: none;
+  }
+
+  .onlyjoy__modalRestSelectionContainer {
+    gap: 2.5rem;
+  }
+
+  .onlyjoy__modalTeamSelection,
+  .onlyjoy__modalPlayerInput,
+  .onlyjoy__modalLiveSelection {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .onlyjoy__modalTeamSelection,
+  .onlyjoy__modalPlayerInput,
+  .onlyjoy__modalLiveSelection {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .onlyjoy__manageBookmarkYoutubeChannelModal {
+    width: 40rem;
+    gap: 3rem;
+    padding: 3rem 4rem;
+  }
+
+  .onlyjoy__modalExitButton img {
+    width: 3.2rem;
+    height: 3.2rem;
+    cursor: pointer;
+  }
+
+  .channelButton {
+    font-size: 2.2rem;
+
+    padding: 1rem 2rem;
+  }
+
+  .onlyjoy__currentYoutubeChannalHeading {
+    font-size: 3rem;
+  }
+
+  .onlyjoy__currentYoutubeChannelList img {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .onlyjoy__removeChannelFormContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .onlyjoy__removeChannelForm {
+    gap: 2rem;
+  }
+
+  .onlyjoy__channelRemoveHeading {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .onlyjoy__channelRemoveHeading img {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .onlyjoy__channelRemoveHeading span {
+    display: block;
+    font-size: 2.6rem;
+  }
+
+  .onlyjoy__addChannelForm {
+    gap: 2rem;
+  }
+
+  .onlyjoy__modalAddYoutubeChannelInput {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .onlyjoy__inputLabel {
+    gap: 1.5rem;
+  }
+
+  .onlyjoy__inputLabel img {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .onlyjoy__inputLabel span {
+    font-size: 2.6rem;
+  }
+
+  .onlyjoy__searchedYoutubeChannels {
+    gap: 1.5rem;
+  }
+
+  .onlyjoy__searchedYoutubeChannelsHeading {
+    font-size: 2.6rem;
+  }
+
+  .onlyjoy__searchedYoutubeChannelsRadioButtons {
+    gap: 1.6rem;
+  }
+
+  .onlyjoy__searchedYoutubeChannelsRadioButton {
+    gap: 1.5rem;
+  }
+
+  .onlyjoy__searchedYoutubeChannelButtonLabel {
+    gap: 1.6rem;
+  }
+
+  .onlyjoy__modalButtonBox button {
+    width: 100%;
+
+    font-size: 1.7rem;
+
+    padding: 0.3rem 0;
+  }
+
+  .onlyjoy__modalButtonBox button:hover {
+    font-size: 1.8rem;
+  }
+}
+
+/* 518 */
+@media only screen and (max-width: 32.375em) {
+  .onlyjoy__matchCardFilterBar {
+    width: 38rem;
+    height: 7rem;
+  }
+  .onlyjoy__filterForm {
+    padding-left: 1rem;
+    gap: 1rem;
+  }
+
+  .onlyjoy__filterSelect {
+    width: 35%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 3rem;
+  }
+
+  .onlyjoy__manageButtonBar {
+    width: 24rem;
+  }
+
+  .onlyjoy__banner {
+    display: none;
+  }
+
+  .onlyjoy__matchCard {
+    width: 40rem;
+
+    gap: 3rem;
+  }
+
+  .onlyjoy__matchDetails {
+    gap: 2rem;
+  }
+
+  .onlyjoy__matchTeams {
+    gap: 0rem;
+  }
+
+  .onlyjoy__team img {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  .onlyjoy__teamName {
+    font-size: 1.6rem;
+  }
+
+  .onlyjoy__teamPosition {
+    font-size: 1.2rem;
+    margin-top: -1.5rem;
+  }
+
+  .onlyjoy__matchScore {
+    font-size: 6rem;
+  }
+
+  .onlyjoy__matchStatus {
+    font-size: 1.7rem;
+  }
+
+  .onlyjoy__matchData {
+    gap: 2rem;
+
+    font-size: 1.8rem;
+  }
+
+  .onlyjoy__footer {
+    gap: 3rem;
+    padding: 1rem 0rem 5rem 3rem;
+    margin-left: 0;
+  }
+
+  .onlyjoy__icon a:link {
+    font-size: 1.3rem;
+  }
+
+  .onlyjoy__howToUse p {
+    width: 50%;
+    font-size: 2rem;
+  }
+
+  .onlyjoy__howToUse ol {
+    font-size: 1.8rem;
+    padding-right: 4rem;
+  }
+
+  .onlyjoy__useSpecification p:first-child {
+    width: 50%;
+    font-size: 2rem;
+  }
+
+  .onlyjoy__useSpecification p:last-child {
+    font-size: 1.8rem;
+    padding-right: 2rem;
+  }
+
+  .onlyjoy__copyright {
+    font-size: 1.5rem;
+  }
+}
+
+/* 442 */
+@media only screen and (max-width: 27.625em) {
+  .onlyjoy__contributionsHeading {
+    width: 100%;
+    font-size: 1.5rem;
+  }
+
+  .onlyjoy__howToUse p {
+    width: 40%;
+    font-size: 1.8rem;
+  }
+
+  .onlyjoy__useSpecification p:first-child {
+    width: 40%;
+    font-size: 1.8rem;
+  }
+
+  .onlyjoy__copyright {
+    margin-left: -2rem;
+  }
+}
+
+/* 401 */
+@media only screen and (max-width: 25.0625em) {
+  .onlyjoy__matchCard {
+    width: 35rem;
+
+    gap: 2rem;
+  }
+
+  .onlyjoy__matchDetails {
+    gap: 2rem;
+  }
+
+  .onlyjoy__matchDetails::before {
+    height: calc(100% + 4rem + 38px);
+    top: -39px;
+  }
+
+  .onlyjoy__matchDetails::after {
+    height: calc(100% + 4rem + 38px);
+    top: -39px;
+  }
+
+  .onlyjoy__team img {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  .onlyjoy__teamName {
+    font-size: 1.4rem;
+  }
+
+  .onlyjoy__teamPosition {
+    font-size: 1.1rem;
+  }
+
+  .onlyjoy__matchScore {
+    font-size: 5rem;
+  }
+
+  .onlyjoy__matchStatus {
+    font-size: 1.6rem;
+  }
+
+  .onlyjoy__matchData {
+    gap: 2rem;
+    font-size: 1.7rem;
+  }
+
+  .onlyjoy__footer {
+    padding: 1rem 2rem 5rem 2rem;
+  }
+
+  .onlyjoy__howToUse p {
+    width: 50%;
+  }
+
+  .onlyjoy__useSpecification p:first-child {
+    width: 50%;
+  }
+
+  .onlyjoy__copyright {
+    margin-top: 0rem;
+    font-size: 1.3rem;
+  }
+
+  .onlyjoy__manageBookmarkTeamModal {
+    width: 37.5rem;
+    padding: 2rem 3rem;
+  }
+
+  .onlyjoy__manageBookmarkYoutubeChannelModal {
+    width: 37.5rem;
+    padding: 2rem 3rem;
+  }
+}
+
+/* 384 */
+@media only screen and (max-width: 24em) {
+  .onlyjoy__matchCardFilterBar {
+    width: 35rem;
+  }
+  .onlyjoy__filterForm {
+    padding-left: 1rem;
+    gap: 1rem;
+  }
+
+  .onlyjoy__filterSelect {
+    width: 35%;
+
+    font-size: 2.4rem;
+  }
+}
