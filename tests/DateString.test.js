@@ -22,4 +22,4 @@ describe("DateString class", () => {
 
 // coverage 분석하는 법 확인하기
 // toBe 부분 좀더 꼼꼼히 알아서 string 예상 값 만들게
-// branch나눠서 test부분
+// branch나눠서 test부분!
