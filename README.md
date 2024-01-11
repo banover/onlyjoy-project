@@ -1,5 +1,7 @@
 # ONLYJOY
 
+🔗 [BanOver velog link](https://velog.io/@banover/ONLYJOY-project-%EB%B3%B5%EA%B8%B0)
+
 ## PROJECT 목표
 
 - 동일한 프로젝트를 JS와 REACT로 개별 구현
@@ -41,7 +43,3 @@ FRONT-END의 작업 과정을 개별적으로 경험해 보고
   - :white_check_mark: bookmark YOUTUBE CHANNEL 등록 및 제거<br>
   - :white_check_mark: bookmark에 등록된 YOUTUBE CHANNEL LIVE정보 얻기<br>
   - :white_check_mark: LIVE 정보를 경기 정보에 포함<br>
-
-<!-- ## PROBLEM
-
-프로젝트 작업 중 만났던 문제들을 정리해 놓았다. -->
