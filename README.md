@@ -20,8 +20,8 @@ FRONT-END의 작업 과정을 개별적으로 경험해 보고
 1. 선호하는 YOUTUBE CHANNEL을 bookmark해서 bookmark된 팀의 경기 일정 때,
    live 여부를 확인해서 알려주면 좋겠다.
 
-하나의 화면에서 경기일정, 해당 경기 중계사이트, 해당 경기 입중계 youtube channel을
-다 확인하고 접속하고 싶다.
+**하나의 화면에서 경기일정, 해당 경기 중계사이트, 해당 경기 입중계 youtube channel을
+다 확인하고 접속하고 싶다.**
 
 ### FEATURES
 
