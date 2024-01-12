@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/views/addYoutubeChannelModalView.js</title>
+    <title>Code coverage report for src/views/matchCardFilteringBarView.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/views</a> addYoutubeChannelModalView.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/views</a> matchCardFilteringBarView.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/140</span>
+                <span class='fraction'>0/130</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/140</span>
+                <span class='fraction'>0/130</span>
             </div>
         
             
@@ -193,17 +193,7 @@
 <a name='L128'></a><a href='#L128'>128</a>
 <a name='L129'></a><a href='#L129'>129</a>
 <a name='L130'></a><a href='#L130'>130</a>
-<a name='L131'></a><a href='#L131'>131</a>
-<a name='L132'></a><a href='#L132'>132</a>
-<a name='L133'></a><a href='#L133'>133</a>
-<a name='L134'></a><a href='#L134'>134</a>
-<a name='L135'></a><a href='#L135'>135</a>
-<a name='L136'></a><a href='#L136'>136</a>
-<a name='L137'></a><a href='#L137'>137</a>
-<a name='L138'></a><a href='#L138'>138</a>
-<a name='L139'></a><a href='#L139'>139</a>
-<a name='L140'></a><a href='#L140'>140</a>
-<a name='L141'></a><a href='#L141'>141</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L131'></a><a href='#L131'>131</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -333,141 +323,118 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >class addYoutubeChannelModalView {</span></span></span>
-<span class="cstat-no" title="statement not covered" >  #modalContainer = document.querySelector(</span>
-<span class="cstat-no" title="statement not covered" >    ".onlyjoy__addYoutubeLiveStreamModal"</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >class matchCardFilteringBarView {</span></span></span>
+<span class="cstat-no" title="statement not covered" >  #data;</span>
+<span class="cstat-no" title="statement not covered" >  #matchCardFilteringBarContainer = document.querySelector(</span>
+<span class="cstat-no" title="statement not covered" >    ".onlyjoy__filteringBarContainer"</span>
+<span class="cstat-no" title="statement not covered" >  );</span>
+<span class="cstat-no" title="statement not covered" >  #manageBookmarkTeamModalElement = document.querySelector(</span>
+<span class="cstat-no" title="statement not covered" >    ".onlyjoy__manageBookmarkTeamModal"</span>
+<span class="cstat-no" title="statement not covered" >  );</span>
+<span class="cstat-no" title="statement not covered" >  #manageBookmarkYoutubeChannelModalElement = document.querySelector(</span>
+<span class="cstat-no" title="statement not covered" >    ".onlyjoy__manageBookmarkYoutubeChannelModal"</span>
 <span class="cstat-no" title="statement not covered" >  );</span>
 <span class="cstat-no" title="statement not covered" >  #overlayElement = document.querySelector(".overlay");</span>
-<span class="cstat-no" title="statement not covered" >  #data;</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  render(data) {</span>
 <span class="cstat-no" title="statement not covered" >    this.#data = data;</span>
-<span class="cstat-no" title="statement not covered" >    this.#clearModalContainer();</span>
-<span class="cstat-no" title="statement not covered" >    this.#modalContainer.insertAdjacentHTML(</span>
+<span class="cstat-no" title="statement not covered" >    this.#clearMatchCardFilteringBarContainer();</span>
+<span class="cstat-no" title="statement not covered" >    this.#matchCardFilteringBarContainer.insertAdjacentHTML(</span>
 <span class="cstat-no" title="statement not covered" >      "beforeend",</span>
 <span class="cstat-no" title="statement not covered" >      this.#generateMarkup()</span>
 <span class="cstat-no" title="statement not covered" >    );</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  addHandlerCloseModal() {</span>
-<span class="cstat-no" title="statement not covered" >    this.#modalContainer.addEventListener("click", (e) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      if (e.target.closest(".onlyjoy__modalExitButton")) {</span>
-<span class="cstat-no" title="statement not covered" >        this.#closeModal();</span>
-<span class="cstat-no" title="statement not covered" >        this.#closeOverlay();</span>
-<span class="cstat-no" title="statement not covered" >      }</span>
-<span class="cstat-no" title="statement not covered" >    });</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  #closeModal() {</span>
-<span class="cstat-no" title="statement not covered" >    this.#modalContainer.style.display = "none";</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  #closeOverlay() {</span>
-<span class="cstat-no" title="statement not covered" >    this.#overlayElement.style.display = "none";</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  addHandlerSearchYoutubeChannel(handler) {</span>
-<span class="cstat-no" title="statement not covered" >    this.#modalContainer.addEventListener("click", async (e) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      if (e.target.closest(".onlyjoy__searchButton")) {</span>
-<span class="cstat-no" title="statement not covered" >        this.#toggleActiveSearchInputElement();</span>
-<span class="cstat-no" title="statement not covered" >        this.#toggleActiveSearchButtonElement();</span>
-<span class="cstat-no" title="statement not covered" >        await handler(this.#getSearchedYoutubeChannelTitle());</span>
-<span class="cstat-no" title="statement not covered" >        this.#toggleActiveSearchInputElement();</span>
-<span class="cstat-no" title="statement not covered" >        this.#toggleActiveSearchButtonElement();</span>
-<span class="cstat-no" title="statement not covered" >      }</span>
-<span class="cstat-no" title="statement not covered" >    });</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  #toggleActiveSearchInputElement() {</span>
-<span class="cstat-no" title="statement not covered" >    const inputElement = this.#getSearchInputElement();</span>
-<span class="cstat-no" title="statement not covered" >    inputElement.disabled = inputElement.disabled ? false : true;</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  #getSearchInputElement() {</span>
-<span class="cstat-no" title="statement not covered" >    return document.querySelector(".onlyjoy__ChannelTitleInput");</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  #toggleActiveSearchButtonElement() {</span>
-<span class="cstat-no" title="statement not covered" >    const searchButtonElement = document.querySelector(</span>
-<span class="cstat-no" title="statement not covered" >      ".onlyjoy__searchButton"</span>
-<span class="cstat-no" title="statement not covered" >    );</span>
-<span class="cstat-no" title="statement not covered" >    searchButtonElement.disabled = searchButtonElement.disabled ? false : true;</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  #getSearchedYoutubeChannelTitle() {</span>
-<span class="cstat-no" title="statement not covered" >    const inputElement = this.#getSearchInputElement();</span>
-<span class="cstat-no" title="statement not covered" >    return inputElement.value;</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  addHandlerAddNewBookmarkYoutubeChannel(handler) {</span>
-<span class="cstat-no" title="statement not covered" >    this.#modalContainer.addEventListener("submit", async (e) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  addHandlerFilterMatchCards(handler) {</span>
+<span class="cstat-no" title="statement not covered" >    this.#matchCardFilteringBarContainer.addEventListener("submit", (e) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >      e.preventDefault();</span>
-<span class="cstat-no" title="statement not covered" >      if (e.target.closest(".onlyjoy__ChannelModalForm")) {</span>
-<span class="cstat-no" title="statement not covered" >        // TODO: youtube searched title disable하게 하고</span>
-<span class="cstat-no" title="statement not covered" >        await handler(this.#getChannelData());</span>
-<span class="cstat-no" title="statement not covered" >        // TODO: 여기서 풀기</span>
-<span class="cstat-no" title="statement not covered" >        this.#closeModal();</span>
-<span class="cstat-no" title="statement not covered" >        this.#closeOverlay();</span>
+<span class="cstat-no" title="statement not covered" >      if (e.target.closest(".onlyjoy__filterForm")) {</span>
+<span class="cstat-no" title="statement not covered" >        handler(this.#getFormData());</span>
 <span class="cstat-no" title="statement not covered" >      }</span>
 <span class="cstat-no" title="statement not covered" >    });</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  #getChannelData() {</span>
-<span class="cstat-no" title="statement not covered" >    const formElement = document.querySelector(".onlyjoy__ChannelModalForm");</span>
+<span class="cstat-no" title="statement not covered" >  #getFormData() {</span>
+<span class="cstat-no" title="statement not covered" >    const formElement = document.querySelector(".onlyjoy__filterForm");</span>
 <span class="cstat-no" title="statement not covered" >    const dataArr = [...new FormData(formElement)];</span>
-<span class="cstat-no" title="statement not covered" >    const data = Object.fromEntries(dataArr);</span>
-<span class="cstat-no" title="statement not covered" >    return JSON.parse(data.channelData);</span>
+<span class="cstat-no" title="statement not covered" >    return Object.fromEntries(dataArr);</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  addHandlerDisplayManageBookmarkTeamModal(handler) {</span>
+<span class="cstat-no" title="statement not covered" >    this.#matchCardFilteringBarContainer.addEventListener("click", (e) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      if (e.target.closest(".onlyjoy__manageBookmarkTeamButton")) {</span>
+<span class="cstat-no" title="statement not covered" >        this.#displayOverlay();</span>
+<span class="cstat-no" title="statement not covered" >        this.#displayManageBookmarkTeamModal();</span>
+<span class="cstat-no" title="statement not covered" >        handler();</span>
+<span class="cstat-no" title="statement not covered" >      }</span>
+<span class="cstat-no" title="statement not covered" >    });</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  #displayOverlay() {</span>
+<span class="cstat-no" title="statement not covered" >    this.#overlayElement.style.display = "block";</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  #displayManageBookmarkTeamModal() {</span>
+<span class="cstat-no" title="statement not covered" >    this.#manageBookmarkTeamModalElement.style.display = "flex";</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  addHandlerDisplayManageBookmarkYoutubeChannelModal(handler) {</span>
+<span class="cstat-no" title="statement not covered" >    this.#matchCardFilteringBarContainer.addEventListener("click", (e) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      if (e.target.closest(".onlyjoy__manageBookmarkYoutubeChannelButton")) {</span>
+<span class="cstat-no" title="statement not covered" >        this.#displayOverlay();</span>
+<span class="cstat-no" title="statement not covered" >        this.#displayManageBookmarkYoutubeChannelModal();</span>
+<span class="cstat-no" title="statement not covered" >        handler();</span>
+<span class="cstat-no" title="statement not covered" >      }</span>
+<span class="cstat-no" title="statement not covered" >    });</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  #displayManageBookmarkYoutubeChannelModal() {</span>
+<span class="cstat-no" title="statement not covered" >    this.#manageBookmarkYoutubeChannelModalElement.style.display = "flex";</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  #generateMarkup() {</span>
 <span class="cstat-no" title="statement not covered" >    return `</span>
-<span class="cstat-no" title="statement not covered" >        &lt;div class="onlyjoy__modalExitButton"&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;img src="./public/remove-button.png" alt="an exit-button icon" /&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;span class="onlyjoy__modalHeading"&gt;Youtube Channel 등록&lt;/span&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;form class="onlyjoy__ChannelModalForm"&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;div class="onlyjoy__modalYoutubeChannelInput"&gt;</span>
-<span class="cstat-no" title="statement not covered" >                &lt;label class="onlyjoy__addItemName" for="searchedTitle"&gt;</span>
-<span class="cstat-no" title="statement not covered" >                    &lt;img</span>
-<span class="cstat-no" title="statement not covered" >                    src="./public/you-tube.png"</span>
-<span class="cstat-no" title="statement not covered" >                    alt="a youtube channel icon"</span>
-<span class="cstat-no" title="statement not covered" >                    /&gt;</span>
-<span class="cstat-no" title="statement not covered" >                    &lt;span&gt;채널 Handle&lt;/span&gt;</span>
-<span class="cstat-no" title="statement not covered" >                &lt;/label&gt;</span>
-<span class="cstat-no" title="statement not covered" >                &lt;input</span>
-<span class="cstat-no" title="statement not covered" >                    class="onlyjoy__ChannelTitleInput"</span>
-<span class="cstat-no" title="statement not covered" >                    type="text"</span>
-<span class="cstat-no" title="statement not covered" >                    name="searchedTitle"</span>
-<span class="cstat-no" title="statement not covered" >                    id="searchedTitle"</span>
-<span class="cstat-no" title="statement not covered" >                    placeholder="채널 이름을 입력해 주세요"</span>
-<span class="cstat-no" title="statement not covered" >                    required</span>
-<span class="cstat-no" title="statement not covered" >                /&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;div class="onlyjoy__modalButtonBox"&gt;</span>
-<span class="cstat-no" title="statement not covered" >                &lt;button class="onlyjoy__searchButton"&gt;채널 확인하기&lt;/button&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;div class="onlyjoy__searchedYoutubeChannels"&gt;&lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        &lt;/form&gt;    </span>
+<span class="cstat-no" title="statement not covered" >    </span>
+<span class="cstat-no" title="statement not covered" >      &lt;div class="onlyjoy__manageButtonBar"&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;button class="onlyjoy__manageBookmarkTeamButton"&gt;+ TEAM&lt;/button&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;button class="onlyjoy__manageBookmarkYoutubeChannelButton"&gt;+ 입중계&lt;/button&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;div class="onlyjoy__matchCardFilterBar"&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;img src="./public/filter.png" alt="a filter icon" /&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;form class="onlyjoy__filterForm"&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;div class="onlyjoy__filterSelect"&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;label for="filteringMethod"&gt;정렬 방식&lt;/label&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;select id="filteringMethod" name="filteringMethod"&gt;</span>
+<span class="cstat-no" title="statement not covered" >              &lt;option value="date"&gt;일정순서&lt;/option&gt;</span>
+<span class="cstat-no" title="statement not covered" >              &lt;option value="team"&gt;팀별순서&lt;/option&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;/select&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;div class="onlyjoy__filterSelect"&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;label for="filteringTeam"&gt;팀 선택&lt;/label&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;select id="filteringTeam" name="filteringTeam"&gt;</span>
+<span class="cstat-no" title="statement not covered" >              &lt;option value="all"&gt;모든 팀&lt;/option&gt;</span>
+<span class="cstat-no" title="statement not covered" >              ${this.#data</span>
+<span class="cstat-no" title="statement not covered" >                .map((teamName) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                  return `</span>
+<span class="cstat-no" title="statement not covered" >                  &lt;option value="${teamName}" &gt;${teamName}&lt;/option&gt;</span>
+<span class="cstat-no" title="statement not covered" >                  `;</span>
+<span class="cstat-no" title="statement not covered" >                })</span>
+<span class="cstat-no" title="statement not covered" >                .join(" ")}          </span>
+<span class="cstat-no" title="statement not covered" >            &lt;/select&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;button class="onlyjoy__sortBtn"&gt;정렬&lt;/button&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;/form&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >    </span>
 <span class="cstat-no" title="statement not covered" >    `;</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  #clearModalContainer() {</span>
-<span class="cstat-no" title="statement not covered" >    this.#modalContainer.innerHTML = "";</span>
+<span class="cstat-no" title="statement not covered" >  #clearMatchCardFilteringBarContainer() {</span>
+<span class="cstat-no" title="statement not covered" >    this.#matchCardFilteringBarContainer.innerHTML = "";</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  renderError(error) {</span>
-<span class="cstat-no" title="statement not covered" >    this.#clearModalContainer();</span>
+<span class="cstat-no" title="statement not covered" >    this.#clearMatchCardFilteringBarContainer();</span>
 <span class="cstat-no" title="statement not covered" >    const markUp = `</span>
 <span class="cstat-no" title="statement not covered" >      &lt;div class="onlyjoy__matchCardError"&gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;img src="./public/warning.png" alt="a waring icon" /&gt;</span>
@@ -478,11 +445,14 @@
 <span class="cstat-no" title="statement not covered" >      &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >    `;</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    this.#modalContainer.insertAdjacentHTML("beforeend", markUp);</span>
+<span class="cstat-no" title="statement not covered" >    this.#matchCardFilteringBarContainer.insertAdjacentHTML(</span>
+<span class="cstat-no" title="statement not covered" >      "beforeend",</span>
+<span class="cstat-no" title="statement not covered" >      markUp</span>
+<span class="cstat-no" title="statement not covered" >    );</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export default new addYoutubeChannelModalView();</span>
+<span class="cstat-no" title="statement not covered" >export default new matchCardFilteringBarView();</span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -490,7 +460,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-12-29T15:19:28.868Z
+                at 2024-01-12T07:41:00.327Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
