@@ -1,64 +1,92 @@
 import { afterAll, beforeEach, describe, expect, it, vi, test } from "vitest";
 import fetchAllTeamsInALeague from "../src/services/fetchAllTeamsInALeague";
 import axios from "axios";
+import { BASE_URL, FOOTBALL_API_TOKEN } from "../src/config.js";
 
 vi.mock("axios");
-// axios.get.mockResolvedValue(
-//   new Promise((resolve, reject) => {
-//     resolve({
-//       data: {
-//         teams: "tempTeamData",
-//       },
-//     });
-//   })
-// );
 
-describe("fetchAllTeamsInALeague()", () => {
-  beforeEach(() => {
-    axios.get.mockReset();
-  });
+function setAxiosGetRightFormat() {
+  axios.get.mockResolvedValue(
+    new Promise((resolve, reject) => {
+      resolve({
+        data: {
+          teams: "tempTeamData",
+        },
+      });
+    })
+  );
+}
 
-  it("fetch 성공 후, 올바른 data형식을 return한다", async () => {
-    axios.get.mockResolvedValue(
-      new Promise((resolve, reject) => {
-        resolve({
-          data: {
-            teams: "tempTeamData",
-          },
-        });
-      })
-    );
+describe("fetchAllTeamsInALeague 함수", () => {
+  describe("axios 모듈의 get method", () => {
+    beforeEach(() => {
+      axios.get.mockReset();
+    });
 
-    const data = await fetchAllTeamsInALeague();
+    it("1번 호출된다", async () => {
+      setAxiosGetRightFormat();
 
-    expect(data).toBe("tempTeamData");
-  });
+      const data = await fetchAllTeamsInALeague();
 
-  it("fetch value가 reject Promise일 경우, throw error한다", async () => {
-    axios.get.mockRejectedValue("fetch fail!");
+      expect(axios.get).toHaveBeenCalledTimes(1);
+    });
 
-    const resultFn = () => fetchAllTeamsInALeague();
+    it("올바른 url을 첫번쨰 input으로 사용한다", async () => {
+      setAxiosGetRightFormat();
+      const tempLeagueCode = "forTest";
 
-    await expect(resultFn).rejects.toThrowError(
-      /^해당 리그의 모든 팀을 불러오는데 실패했습니다.$/
-    );
-  });
+      const data = await fetchAllTeamsInALeague(tempLeagueCode);
 
-  it("fetch value가 resolve error Promise일 경우, throw error한다", async () => {
-    axios.get.mockResolvedValue(
-      new Promise((resolve, reject) => {
-        resolve(new Error("test"));
-      })
-    );
+      expect(axios.get.mock.calls[0][0]).toBe(
+        `${BASE_URL}/competitions/${tempLeagueCode}/teams`
+      );
+    });
 
-    const resultFn = () => fetchAllTeamsInALeague();
+    it("올바른 header를 두번쨰 input으로 사용한다", async () => {
+      setAxiosGetRightFormat();
+      const tempLeagueCode = "12345679";
 
-    await expect(resultFn).rejects.toThrowError(
-      /^해당 리그의 모든 팀을 불러오는데 실패했습니다.$/
-    );
+      const data = await fetchAllTeamsInALeague(tempLeagueCode);
+
+      expect(axios.get.mock.calls[0][1]).toEqual({
+        headers: { "X-Auth-Token": FOOTBALL_API_TOKEN },
+      });
+    });
+
+    it("올바른 data format을 return한다", async () => {
+      setAxiosGetRightFormat();
+
+      const data = await fetchAllTeamsInALeague();
+
+      expect(data).toBe("tempTeamData");
+    });
+
+    it("잘못된 data format을 return할 경우, throw error한다", async () => {
+      axios.get.mockResolvedValue(
+        new Promise((resolve, reject) => {
+          resolve({
+            data: {
+              player: "tempPlayData",
+            },
+          });
+        })
+      );
+
+      const resultFn = () => fetchAllTeamsInALeague();
+
+      await expect(resultFn).rejects.toThrowError(
+        /^해당 리그의 모든 팀을 불러오는데 실패했습니다.$/
+      );
+    });
+
+    it("return값이 reject Promise일 경우, throw error한다", async () => {
+      axios.get.mockRejectedValue("axios.get fail!");
+
+      const resultFn = () => fetchAllTeamsInALeague();
+
+      await expect(resultFn).rejects.toThrowError(
+        /^해당 리그의 모든 팀을 불러오는데 실패했습니다.$/
+      );
+    });
   });
 });
-
-// url에 특정 string이 포함되어 있는지...
-// axios.get은 호출되고 있는지, 몇번 됐는지..
-//
