@@ -5,8 +5,12 @@ export default async function fetchSearchedYoutubeChannelData(channelTitle) {
   try {
     const response = await fetch(url);
     const data = await response.json();
-    return data;
+    return data?.items ? data : throwError();
   } catch (error) {
     throw new Error(`Youtube Channel 정보를 불러오는데 실패했습니다.`);
   }
+}
+
+function throwError() {
+  throw new Error("response data format is weired");
 }

@@ -22,9 +22,16 @@ export default async function fetchMatchesWithinAWeek(bookmarkTeams) {
 
   try {
     const responses = await axios.all(requests);
-    return responses;
+    return responses[0].data?.matches ? responses : throwError();
   } catch (error) {
     console.log(error);
+    if (error.message === "response data format is weired") {
+      throw new Error(`경기 정보 format이 이상합니다.`);
+    }
     throw new Error(`경기 정보를 불러오는데 실패했습니다.`);
   }
+}
+
+function throwError() {
+  throw new Error("response data format is weired");
 }
