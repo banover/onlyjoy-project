@@ -73,7 +73,7 @@ describe("fetchMatchesWithinAWeek 함수", () => {
   // });
 
   it("axios.all의 return값이 reject Promise일 경우, throw error한다", async () => {
-    axios.all.mockRejectedValue("axios.get fail!");
+    axios.all.mockRejectedValue(new Error("axios.get fail!"));
 
     const resultFn = () => fetchMatchesWithinAWeek(tempBookmarkTeams);
 
@@ -136,6 +136,26 @@ describe("fetchMatchesWithinAWeek 함수", () => {
   });
 
   describe("axios.all", () => {
+    it("1번 호출된다", async () => {
+      await fetchMatchesWithinAWeek(tempBookmarkTeams);
+
+      expect(axios.all).toHaveBeenCalledTimes(1);
+    });
+
+    it("올바른 input을 가진다", async () => {
+      await fetchMatchesWithinAWeek(tempBookmarkTeams);
+
+      expect(axios.all.mock.calls[0][0][0]).toStrictEqual(
+        new Promise((resolve, reject) => {
+          resolve({
+            data: {
+              matches: "tempMatchesData",
+            },
+          });
+        })
+      );
+    });
+
     it("올바른 data format을 return한다", async () => {
       await fetchMatchesWithinAWeek(tempBookmarkTeams);
 
@@ -147,10 +167,3 @@ describe("fetchMatchesWithinAWeek 함수", () => {
     });
   });
 });
-
-// axios.all 부분을
-// 1번 호출하는지?
-// input은 적절한지?
-// return한 값을 array인지?
-//
-//
