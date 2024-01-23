@@ -11,7 +11,11 @@ export default async function fetchYoutubeChannelFromChannelId(
 
   try {
     const response = await Promise.all(urls.map((url) => fetch(url)));
+
     for (const channelData in response) {
+      if (response[channelData].ok === false) {
+        throw new Error("fetch 실패");
+      }
       const data = await response[channelData].json();
       result.push(data);
     }
@@ -19,6 +23,9 @@ export default async function fetchYoutubeChannelFromChannelId(
     return result;
   } catch (error) {
     console.log(error);
+    if (error.message === "fetch 실패") {
+      throw new Error("fetch 실패");
+    }
     throw new Error("youtube channel 정보를 불러오는데 실패했습니다");
   }
 }

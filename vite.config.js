@@ -1,6 +1,9 @@
 import { defineConfig } from "vite";
 
 export default defineConfig({
+  test: {
+    environment: "jsdom",
+  },
   // Vite에서 사용할 플러그인 목록
   plugins: [],
   // Vite 개발 서버 설정 정의

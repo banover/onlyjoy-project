@@ -67,9 +67,7 @@ describe("fetchYoutubeChannelsFromChannelId 함수", () => {
     const resultFn = () =>
       fetchYoutubeChannelFromChannelId(testBookmarkYoutubeChannels);
 
-    await expect(resultFn).rejects.toThrowError(
-      /^youtube channel 정보를 불러오는데 실패했습니다$/
-    );
+    await expect(resultFn).rejects.toThrowError(/^fetch 실패$/);
   });
 
   it("rejected data를 fetch한 경우, throw error한다", async () => {
@@ -99,3 +97,8 @@ describe("fetchYoutubeChannelsFromChannelId 함수", () => {
     });
   });
 });
+
+// 재수야
+// api만 ... 내부 구현사항은 크게 신경쓰지말자... api를 test하는거야!!! 정신차려!!
+// 왜 남이 만든 모듈을 테스트하려그래!! 정신차려!!
+//  사용자 입장에서 API만으로 테스트해야 한다.
